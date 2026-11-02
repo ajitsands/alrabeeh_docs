@@ -29,21 +29,48 @@ global $pdo, $db_driver_active;
 $pdo = null;
 $db_driver_active = 'none';
 
-// Attempt 1: Connect to MySQL if DB_DRIVER is 'mysql' or 'auto'
+// Attempt 1: Connect to MySQL with configured credentials & fallback options
 if (DB_DRIVER === 'mysql' || DB_DRIVER === 'auto') {
-    try {
-        $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
-        $options = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
-        );
-        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
-        $db_driver_active = 'mysql';
-    } catch (Exception $e) {
-        if (DB_DRIVER === 'mysql') {
-            error_log("MySQL Connection Failed: " . $e->getMessage());
+    $credentials_to_try = array(
+        array(
+            'host' => DB_HOST,
+            'port' => DB_PORT,
+            'name' => DB_NAME,
+            'user' => DB_USER,
+            'pass' => DB_PASS
+        ),
+        // Production Server Credentials Fallback
+        array(
+            'host' => 'localhost',
+            'port' => '3306',
+            'name' => 'sandsl23_alrabeeh_docs_db',
+            'user' => 'sandsl23_alrabeeh_docs_user',
+            'pass' => 'S@nds1@b'
+        ),
+        // Localhost Development Credentials Fallback
+        array(
+            'host' => '127.0.0.1',
+            'port' => '3306',
+            'name' => 'alrabeeh_track_db',
+            'user' => 'root',
+            'pass' => 'S@nds1@b'
+        )
+    );
+
+    foreach ($credentials_to_try as $cred) {
+        try {
+            $dsn = "mysql:host=" . $cred['host'] . ";port=" . $cred['port'] . ";dbname=" . $cred['name'] . ";charset=utf8mb4";
+            $options = array(
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
+            );
+            $pdo = new PDO($dsn, $cred['user'], $cred['pass'], $options);
+            $db_driver_active = 'mysql';
+            break;
+        } catch (Exception $e) {
+            // Continue to next credential candidate
         }
     }
 }
