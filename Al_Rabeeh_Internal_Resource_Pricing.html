@@ -1,0 +1,408 @@
+<?php
+// Enforce Authentication Check if accessed directly
+if (!defined('AUTH_PORTAL_ACTIVE')) {
+    require_once __DIR__ . '/index.php';
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTERNAL ONLY: Al Rabeeh Dental Center EMRS — Resource Cost & 12-Milestone Pricing Matrix | SaNDS Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0a2540;
+      --primary-dark: #07192c;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --dark: #0f172a;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-200: #e2e8f0;
+      --gray-100: #f1f5f9;
+      --white: #ffffff;
+      --blue-subtle: #f0f9ff;
+      --amber-subtle: #fffbeb;
+      --emerald-subtle: #ecfdf5;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: var(--gray-700);
+      padding: 30px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 35px 40px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .header-logos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gray-200);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-logos img {
+      height: 58px;
+      width: auto;
+      object-fit: contain;
+    }
+    .badge-confidential {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ef4444;
+      color: #fff;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary);
+      font-size: 17px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--gray-200);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin: 10px 0 20px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .tier-header td {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+      font-weight: 800;
+      font-size: 11.5px;
+      text-transform: uppercase;
+    }
+    .subtotal-row td {
+      background: #f1f5f9 !important;
+      color: #1e293b !important;
+      font-weight: 700;
+      border-top: 1px solid #cbd5e1;
+    }
+    .total-row td {
+      background: #0f172a !important;
+      color: #fff !important;
+      font-weight: 700;
+    }
+    .card {
+      background: var(--emerald-subtle);
+      border-left: 4px solid var(--emerald);
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-logos">
+      <img src="Logo/AlRabeeh-Logo.png" alt="Al Rabeeh Dental Center Logo">
+      <img src="Logo/SaNDSLab-LogoNewUpdated copy.png" alt="SaNDS Lab Middle East W.L.L. Logo">
+    </div>
+
+    <div class="badge-confidential">
+      <i class="fa-solid fa-triangle-exclamation"></i> STRICTLY INTERNAL — SANDS LAB RESOURCE COST &amp; PRICING REFERENCE
+    </div>
+    <h1>Al Rabeeh Dental Center EMRS: Master Resource Cost &amp; Accelerated Pricing Matrix</h1>
+    <p>This internal cost sheet defines the consolidated engineering squad and executive advisory rate card (Conversion: <strong>1 BHD = 220.00 INR</strong>) for <strong>Al Rabeeh Dental Center</strong> (11-Module Baseline: <strong>BD 6,600.000 / ₹ 1,452,000</strong> across 22 Working Weeks; 6-Month Core Development: <strong>BD 7,200.000 / ₹ 1,584,000</strong> across 24 Working Weeks; Complete 6-Month + 1-Month Buffer Contract Offer: <strong>BD 8,400.000 / ₹ 1,848,000</strong> across 28 Working Weeks / 7.0 Months).</p>
+
+    <h2>1. Monthly Consolidated Rate Card (Conversion: 1 BHD = 220.00 INR)</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Designation / Domain Role</th>
+            <th>Monthly (INR)</th>
+            <th>Monthly (BHD)</th>
+            <th>Weekly (BHD)</th>
+            <th>Hourly (160h/mo)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tier-header">
+            <td colspan="5">A. Core Dedicated Engineering Squad (Direct Employee Costs)</td>
+          </tr>
+          <tr>
+            <td><strong>Project Manager</strong></td>
+            <td>₹ 90,000</td>
+            <td class="mono"><strong>BD 409.091</strong></td>
+            <td class="mono">BD 102.273</td>
+            <td class="mono">BD 2.557</td>
+          </tr>
+          <tr>
+            <td><strong>Back End Lead Eng</strong></td>
+            <td>₹ 45,000</td>
+            <td class="mono"><strong>BD 204.545</strong></td>
+            <td class="mono">BD 51.136</td>
+            <td class="mono">BD 1.278</td>
+          </tr>
+          <tr>
+            <td><strong>Front End Lead Eng</strong></td>
+            <td>₹ 45,000</td>
+            <td class="mono"><strong>BD 204.545</strong></td>
+            <td class="mono">BD 51.136</td>
+            <td class="mono">BD 1.278</td>
+          </tr>
+          <tr>
+            <td><strong>Database and Cloud</strong></td>
+            <td>₹ 38,000</td>
+            <td class="mono"><strong>BD 172.727</strong></td>
+            <td class="mono">BD 43.182</td>
+            <td class="mono">BD 1.079</td>
+          </tr>
+          <tr>
+            <td><strong>QA (Testing)</strong></td>
+            <td>₹ 28,000</td>
+            <td class="mono"><strong>BD 127.273</strong></td>
+            <td class="mono">BD 31.818</td>
+            <td class="mono">BD 0.795</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td><strong>Subtotal: Core Engineering Squad (5 Members)</strong></td>
+            <td><strong>₹ 246,000</strong></td>
+            <td class="mono"><strong>BD 1,118.182</strong></td>
+            <td class="mono"><strong>BD 279.545</strong></td>
+            <td class="mono"><strong>BD 6.989</strong></td>
+          </tr>
+
+          <tr class="tier-header">
+            <td colspan="5">B. Executive Steering &amp; Security Advisory Tier (2 Specialists)</td>
+          </tr>
+          <tr>
+            <td><strong>Executive Steering &amp; C-Level Governance Director</strong></td>
+            <td>₹ 11,000</td>
+            <td class="mono"><strong>BD 50.000</strong></td>
+            <td class="mono">BD 12.500</td>
+            <td class="mono">BD 0.313</td>
+          </tr>
+          <tr>
+            <td><strong>Enterprise Security, VAPT &amp; Cloud Governance Specialist</strong></td>
+            <td>₹ 7,000</td>
+            <td class="mono"><strong>BD 31.818</strong></td>
+            <td class="mono">BD 7.955</td>
+            <td class="mono">BD 0.199</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td><strong>Subtotal: Executive &amp; Domain Advisory (2 Specialists)</strong></td>
+            <td><strong>₹ 18,000</strong></td>
+            <td class="mono"><strong>BD 81.818</strong></td>
+            <td class="mono"><strong>BD 20.455</strong></td>
+            <td class="mono"><strong>BD 0.511</strong></td>
+          </tr>
+
+          <tr class="total-row">
+            <td><strong>TOTAL PROJECT DELIVERY MATRIX (PER MONTH - 7 MEMBERS)</strong></td>
+            <td><strong>₹ 264,000</strong></td>
+            <td class="mono"><strong>BD 1,200.000</strong></td>
+            <td class="mono"><strong>BD 300.000</strong></td>
+            <td class="mono"><strong>BD 7.500</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>2. Consolidated Accelerated Portfolio Roll-Up Summary (6 Months Core + 1 Month Buffer)</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Milestone &amp; Module Title</th>
+            <th>Duration</th>
+            <th>Core Squad (INR)</th>
+            <th>Advisory (INR)</th>
+            <th>Total Cost (INR)</th>
+            <th>Total Cost (BHD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MS-01 (Module 1):</strong> Shared Core &amp; Reception Dashboard + 6 KPI Trackers</td>
+            <td>2.5 Wks (0.625 Mo)</td>
+            <td>₹ 153,750</td>
+            <td>₹ 11,250</td>
+            <td>₹ 165,000</td>
+            <td class="mono"><strong>BD 750.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-02 (Module 2):</strong> Multi-Doctor Calendar, Smart CPR &amp; Bulk WhatsApp</td>
+            <td>2.5 Wks (0.625 Mo)</td>
+            <td>₹ 153,750</td>
+            <td>₹ 11,250</td>
+            <td>₹ 165,000</td>
+            <td class="mono"><strong>BD 750.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-03 (Module 3):</strong> Missing Schedule (MSD) Leakage Tracker</td>
+            <td>1.5 Wks (0.375 Mo)</td>
+            <td>₹ 92,250</td>
+            <td>₹ 6,750</td>
+            <td>₹ 99,000</td>
+            <td class="mono"><strong>BD 450.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-04 (Module 4):</strong> Fail Visit Rollover &amp; Follow-Up Tracker</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-05 (Module 5):</strong> Orthodontic (Ortho) Continuity &amp; Aging Tracker</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-06 (Module 6):</strong> Treatment Plan (TP) &amp; Tooth Recall Tracker</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-07 (Module 7):</strong> Post-Treatment Feedback Call Tracker</td>
+            <td>1.5 Wks (0.375 Mo)</td>
+            <td>₹ 92,250</td>
+            <td>₹ 6,750</td>
+            <td>₹ 99,000</td>
+            <td class="mono"><strong>BD 450.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-08 (Module 8):</strong> Dental Lab Lifecycle, Shade Master &amp; 3-Lane Chat</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-09 (Module 9):</strong> Insurance Claims Tracker &amp; Globemed/Mednet Export</td>
+            <td>2.5 Wks (0.625 Mo)</td>
+            <td>₹ 153,750</td>
+            <td>₹ 11,250</td>
+            <td>₹ 165,000</td>
+            <td class="mono"><strong>BD 750.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-10 (Module 10):</strong> Patient Journey 24-Point Compliance Matrix</td>
+            <td>1.5 Wks (0.375 Mo)</td>
+            <td>₹ 92,250</td>
+            <td>₹ 6,750</td>
+            <td>₹ 99,000</td>
+            <td class="mono"><strong>BD 450.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-11 (Module 11):</strong> Billing / Accounts Register &amp; Shift Handover</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr class="subtotal-row">
+            <td><strong>SUBTOTAL: 11-MODULE RECEPTION BLUEPRINT (MS-01 TO MS-11)</strong></td>
+            <td><strong>22.0 Wks (5.50 Mo)</strong></td>
+            <td><strong>₹ 1,353,000</strong></td>
+            <td><strong>₹ 99,000</strong></td>
+            <td><strong>₹ 1,452,000</strong></td>
+            <td class="mono"><strong>BD 6,600.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>MS-12 (Essential Bridge):</strong> Shared Doctor/Admin Trigger Console, FDI Tooth Chart &amp; UAT</td>
+            <td>2.0 Wks (0.500 Mo)</td>
+            <td>₹ 123,000</td>
+            <td>₹ 9,000</td>
+            <td>₹ 132,000</td>
+            <td class="mono"><strong>BD 600.000</strong></td>
+          </tr>
+          <tr class="subtotal-row" style="background: #e0f2fe !important; color: #0369a1 !important;">
+            <td><strong>SUBTOTAL: 6-MONTH ACCELERATED CORE DEVELOPMENT (MS-01 TO MS-12)</strong></td>
+            <td><strong>24.0 Wks (6.00 Mo)</strong></td>
+            <td><strong>₹ 1,476,000</strong></td>
+            <td><strong>₹ 108,000</strong></td>
+            <td><strong>₹ 1,584,000</strong></td>
+            <td class="mono"><strong>BD 7,200.000</strong></td>
+          </tr>
+          <tr style="background: #fffbeb;">
+            <td><strong>MS-BUF (Deployment Buffer):</strong> Extra 1-Month Multi-Branch Pilot &amp; Stabilization Buffer</td>
+            <td>4.0 Wks (1.000 Mo)</td>
+            <td>₹ 246,000</td>
+            <td>₹ 18,000</td>
+            <td>₹ 264,000</td>
+            <td class="mono"><strong>BD 1,200.000</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>TOTAL CONTRACT VALUE (6 MO CORE + 1 MO BUFFER)</strong></td>
+            <td><strong>28.0 Wks (7.00 Mo)</strong></td>
+            <td><strong>₹ 1,722,000</strong></td>
+            <td><strong>₹ 126,000</strong></td>
+            <td><strong>₹ 1,848,000</strong></td>
+            <td class="mono"><strong>BD 8,400.000</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <strong>Delivery &amp; Governance Note:</strong>
+      <p style="margin-top: 6px; margin-bottom: 0;">
+        Maintaining the core dedicated engineering squad at ₹246,000 / BD 1,118.182 per month and the Executive Steering &amp; Security Advisory Tier at ₹18,000 / BD 81.818 per month (Total: <strong>₹264,000 / BD 1,200.000 per month = BD 300.000 per week</strong>) ensures complete mathematical traceability across the accelerated 6-Month Core Development (BD 7,200.000 / ₹ 1,584,000) and 1-Month Buffer (BD 1,200.000 / ₹ 264,000), totaling <strong>BD 8,400.000 / ₹ 1,848,000</strong> over 28 Working Weeks / 140 Working Days.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+

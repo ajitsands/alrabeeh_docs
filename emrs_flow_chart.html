@@ -1,0 +1,2534 @@
+<?php
+// Enforce Authentication Check if accessed directly
+if (!defined('AUTH_PORTAL_ACTIVE')) {
+    require_once __DIR__ . '/index.php';
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al Rabeeh EMRS Architectural Flow Chart &bull; 11 Modules &amp; 12 Milestones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="js/mermaid.min.js"></script>
+  <script>
+    if (typeof mermaid === 'undefined') {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    :root {
+      --primary: #0a2540;
+      --primary-dark: #07192c;
+      --accent: #ea580c;
+      --accent-hover: #c2410c;
+      --accent-light: #fff7ed;
+      --emerald: #059669;
+      --emerald-light: #ecfdf5;
+      --blue: #0284c7;
+      --blue-light: #f0f9ff;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --gray-900: #0f172a;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-500: #64748b;
+      --gray-200: #e2e8f0;
+      --gray-100: #f1f5f9;
+      --gray-50: #f8fafc;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f1f5f9;
+      color: var(--gray-700);
+      line-height: 1.5;
+      padding: 30px 20px 60px;
+    }
+
+    .main-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* TOP HEADER BANNER */
+    .header-banner {
+      background: linear-gradient(135deg, #07192c 0%, #0a2540 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 32px 36px;
+      border-top: 5px solid var(--accent);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .header-titles h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .header-titles p {
+      font-size: 13.5px;
+      color: #94a3b8;
+      max-width: 820px;
+      line-height: 1.6;
+    }
+    .header-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .pill-orange { background: var(--accent); color: #fff; }
+    .pill-emerald { background: var(--emerald); color: #fff; }
+    .pill-blue { background: var(--blue); color: #fff; }
+
+    /* CARD STYLES */
+    .flow-card {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .flow-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .flow-card-header {
+      padding: 18px 26px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .flow-card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .flow-card-body {
+      padding: 26px;
+    }
+
+    /* 1. UNIFIED NAVIGATION SEQUENCE (HIGHLY VISIBLE PROCESS PIPELINE) */
+    .nav-pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      position: relative;
+    }
+    .pipeline-step {
+      background: #ffffff;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+    .pipeline-step:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .pipeline-step.active {
+      border-color: var(--accent);
+      background: linear-gradient(to bottom, #fff7ed 0%, #ffffff 100%);
+    }
+    .step-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .step-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      background: var(--primary);
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pipeline-step.active .step-badge {
+      background: var(--accent);
+    }
+    .step-icon {
+      font-size: 18px;
+      color: var(--gray-500);
+    }
+    .pipeline-step.active .step-icon {
+      color: var(--accent);
+    }
+    .step-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .step-desc {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.45;
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+    .step-footer {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    /* 2. TECHNOLOGY STACK ARCHITECTURE (LAYERED ENTERPRISE VISUALIZATION) */
+    .tech-tiers-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tech-tier {
+      border-radius: 12px;
+      padding: 20px 24px;
+      border: 1.5px solid var(--gray-200);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+    .tier-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .tier-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tier-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+    .tier-components {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .tech-component {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .tech-component:hover {
+      background: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tech-comp-icon {
+      font-size: 22px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .tech-comp-info h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 3px;
+    }
+    .tech-comp-info p {
+      font-size: 11.5px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    /* CONNECTOR ARROW BETWEEN TIERS */
+    .tier-connector {
+      text-align: center;
+      color: var(--accent);
+      font-size: 18px;
+      margin: -6px 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tier-connector span {
+      font-size: 11.5px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--gray-500);
+      background: #ffffff;
+      padding: 2px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+    }
+
+    /* 3. 11 MODULES FUNCTIONAL BREAKDOWN (CLEAN 3-COLUMN CARDS) */
+    .modules-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .module-item-card {
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 18px;
+      border-left: 4px solid var(--blue);
+      box-shadow: var(--shadow-sm);
+    }
+    .module-item-card.orange { border-left-color: var(--accent); }
+    .module-item-card.emerald { border-left-color: var(--emerald); }
+    .module-item-card.purple { border-left-color: var(--purple); }
+    .module-item-card.amber { border-left-color: var(--amber); }
+
+    .module-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .module-item-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .module-item-features {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+    }
+    .module-item-features li {
+      font-size: 12px;
+      color: var(--gray-600);
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border-bottom: 1px dashed var(--gray-100);
+    }
+    .module-item-features li:last-child {
+      border-bottom: none;
+    }
+    .module-item-features li i {
+      color: var(--emerald);
+      margin-top: 2px;
+      font-size: 11px;
+    }
+
+    /* 4. OFFLINE SYNC 3-STAGE VISUALIZER */
+    .offline-stage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .offline-stage-card {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 22px;
+      border: 1px solid #1e293b;
+      position: relative;
+    }
+    .stage-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .stage-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .stage-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* 5. 12-MILESTONE TIMELINE */
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .timeline-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--gray-50);
+      border-radius: 8px;
+      border: 1px solid var(--gray-200);
+    }
+    .t-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #ffffff;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+    .t-badge.active { background: var(--accent); }
+    .t-badge.complete { background: var(--emerald); }
+    .t-content h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 2px;
+    }
+    .t-content p {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
+    .flow-footer {
+      background: #07192c;
+      color: #94a3b8;
+      border-radius: 12px;
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12px;
+    }
+    .flow-footer strong { color: #ffffff; }
+
+    @media (max-width: 768px) {
+      .header-banner { padding: 22px; }
+      .header-titles h1 { font-size: 20px; }
+      .nav-pipeline-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ==========================================================================
+       MODAL & POPUP GRAPH STYLES
+       ========================================================================== */
+    .floating-graph-trigger {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      background: linear-gradient(135deg, var(--accent) 0%, #c2410c 100%);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      box-shadow: 0 10px 25px rgba(234, 88, 12, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      z-index: 999;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .floating-graph-trigger:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(234, 88, 12, 0.6);
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    }
+
+    .btn-graph-popup {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-graph-popup:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-card-popup {
+      background: #f8fafc;
+      color: var(--primary);
+      border: 1.5px solid var(--gray-200);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-card-popup:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* BACKDROP & DIALOG */
+    .diagram-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(7, 25, 44, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .diagram-modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .diagram-modal-dialog {
+      background: #091728;
+      border: 1.5px solid #1e3a5f;
+      border-radius: 16px;
+      width: 96vw;
+      max-width: 1540px;
+      height: 92vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .diagram-modal-backdrop.open .diagram-modal-dialog {
+      transform: scale(1);
+    }
+
+    /* HEADER */
+    .diagram-modal-header {
+      background: #071322;
+      border-bottom: 1.5px solid #1e3a5f;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .modal-title-area h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      color: #ffffff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2px;
+    }
+    .modal-title-area p {
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+    .modal-badge-tag {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* TABS */
+    .modal-tabs {
+      display: flex;
+      gap: 6px;
+      background: #0f2540;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid #1e3a5f;
+      flex-wrap: wrap;
+    }
+    .modal-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s;
+    }
+    .modal-tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .modal-tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);
+    }
+
+    /* CONTROLS */
+    .modal-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .zoom-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #0f2540;
+      padding: 3px 6px;
+      border-radius: 8px;
+      border: 1px solid #1e3a5f;
+    }
+    .zoom-toolbar button {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      width: 28px;
+      height: 28px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: all 0.15s;
+    }
+    .zoom-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+    .zoom-display {
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 0 8px;
+    }
+    .modal-close-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #ffffff;
+    }
+
+    /* BODY & CANVAS (PAN & ZOOM OPTIMIZED) */
+    .diagram-modal-body {
+      flex: 1;
+      overflow: auto;
+      padding: 30px;
+      background: #071322;
+      position: relative;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      scroll-behavior: smooth;
+    }
+    .diagram-modal-body.grabbing {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+    .diagram-canvas-wrapper {
+      transform-origin: 0 0; /* Anchor to top-left so zoom expands into positive scrollable space with zero cut-off */
+      transition: transform 0.12s ease-out;
+      width: fit-content;
+      min-width: 100%;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+    }
+
+    /* MODAL TAB CONTENTS */
+    .tab-content-panel {
+      display: none;
+    }
+    .tab-content-panel.active {
+      display: block;
+    }
+
+    /* MODAL FLOWCHART STYLES */
+    .modal-flow-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .flow-zone-card {
+      background: #0c1e34;
+      border: 1.5px solid #1e3a5f;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .flow-zone-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e3a5f;
+    }
+    .flow-zone-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .flow-zone-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .flow-node-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+    .flow-node-box {
+      background: #112642;
+      border: 1.5px solid #234570;
+      border-radius: 10px;
+      padding: 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .flow-node-box:hover {
+      border-color: var(--accent);
+      background: #152e50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .flow-node-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .flow-node-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      background: var(--accent);
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flow-node-role {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #7dd3fc;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .flow-node-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .flow-node-desc {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+    .flow-node-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .flow-node-tag {
+      font-size: 10.5px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .flow-connector-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+    .flow-connector-bar span {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #94a3b8;
+      background: #0c1e34;
+      padding: 3px 12px;
+      border-radius: 12px;
+      border: 1px solid #1e3a5f;
+    }
+
+    /* FOOTER */
+    .diagram-modal-footer {
+      background: #071322;
+      border-top: 1.5px solid #1e3a5f;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .modal-footer-hint strong {
+      color: #ffffff;
+    }
+    .footer-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .footer-btn:hover {
+      background: #334155;
+    }
+    .footer-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .footer-btn.primary:hover {
+      background: var(--accent-hover);
+    }
+
+    /* MERMAID POPUP STYLES */
+    .mermaid-viewport {
+      background: #081627;
+      border: 1.5px solid #1e3a5f;
+      border-radius: 14px;
+      padding: 40px 30px;
+      min-width: 1100px;
+      width: fit-content;
+      min-height: 560px;
+      box-sizing: border-box;
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: inset 0 2px 14px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .mermaid-viewport .mermaid {
+      display: inline-block;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .mermaid-viewport .mermaid svg {
+      max-width: none !important;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      filter: drop-shadow(0 6px 15px rgba(0,0,0,0.4));
+    }
+    .mermaid-caption {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #94a3b8;
+      text-align: center;
+      max-width: 960px;
+      line-height: 1.6;
+      background: rgba(15, 37, 64, 0.6);
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid #1e3a5f;
+    }
+    .mermaid-caption strong {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <!-- TOP HEADER -->
+  <div class="header-banner">
+    <div class="header-titles">
+      <h1>Al Rabeeh Dental Center &bull; EMRS Architecture &amp; Workflow Blueprint</h1>
+      <p>
+        Executive technical specification mapping the 11-module clinical reception sequence, 4-tier microservices architecture, Bahrain CPR card reader driver integration, RabbitMQ asynchronous queuing, and offline-first zero-data-loss synchronization.
+      </p>
+    </div>
+    <div class="header-pills" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill-orange"><i class="fa-solid fa-code"></i> ReactJS + PHP 8.3 MVC</span>
+      <span class="pill pill-emerald"><i class="fa-solid fa-id-card"></i> .NET Smart CPR</span>
+      <span class="pill pill-blue"><i class="fa-solid fa-bolt"></i> Offline Auto-Sync</span>
+      <button type="button" class="btn-graph-popup" onclick="openDiagramModal('mermaid-tech')" title="View interactive Mermaid.js architecture flow diagrams in full-screen popup">
+        <i class="fa-solid fa-diagram-project"></i> Open Mermaid Flow Diagram Popup
+      </button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 11-MODULE UNIFIED NAVIGATION SEQUENCE -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-layer-group" style="color:var(--accent);"></i>
+        11-Module Unified Navigation Sequence (CORE-02 Architecture)
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="pill pill-blue" style="font-size:11px;">Identical Sequence for Reception &bull; Doctor &bull; Admin</span>
+        <button type="button" class="btn-card-popup" onclick="openDiagramModal('mermaid-nav')" title="Open 11-Module Mermaid Flowchart in popup">
+          <i class="fa-solid fa-expand"></i> View Mermaid Flowchart
+        </button>
+      </div>
+    </div>
+    <div class="flow-card-body">
+      <p style="font-size:13px; color:var(--gray-600); margin-bottom:20px; line-height:1.6;">
+        Every user role navigates through the same standardized 11-module clinical sequence. From reception check-in through dental charting, treatment recalls, lab coordination, and accounts closure, data flows seamlessly without manual re-entry:
+      </p>
+
+      <div class="nav-pipeline-grid">
+        <!-- 01 -->
+        <div class="pipeline-step active">
+          <div class="step-top">
+            <span class="step-badge">01</span>
+            <i class="fa-solid fa-chart-pie step-icon"></i>
+          </div>
+          <div class="step-title">Dashboard &amp; 6 KPIs</div>
+          <div class="step-desc">Real-time collections, call volumes, reviews, and cross-department referral metrics.</div>
+          <div class="step-footer">Front-Desk Cockpit</div>
+        </div>
+
+        <!-- 02 -->
+        <div class="pipeline-step active">
+          <div class="step-top">
+            <span class="step-badge">02</span>
+            <i class="fa-solid fa-calendar-days step-icon"></i>
+          </div>
+          <div class="step-title">Calendar &amp; Smart CPR</div>
+          <div class="step-desc">Multi-doctor drag-and-drop scheduler, 20 status counters, and 1-scan Bahrain CPR card reader.</div>
+          <div class="step-footer">Patient Check-In</div>
+        </div>
+
+        <!-- 03 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">03</span>
+            <i class="fa-solid fa-filter-circle-dollar step-icon"></i>
+          </div>
+          <div class="step-title">MSD Leakage Tracker</div>
+          <div class="step-desc">Missing Schedule Day tracker automatically captures unbooked patients across 7 cohorts.</div>
+          <div class="step-footer">Safety Net #1</div>
+        </div>
+
+        <!-- 04 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">04</span>
+            <i class="fa-solid fa-phone-slash step-icon"></i>
+          </div>
+          <div class="step-title">Fail Visit Tracker</div>
+          <div class="step-desc">Yesterday unattended no-show rollover with 10 call outcome filters and deduplication locks.</div>
+          <div class="step-footer">Safety Net #2</div>
+        </div>
+
+        <!-- 05 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">05</span>
+            <i class="fa-solid fa-teeth step-icon"></i>
+          </div>
+          <div class="step-title">Ortho Continuity</div>
+          <div class="step-desc">Doctor running patient lists, 5 appliance categories, and 1-6+ month overdue aging buckets.</div>
+          <div class="step-footer">Safety Net #3</div>
+        </div>
+
+        <!-- 06 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">06</span>
+            <i class="fa-solid fa-clipboard-list step-icon"></i>
+          </div>
+          <div class="step-title">Treatment Plan (TP)</div>
+          <div class="step-desc">3-rule active filter, BHD value metrics, Favorite TP cohort, and FDI tooth-level clinical recall.</div>
+          <div class="step-footer">Safety Net #4</div>
+        </div>
+
+        <!-- 07 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">07</span>
+            <i class="fa-solid fa-headset step-icon"></i>
+          </div>
+          <div class="step-title">Feedback Calls</div>
+          <div class="step-desc">Automated post-treatment triggers, live percentage funnel, and dual doctor/reception notes.</div>
+          <div class="step-footer">Patient Retention</div>
+        </div>
+
+        <!-- 08 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">08</span>
+            <i class="fa-solid fa-flask-vial step-icon"></i>
+          </div>
+          <div class="step-title">Dental Lab Workflow</div>
+          <div class="step-desc">3-zone shade master, 3-stage delivery pipeline, overdue alerts, and 3-lane internal/external chat.</div>
+          <div class="step-footer">Lab Coordination</div>
+        </div>
+
+        <!-- 09 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">09</span>
+            <i class="fa-solid fa-file-invoice-dollar step-icon"></i>
+          </div>
+          <div class="step-title">Insurance Claims</div>
+          <div class="step-desc">Globemed &amp; Mednet submission formats, deductible calculation engine, and 6 attachments.</div>
+          <div class="step-footer">Claims Engine</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">10</span>
+            <i class="fa-solid fa-user-check step-icon"></i>
+          </div>
+          <div class="step-title">Patient Journey</div>
+          <div class="step-desc">24-column clinical compliance matrix, chronological seen audits, and tablet e-consent signatures.</div>
+          <div class="step-footer">Quality Assurance</div>
+        </div>
+
+        <!-- 11 -->
+        <div class="pipeline-step">
+          <div class="step-top">
+            <span class="step-badge">11</span>
+            <i class="fa-solid fa-cash-register step-icon"></i>
+          </div>
+          <div class="step-title">Billing &amp; Accounts</div>
+          <div class="step-desc">Cashier multi-payment ledger (Cash, BenefitPay, Credimax), collection auto-sync, and shift sign-off.</div>
+          <div class="step-footer">Financial Closure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TECHNOLOGY STACK ARCHITECTURE (LAYERED, HIGH-READABILITY DIAGRAM) -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-network-wired" style="color:var(--emerald);"></i>
+        Enterprise Technology Stack Architecture (Tiered Visual Model)
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="pill pill-emerald" style="font-size:11px;">Zero-Trust &bull; Offline Resilient</span>
+        <button type="button" class="btn-card-popup" onclick="openDiagramModal('mermaid-tech')" title="Open Technology Stack Mermaid Flow Diagram in popup">
+          <i class="fa-solid fa-expand"></i> View Mermaid Diagram
+        </button>
+      </div>
+    </div>
+    <div class="flow-card-body">
+      <div class="tech-tiers-container">
+        
+        <!-- TIER 1 -->
+        <div class="tech-tier" style="border-left:5px solid var(--accent);">
+          <div class="tier-header">
+            <div class="tier-name">
+              <i class="fa-solid fa-display" style="color:var(--accent);"></i>
+              Tier 1: Presentation &amp; Front-Office Edge
+            </div>
+            <span class="tier-badge" style="background:#fff7ed; color:var(--accent); border:1px solid #ffedd5;">Client Tier</span>
+          </div>
+          <div class="tier-components">
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--accent);"><i class="fa-brands fa-react"></i></div>
+              <div class="tech-comp-info">
+                <h4>ReactJS 18 SPA</h4>
+                <p>Component-driven front-office UI with responsive layout, real-time status counters, and instant keyboard shortcuts.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--emerald);"><i class="fa-solid fa-id-card"></i></div>
+              <div class="tech-comp-info">
+                <h4>.NET Smart CPR Service</h4>
+                <p>Local Windows driver communicating over USB smart card reader to extract CPR demographics directly into booking.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--blue);"><i class="fa-solid fa-tablet-screen-button"></i></div>
+              <div class="tech-comp-info">
+                <h4>Touch POS &amp; Tablet E-Consent</h4>
+                <p>Digital signature pads for patient medical history consents, procedure approvals, and photo link attachments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR 1 -->
+        <div class="tier-connector">
+          <i class="fa-solid fa-arrow-down"></i>
+          <span>Encrypted Local Bus &bull; Dual-Write Strategy</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+
+        <!-- TIER 2 -->
+        <div class="tech-tier" style="border-left:5px solid var(--amber);">
+          <div class="tier-header">
+            <div class="tier-name">
+              <i class="fa-solid fa-hard-drive" style="color:var(--amber);"></i>
+              Tier 2: Edge Persistence &amp; Offline Shield
+            </div>
+            <span class="tier-badge" style="background:#fffbeb; color:var(--amber); border:1px solid #fef3c7;">Resilience Tier</span>
+          </div>
+          <div class="tier-components">
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--amber);"><i class="fa-solid fa-database"></i></div>
+              <div class="tech-comp-info">
+                <h4>SQLite / IndexedDB Local Storage</h4>
+                <p>High-concurrency WAL local database caches clinic schedule and patient records for continuous offline operations.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:#e11d48;"><i class="fa-solid fa-lock"></i></div>
+              <div class="tech-comp-info">
+                <h4>AES-256-GCM Cryptographic Vault</h4>
+                <p>Zero-trust cryptographic isolation encrypts CPR card numbers, medical history, and clinical diagnosis records at rest.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--purple);"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div class="tech-comp-info">
+                <h4>Offline Staging Dispatcher</h4>
+                <p>Maintains transactional outbox queue when internet drops; replays staged transactions sequentially upon reconnect.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR 2 -->
+        <div class="tier-connector">
+          <i class="fa-solid fa-arrow-down"></i>
+          <span>AMQP 0-9-1 / TLS 1.3 Asynchronous Pipeline</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+
+        <!-- TIER 3 -->
+        <div class="tech-tier" style="border-left:5px solid var(--purple);">
+          <div class="tier-header">
+            <div class="tier-name">
+              <i class="fa-solid fa-arrows-split-up-and-left" style="color:var(--purple);"></i>
+              Tier 3: Distributed Middleware &amp; Message Queue
+            </div>
+            <span class="tier-badge" style="background:#f5f3ff; color:var(--purple); border:1px solid #ede9fe;">Broker Tier</span>
+          </div>
+          <div class="tier-components">
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--purple);"><i class="fa-solid fa-envelope-circle-check"></i></div>
+              <div class="tech-comp-info">
+                <h4>RabbitMQ Message Broker</h4>
+                <p>Dedicated queues decouple front-desk UI from heavy background jobs (recall sweeps, automated sync, audit logging).</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:#25d366;"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="tech-comp-info">
+                <h4>WhatsApp &amp; SMS Gateway</h4>
+                <p>Automated appointment reminders, calendar confirmations, and post-procedure recall notices dispatched via API.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--blue);"><i class="fa-solid fa-microchip"></i></div>
+              <div class="tech-comp-info">
+                <h4>Sync Daemon &amp; Dead-Letter Queue</h4>
+                <p>Automated exponential backoff retries guarantee 100% data reconciliation across all 6 clinics without duplicates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR 3 -->
+        <div class="tier-connector">
+          <i class="fa-solid fa-arrow-down"></i>
+          <span>FastCGI / Prepared Statements (PDO)</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+
+        <!-- TIER 4 -->
+        <div class="tech-tier" style="border-left:5px solid var(--primary);">
+          <div class="tier-header">
+            <div class="tier-name">
+              <i class="fa-solid fa-server" style="color:var(--primary);"></i>
+              Tier 4: Enterprise Backend &amp; Multi-Branch Database
+            </div>
+            <span class="tier-badge" style="background:#e0f2fe; color:var(--primary); border:1px solid #bae6fd;">Core Tier</span>
+          </div>
+          <div class="tier-components">
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--primary);"><i class="fa-brands fa-php"></i></div>
+              <div class="tech-comp-info">
+                <h4>PHP 8.3 MVC Microservices</h4>
+                <p>High-performance REST API services for appointment scheduling, treatment plans, lab coordination, and billing ledger.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--emerald);"><i class="fa-solid fa-database"></i></div>
+              <div class="tech-comp-info">
+                <h4>MySQL 8.0+ Multi-Branch DB</h4>
+                <p>Enterprise relational database with InnoDB foreign keys, strict ACID compliance, and multi-branch replication.</p>
+              </div>
+            </div>
+            <div class="tech-component">
+              <div class="tech-comp-icon" style="color:var(--accent);"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="tech-comp-info">
+                <h4>Bahrain Payment Gateways</h4>
+                <p>Unified checkout integration supporting BenefitPay QR, Credimax, and EazyPay with automated day-closing reconciliation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 11 MODULES FUNCTIONAL DETAILS -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-cubes" style="color:var(--blue);"></i>
+        11 Modules Comprehensive Functional Breakdown
+      </div>
+      <span class="pill pill-blue">100% Blueprint Aligned</span>
+    </div>
+    <div class="flow-card-body">
+      <div class="modules-card-grid">
+
+        <div class="module-item-card orange">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 1: Dashboard &amp; 6 KPIs</div>
+            <span class="step-footer">Module 01</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Calls, Collections, IG Reviews, Google Reviews cards</li>
+            <li><i class="fa-solid fa-check"></i> Dental-to-Ortho &amp; Ortho-to-Dental referral funnel</li>
+            <li><i class="fa-solid fa-check"></i> 24-Hour live audit trail and doctor target tracking</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card orange">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 2: Multi-Doctor Calendar</div>
+            <span class="step-footer">Module 02</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Drag-and-drop multi-doctor appointment grid</li>
+            <li><i class="fa-solid fa-check"></i> 1-Scan Bahrain CPR smart card reader (.NET Driver)</li>
+            <li><i class="fa-solid fa-check"></i> 20 live status filter counters &amp; Bulk WhatsApp API</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card emerald">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 3: MSD Leakage Tracker</div>
+            <span class="step-footer">Module 03</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Missing Schedule Day automated detection</li>
+            <li><i class="fa-solid fa-check"></i> 7 clinical cohort cards (RCT, Scaling, Crown, etc.)</li>
+            <li><i class="fa-solid fa-check"></i> 1-click booking handoff with instant unbooked removal</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card emerald">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 4: Fail Visit Recovery</div>
+            <span class="step-footer">Module 04</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Automated yesterday unattended rollover engine</li>
+            <li><i class="fa-solid fa-check"></i> 10 call outcome filters (No Answer, Rescheduled, Busy)</li>
+            <li><i class="fa-solid fa-check"></i> Interactive call history log modal &amp; deduplication lock</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card purple">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 5: Ortho Continuity Tracker</div>
+            <span class="step-footer">Module 05</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Doctor running patient list (active monthly cases)</li>
+            <li><i class="fa-solid fa-check"></i> 5 appliance classification categories</li>
+            <li><i class="fa-solid fa-check"></i> 7 overdue aging buckets (1, 2, 3, 4, 5, 6+ Months)</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card purple">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 6: Treatment Plan (TP)</div>
+            <span class="step-footer">Module 06</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> 3-rule active filter with BHD treatment plan values</li>
+            <li><i class="fa-solid fa-check"></i> Favorite Treatment Plan patient tracking</li>
+            <li><i class="fa-solid fa-check"></i> 7 tooth-level clinical recall cohorts (FDI Notation)</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card amber">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 7: Feedback Calls</div>
+            <span class="step-footer">Module 07</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Auto-triggers upon procedure completion</li>
+            <li><i class="fa-solid fa-check"></i> Real-time call percentage funnel analytics</li>
+            <li><i class="fa-solid fa-check"></i> Dual doctor and receptionist resolution lanes</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card amber">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 8: Dental Lab Workflow</div>
+            <span class="step-footer">Module 08</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> 3-zone visual shade master (Gingival/Body/Incisal)</li>
+            <li><i class="fa-solid fa-check"></i> 3-stage pipeline (Sent, Received, Fitted)</li>
+            <li><i class="fa-solid fa-check"></i> 3-lane internal/external chat with overdue alerts</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 9: Insurance Claims</div>
+            <span class="step-footer">Module 09</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Globemed &amp; Mednet standard export formats</li>
+            <li><i class="fa-solid fa-check"></i> Deductible, co-pay &amp; patient receivable calculator</li>
+            <li><i class="fa-solid fa-check"></i> 6 mandatory attachment checks (X-Rays, E-Sign, etc.)</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 10: Patient Journey Matrix</div>
+            <span class="step-footer">Module 10</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> 24-column clinical compliance matrix</li>
+            <li><i class="fa-solid fa-check"></i> Chronological patient seen audit trail</li>
+            <li><i class="fa-solid fa-check"></i> Interactive tablet e-consent signatures &amp; photos</li>
+          </ul>
+        </div>
+
+        <div class="module-item-card">
+          <div class="module-item-header">
+            <div class="module-item-title">Mod 11: Billing &amp; Accounts</div>
+            <span class="step-footer">Module 11</span>
+          </div>
+          <ul class="module-item-features">
+            <li><i class="fa-solid fa-check"></i> Multi-payment cashier ledger (Cash, Card, Benefit)</li>
+            <li><i class="fa-solid fa-check"></i> Collection auto-sync across all clinical modules</li>
+            <li><i class="fa-solid fa-check"></i> Formal end-of-shift signed PDF handover report</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: OFFLINE SYNC ARCHITECTURE -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-wifi" style="color:var(--accent);"></i>
+        Offline-First Auto-Sync Architecture (Internet-Droppable Resilience)
+      </div>
+      <span class="pill pill-orange">Zero Downtime Guarantee</span>
+    </div>
+    <div class="flow-card-body">
+      <div class="offline-stage-grid">
+        <div class="offline-stage-card">
+          <span class="stage-tag" style="background:#059669; color:#fff;">Stage 1: Normal State</span>
+          <div class="stage-title">Live Dual-Write Synchronization</div>
+          <div class="stage-desc">
+            When internet connectivity is active, all reception check-ins, CPR reads, and payments write simultaneously to local IndexedDB/SQLite and stream via WebSocket/REST to the central cloud MySQL database.
+          </div>
+        </div>
+
+        <div class="offline-stage-card">
+          <span class="stage-tag" style="background:#ea580c; color:#fff;">Stage 2: Internet Drop</span>
+          <div class="stage-title">Isolated Local Buffer Mode</div>
+          <div class="stage-desc">
+            If the clinic's ISP drops, front-office operations continue uninterrupted. The system stores bookings, CPR card demographic reads, and payments locally in AES-256 encrypted storage with an append-only transactional log.
+          </div>
+        </div>
+
+        <div class="offline-stage-card">
+          <span class="stage-tag" style="background:#7c3aed; color:#fff;">Stage 3: Connection Restored</span>
+          <div class="stage-title">Automated RabbitMQ Replay</div>
+          <div class="stage-desc">
+            The moment internet reconnects, the sync dispatcher automatically flushes staged records into RabbitMQ message queues. An automated reconciliation daemon resolves any timestamp conflicts with zero data loss.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: 12-MILESTONE DELIVERY ROADMAP (NO COST CLUTTER) -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-timeline" style="color:var(--primary);"></i>
+        12-Milestone Delivery Roadmap
+      </div>
+      <span class="pill pill-emerald">Turnkey Execution</span>
+    </div>
+    <div class="flow-card-body">
+      <div class="timeline-list">
+
+        <div class="timeline-row">
+          <span class="t-badge complete">MS-01</span>
+          <div class="t-content">
+            <h4>Core Architecture, Data Models &amp; Reception Dashboard (Module 1) &bull; Weeks 1 - 6 (1.50 Mo)</h4>
+            <p>ReactJS + PHP MVC microservices framework, RabbitMQ setup, SQLite/IndexedDB offline buffer, and Module 1 Reception Dashboard with 6 real-time KPI cards.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge complete">MS-02</span>
+          <div class="t-content">
+            <h4>Multi-Doctor Scheduler, .NET Smart CPR Driver &amp; WhatsApp API (Module 2) &bull; Weeks 7 - 12 (1.50 Mo)</h4>
+            <p>Drag-and-drop doctor calendar, 20 live filter status counters, custom .NET Bahrain CPR smart card reader driver, and bulk WhatsApp/SMS messaging queue.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge active">MS-03 &amp; 04</span>
+          <div class="t-content">
+            <h4>MSD Leakage Tracker (Mod 3) &amp; Fail Visit Recovery (Mod 4) &bull; Weeks 13 - 19 (2.00 Mo)</h4>
+            <p>Automated unbooked patient engine across 7 cohorts; yesterday unattended no-show rollover with 10 call outcome filters, call history modal, and booking lock.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge">MS-05 &amp; 06</span>
+          <div class="t-content">
+            <h4>Ortho Continuity (Mod 5) &amp; Treatment Plan Recall (Mod 6) &bull; Weeks 20 - 28 (2.25 Mo)</h4>
+            <p>Doctor running patient lists, 5 appliance cards, 7 overdue aging buckets; 3-rule active TP filter, BHD value metrics, and FDI tooth-level clinical recall.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge">MS-07 &amp; 08</span>
+          <div class="t-content">
+            <h4>Feedback Calls (Mod 7) &amp; Dental Lab Lifecycle (Mod 8) &bull; Weeks 29 - 36 (2.25 Mo)</h4>
+            <p>Procedure completion automated feedback triggers; 3-zone visual shade master, 3-stage delivery pipeline, overdue alerts, and 3-lane internal/external lab chat.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge">MS-09</span>
+          <div class="t-content">
+            <h4>Insurance Tracker &amp; Globemed / Mednet Submission (Module 9) &bull; Weeks 37 - 42 (1.50 Mo)</h4>
+            <p>Multi-procedure invoices, deductible/co-pay calculation engine, 6 mandatory attachment verification checkpoints, and Globemed/Mednet PDF &amp; Excel exports.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge">MS-10 &amp; 11</span>
+          <div class="t-content">
+            <h4>Patient Journey Compliance (Mod 10) &amp; Cashier Ledger (Mod 11) &bull; Weeks 43 - 50 (2.00 Mo)</h4>
+            <p>24-column clinical compliance matrix, tablet e-consent signatures; receptionist cashier ledger (Cash, Credimax, BenefitPay), collection auto-sync, and shift sign-off.</p>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <span class="t-badge complete">MS-12</span>
+          <div class="t-content">
+            <h4>Shared Doctor &amp; Admin Trigger Console + Final Go-Live &bull; Weeks 51 - 56 (1.50 Mo)</h4>
+            <p>Doctor encounter/procedure/tooth/lab trigger console, Admin KPI approval suite, multi-branch pilot testing across 6 clinics, VAPT security audit, and clinical training.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: CONTRACT GOVERNANCE & IP -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div class="flow-card-title">
+        <i class="fa-solid fa-handshake" style="color:var(--emerald);"></i>
+        Contract Governance &amp; Intellectual Property Ownership
+      </div>
+      <span class="pill pill-emerald">100% Client Ownership</span>
+    </div>
+    <div class="flow-card-body">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+        <div style="background:#ecfdf5; border-left:4px solid var(--emerald); padding:16px; border-radius:8px;">
+          <h4 style="color:var(--emerald); font-size:13.5px; font-weight:700; margin-bottom:4px;">100% Client Source Code Ownership</h4>
+          <p style="font-size:12px; color:#065f46; line-height:1.5;">Al Rabeeh Dental Center owns all custom ReactJS source code, PHP MVC microservices, MySQL schemas, .NET CPR driver services, and APIs upon final sign-off.</p>
+        </div>
+
+        <div style="background:#fff7ed; border-left:4px solid var(--accent); padding:16px; border-radius:8px;">
+          <h4 style="color:var(--accent); font-size:13.5px; font-weight:700; margin-bottom:4px;">Max 3 Revisions Per Deliverable</h4>
+          <p style="font-size:12px; color:#9a3412; line-height:1.5;">Structured review cycles guarantee rapid progress. Any change request beyond 3 iterations generates an agreed 10% milestone adjustment.</p>
+        </div>
+
+        <div style="background:#f0f9ff; border-left:4px solid var(--blue); padding:16px; border-radius:8px;">
+          <h4 style="color:var(--blue); font-size:13.5px; font-weight:700; margin-bottom:4px;">Server Hosting at Actuals</h4>
+          <p style="font-size:12px; color:#1e40af; line-height:1.5;">Production server hosting provided by client or billed at actual vendor rates. Milestone invoices payable within 7 working days of confirmation.</p>
+        </div>
+
+        <div style="background:#f5f3ff; border-left:4px solid var(--purple); padding:16px; border-radius:8px;">
+          <h4 style="color:var(--purple); font-size:13.5px; font-weight:700; margin-bottom:4px;">60-Day Warranty &amp; NHRA PDPL</h4>
+          <p style="font-size:12px; color:#6b21a8; line-height:1.5;">Complimentary hypercare technical support post-Go-Live with strict Kingdom of Bahrain Personal Data Protection Law (PDPL) compliance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="flow-footer">
+    <div>
+      <strong>Al Rabeeh Dental Center &times; SaNDS Lab Middle East W.L.L.</strong><br>
+      Turnkey EMRS Architectural &amp; Workflow Specification &bull; Kingdom of Bahrain &bull; ISO 9001:2015 Certified Division
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button type="button" class="btn-graph-popup" onclick="openDiagramModal('mermaid-tech')" style="background:var(--accent); border-color:var(--accent);">
+        <i class="fa-solid fa-diagram-project"></i> Open Mermaid Popup Graphs
+      </button>
+      <a href="index.php" style="color:#ffffff; text-decoration:none; background:rgba(255,255,255,0.1); padding:8px 16px; border-radius:6px; font-weight:600;">
+        <i class="fa-solid fa-arrow-left"></i> Return to Document Repository
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- FLOATING QUICK-ACCESS BUTTON (ALWAYS ACCESSIBLE) -->
+<div class="floating-graph-trigger" onclick="openDiagramModal('mermaid-tech')" title="Click to view interactive Mermaid flow diagrams in a popup lightbox">
+  <i class="fa-solid fa-diagram-project"></i> Mermaid Flow Diagrams Popup
+</div>
+
+<!-- =========================================================================
+     FULLSCREEN INTERACTIVE ARCHITECTURAL DIAGRAM POPUP MODAL
+     ========================================================================= -->
+<div id="diagramModal" class="diagram-modal-backdrop" onclick="handleBackdropClick(event)">
+  <div class="diagram-modal-dialog">
+    
+    <!-- MODAL TOP BAR -->
+    <div class="diagram-modal-header">
+      <div class="modal-title-area">
+        <h3>
+          <i class="fa-solid fa-project-diagram" style="color:var(--accent);"></i>
+          Al Rabeeh EMRS Architectural Diagrams &amp; Graphs
+          <span class="modal-badge-tag">Interactive Viewer</span>
+        </h3>
+        <p>High-resolution process maps, 4-tier technology stack, and offline data pipeline</p>
+      </div>
+
+      <!-- TAB SELECTOR -->
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab-btn active" onclick="switchModalTab('mermaid-tech', this)">
+          <i class="fa-solid fa-microchip"></i> Tech Stack (Mermaid.js)
+        </button>
+        <button type="button" class="modal-tab-btn" onclick="switchModalTab('mermaid-nav', this)">
+          <i class="fa-solid fa-route"></i> 11-Module Sequence (Mermaid.js)
+        </button>
+        <button type="button" class="modal-tab-btn" onclick="switchModalTab('mermaid-modules', this)">
+          <i class="fa-solid fa-cubes"></i> Module Breakdown (Mermaid.js)
+        </button>
+        <button type="button" class="modal-tab-btn" onclick="switchModalTab('nav', this)">
+          <i class="fa-solid fa-table-cells"></i> Process Cards
+        </button>
+        <button type="button" class="modal-tab-btn" onclick="switchModalTab('tech', this)">
+          <i class="fa-solid fa-layer-group"></i> 4-Tier Blueprint
+        </button>
+        <button type="button" class="modal-tab-btn" onclick="switchModalTab('offline', this)">
+          <i class="fa-solid fa-wifi"></i> Offline Auto-Sync
+        </button>
+      </div>
+
+      <!-- ZOOM, PAN & CLOSE CONTROLS -->
+      <div class="modal-controls">
+        <div class="zoom-toolbar">
+          <button type="button" title="Pan Left (←)" onclick="panContainer(-300, 0)"><i class="fa-solid fa-arrow-left"></i></button>
+          <button type="button" title="Center Diagram" onclick="centerDiagram()"><i class="fa-solid fa-arrows-to-dot"></i></button>
+          <button type="button" title="Pan Right (→)" onclick="panContainer(300, 0)"><i class="fa-solid fa-arrow-right"></i></button>
+          <span style="color:#1e3a5f; margin:0 4px;">|</span>
+          <button type="button" title="Zoom Out (-)" onclick="zoomDiagram(-0.15)"><i class="fa-solid fa-minus"></i></button>
+          <span class="zoom-display" id="zoomLevelDisplay">100%</span>
+          <button type="button" title="Zoom In (+)" onclick="zoomDiagram(0.15)"><i class="fa-solid fa-plus"></i></button>
+          <button type="button" title="Reset Zoom (100%)" onclick="resetZoom()"><i class="fa-solid fa-rotate-right"></i></button>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeDiagramModal()" title="Close Popup (Esc)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL BODY CANVAS (PANNABLE & ZOOMABLE) -->
+    <div class="diagram-modal-body" id="modalCanvasContainer">
+      <div class="diagram-canvas-wrapper" id="diagramCanvas">
+
+        <!-- =================================================================
+             TAB 1: TECHNOLOGY STACK ARCHITECTURE (MERMAID.JS FLOW DIAGRAM)
+             ================================================================= -->
+        <div id="tab-mermaid-tech" class="tab-content-panel active">
+          <div class="mermaid-viewport">
+            <div class="mermaid">
+graph TB
+  Theme["Enterprise Theme"] --> ReactUI["ReactJS Front-End"]
+  ReactUI --> CPRDriver[".NET Smart Card Driver and Service"]
+  ReactUI -->|"Patient Demographics"| CPRDriver
+  CPRDriver -->|"USB Reads"| CPRData["CPR Demographics Data"]
+
+  Enc["AES-256 Encryption - At-Rest and In-Transit"]
+  Enc --> ReactUI
+  Enc --> OfflineStore["SQLite / IndexedDB Local Storage"]
+  Enc --> Microservices["PHP MVC Microservices"]
+  Enc --> CPRData
+
+  ReactUI --> OfflineStore
+  OfflineStore -->|"Message Queue"| RabbitMQ["RabbitMQ Queues"]
+  RabbitMQ -->|"Auto-Sync Pipeline"| Microservices
+  Microservices --> MySQLDB["MySQL Database - Multi-Branch"]
+
+  WhatsApp["WhatsApp and SMS Notifications API"] --> RabbitMQ
+  DentalLab["Dental Lab Digital Portal"] --> RabbitMQ
+  DentalLab --> Microservices
+  PayGateways["Payment Gateways - BenefitPay, Credimax, EazyPay"] --> Microservices
+  PayGateways --> MySQLDB
+
+  style Theme fill:#334155,color:#fff,stroke:#64748b,stroke-width:2px
+  style ReactUI fill:#ea580c,color:#fff,stroke:#c2410c,stroke-width:2px
+  style CPRDriver fill:#ea580c,color:#fff,stroke:#c2410c,stroke-width:2px
+  style CPRData fill:#f8fafc,color:#0f172a,stroke:#cbd5e1,stroke-width:2px
+  style OfflineStore fill:#d97706,color:#fff,stroke:#b45309,stroke-width:2px
+  style RabbitMQ fill:#7c3aed,color:#fff,stroke:#6d28d9,stroke-width:2px
+  style Microservices fill:#0284c7,color:#fff,stroke:#0369a1,stroke-width:2px
+  style MySQLDB fill:#059669,color:#fff,stroke:#047857,stroke-width:2px
+  style Enc fill:#475569,color:#fff,stroke:#64748b,stroke-width:2px
+  style WhatsApp fill:#16a34a,color:#fff,stroke:#15803d,stroke-width:2px
+  style DentalLab fill:#475569,color:#fff,stroke:#64748b,stroke-width:2px
+  style PayGateways fill:#475569,color:#fff,stroke:#64748b,stroke-width:2px
+            </div>
+            <div class="mermaid-caption">
+              <strong>End-to-End Enterprise Architecture:</strong> ReactJS 18 Frontend decoupled via .NET Smart Card Driver for USB Bahrain CPR card reading, offline-reliant SQLite / IndexedDB buffer with AES-256 encryption, RabbitMQ asynchronous queue broker, and PHP 8.3 MVC microservices persisting to central MySQL 8.0+ multi-branch database.
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 2: 11-MODULE UNIFIED NAVIGATION SEQUENCE (MERMAID.JS)
+             ================================================================= -->
+        <div id="tab-mermaid-nav" class="tab-content-panel">
+          <div class="mermaid-viewport">
+            <div class="mermaid">
+graph TD
+  A["01. Dashboard"] --> B["02. Calendar"]
+  B --> C["03. MSD Leakage Tracker"]
+  C --> D["04. Fail Visit Tracker"]
+  D --> E["05. Ortho Continuity Tracker"]
+  E --> F["06. Treatment Plan Tracker"]
+  F --> G["07. Feedback Call Tracker"]
+  G --> H["08. Dental Lab Workflow"]
+  H --> I["09. Insurance Claims"]
+  I --> J["10. Patient Journey Compliance"]
+  J --> K["11. Billing and Accounts"]
+
+  style A fill:#ea580c,color:#fff,stroke:#c2410c,stroke-width:2px
+  style B fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style C fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style D fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style E fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style F fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style G fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style H fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style I fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style J fill:#0a2540,color:#fff,stroke:#0284c7,stroke-width:2px
+  style K fill:#059669,color:#fff,stroke:#047857,stroke-width:2px
+            </div>
+            <div class="mermaid-caption">
+              <strong>Mandatory Unified Navigation Sequence:</strong> Enforced by CORE-02. All clinical user roles (Reception, Doctor, Administrator) follow this identical 11-step sequential progression from check-in to final billing settlement.
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 3: 11 MODULES FUNCTIONAL BREAKDOWN (MERMAID.JS)
+             ================================================================= -->
+        <div id="tab-mermaid-modules" class="tab-content-panel">
+          <div class="mermaid-viewport">
+            <div class="mermaid">
+graph TD
+  MOD1["Module 1: Dashboard and 6 KPI Trackers"] --> KPI1["6 Cards: Calls, Collections, IG Reviews, Google Reviews, Referrals"]
+  MOD2["Module 2: Calendar"] --> CAL1["Multi-Doctor Scheduler"]
+  CAL1 --> CPR2["CPR Card Reader"]
+  MOD2 --> CAL2["20 Live Status Counters"]
+  MOD2 --> CAL3["Bulk WhatsApp and SMS API"]
+  MOD3["Module 3: MSD Leakage"] --> MSD1["7 Specialized Cohort Cards"]
+  MOD3 --> MSD2["Automated Booking to Unbooked"]
+  MOD4["Module 4: Fail Visit Tracker"] --> FV1["Yesterday Rollover"]
+  FV1 --> FV2["10 Outcome Filters"]
+  MOD5["Module 5: Ortho Continuity"] --> OR1["Running Patient Lists"]
+  OR1 --> OR2["5 Appliance Categories"]
+  MOD5 --> OR3["7 Aging Buckets"]
+  MOD6["Module 6: Treatment Plan"] --> TP1["3-Condition Active Filter"]
+  TP1 --> TP2["Favorite TP Patients"]
+  MOD6 --> TP3["7 Clinical Recall Cohorts"]
+  MOD7["Module 7: Feedback Calls"] --> FB1["Auto-Trigger on Completed Procedures"]
+  FB1 --> FB2["Live Call Funnel"]
+  MOD8["Module 8: Dental Lab"] --> LAB1["3-Zone Shade Master"]
+  LAB1 --> LAB2["3-Lane Chat"]
+  LAB2 --> LAB3["Overdue Alerts"]
+  MOD9["Module 9: Insurance Claims"] --> INS1["Globemed / Mednet Formats"]
+  INS1 --> INS2["Deductible Engine"]
+  INS2 --> INS3["6 Attachments"]
+  MOD10["Module 10: Patient Journey"] --> PJ1["24-Column Compliance Matrix"]
+  MOD10 --> PJ2["Interactive Tablet E-Consent"]
+  MOD11["Module 11: Billing and Accounts"] --> BILL1["Cashier Ledger"]
+  BILL1 --> BILL2["Collection Auto-Sync"]
+  BILL2 --> BILL3["Shift Printout"]
+
+  style MOD1 fill:#0284c7,color:#fff
+  style MOD2 fill:#0284c7,color:#fff
+  style MOD3 fill:#0284c7,color:#fff
+  style MOD4 fill:#0284c7,color:#fff
+  style MOD5 fill:#0284c7,color:#fff
+  style MOD6 fill:#0284c7,color:#fff
+  style MOD7 fill:#0284c7,color:#fff
+  style MOD8 fill:#0284c7,color:#fff
+  style MOD9 fill:#0284c7,color:#fff
+  style MOD10 fill:#0284c7,color:#fff
+  style MOD11 fill:#0284c7,color:#fff
+            </div>
+            <div class="mermaid-caption">
+              <strong>11 Modules Functional Architecture:</strong> 100% blueprint-aligned tree showing all clinical module capabilities, automated safety-net rollover engines, shade-matching matrices, and cashier day-end reconciliation.
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 4: 11-MODULE PROCESS CARDS (VISUAL VIEW)
+             ================================================================= -->
+        <div id="tab-nav" class="tab-content-panel">
+          <div class="modal-flow-grid">
+            
+            <!-- PHASE 1 -->
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-door-open" style="color:var(--accent);"></i>
+                  Phase 1: Patient Ingestion &amp; Front-Desk Scheduling
+                </div>
+                <span class="flow-zone-badge" style="background:#fff7ed; color:var(--accent); border:1px solid #ffedd5;">Entry Gate</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">01</span>
+                    <span class="flow-node-role">Receptionist</span>
+                  </div>
+                  <div class="flow-node-title">Dashboard &amp; 6 KPIs</div>
+                  <div class="flow-node-desc">Front-office morning cockpit tracking collections, call volumes, Instagram/Google reviews, and department referrals.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">Collections</span>
+                    <span class="flow-node-tag">Target KPIs</span>
+                    <span class="flow-node-tag">Live Audits</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">02</span>
+                    <span class="flow-node-role">Receptionist</span>
+                  </div>
+                  <div class="flow-node-title">Calendar &amp; Smart CPR</div>
+                  <div class="flow-node-desc">Multi-doctor drag-and-drop booking grid with 1-scan Bahrain CPR reader (.NET USB driver) and 20 status counters.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">.NET Driver</span>
+                    <span class="flow-node-tag">CPR Card Reader</span>
+                    <span class="flow-node-tag">WhatsApp API</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 1 -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>Automated Patient Handshake &bull; Safety Net Triggers</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- PHASE 2 -->
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-shield-halved" style="color:var(--emerald);"></i>
+                  Phase 2: Revenue Leakage Prevention &amp; Safety Nets
+                </div>
+                <span class="flow-zone-badge" style="background:#ecfdf5; color:var(--emerald); border:1px solid #a7f3d0;">Safety Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">03</span>
+                    <span class="flow-node-role">Safety Net #1</span>
+                  </div>
+                  <div class="flow-node-title">MSD Leakage Tracker</div>
+                  <div class="flow-node-desc">Identifies unbooked patients whose expected schedule day has passed across 7 clinical cohorts.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">7 Cohorts</span>
+                    <span class="flow-node-tag">Instant Rebook</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">04</span>
+                    <span class="flow-node-role">Safety Net #2</span>
+                  </div>
+                  <div class="flow-node-title">Fail Visit Recovery</div>
+                  <div class="flow-node-desc">Yesterday unattended no-show rollover with 10 call outcome filters, call history log modal, and locking.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">10 Outcomes</span>
+                    <span class="flow-node-tag">Deduplication</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">05</span>
+                    <span class="flow-node-role">Safety Net #3</span>
+                  </div>
+                  <div class="flow-node-title">Ortho Continuity</div>
+                  <div class="flow-node-desc">Doctor running patient lists, 5 appliance classification categories, and 1-6+ month overdue aging buckets.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">5 Appliances</span>
+                    <span class="flow-node-tag">Overdue Buckets</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">06</span>
+                    <span class="flow-node-role">Safety Net #4</span>
+                  </div>
+                  <div class="flow-node-title">Treatment Plan (TP)</div>
+                  <div class="flow-node-desc">3-rule active filter, BHD value metrics, Favorite TP cohort, and FDI tooth-level clinical recall.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">BHD Pipeline</span>
+                    <span class="flow-node-tag">FDI Notation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 2 -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>Doctor Encounter Triggers &bull; Treatment Execution</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- PHASE 3 -->
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-teeth-open" style="color:var(--blue);"></i>
+                  Phase 3: Clinical Execution &amp; Dental Lab Lifecycle
+                </div>
+                <span class="flow-zone-badge" style="background:#f0f9ff; color:var(--blue); border:1px solid #bae6fd;">Clinical Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">07</span>
+                    <span class="flow-node-role">Doctor / Front-Desk</span>
+                  </div>
+                  <div class="flow-node-title">Feedback Calls Funnel</div>
+                  <div class="flow-node-desc">Procedure completion automated triggers, real-time call percentage funnel, and dual doctor/reception notes.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">Auto-Triggers</span>
+                    <span class="flow-node-tag">Funnel Analytics</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">08</span>
+                    <span class="flow-node-role">Dentist &amp; Lab Tech</span>
+                  </div>
+                  <div class="flow-node-title">Dental Lab Workflow</div>
+                  <div class="flow-node-desc">3-zone visual shade master (Gingival/Body/Incisal), 3-stage delivery pipeline, and 3-lane internal/external chat.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">Shade Master</span>
+                    <span class="flow-node-tag">Overdue Alerts</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 3 -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>Billing Handoff &bull; Insurance Adjudication &bull; Audit Trail</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- PHASE 4 -->
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-cash-register" style="color:var(--purple);"></i>
+                  Phase 4: Claims Processing, Compliance &amp; Financial Closure
+                </div>
+                <span class="flow-zone-badge" style="background:#f5f3ff; color:var(--purple); border:1px solid #ddd6fe;">Financial Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">09</span>
+                    <span class="flow-node-role">Insurance Desk</span>
+                  </div>
+                  <div class="flow-node-title">Insurance Claims</div>
+                  <div class="flow-node-desc">Globemed &amp; Mednet submission formats, deductible calculation engine, and 6 mandatory attachment checks.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">Globemed</span>
+                    <span class="flow-node-tag">Mednet</span>
+                    <span class="flow-node-tag">Deductibles</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">10</span>
+                    <span class="flow-node-role">Compliance Officer</span>
+                  </div>
+                  <div class="flow-node-title">Patient Journey Matrix</div>
+                  <div class="flow-node-desc">24-column clinical compliance matrix, chronological patient seen audits, and tablet e-consent signatures.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">24 Columns</span>
+                    <span class="flow-node-tag">E-Signatures</span>
+                  </div>
+                </div>
+
+                <div class="flow-node-box">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num">11</span>
+                    <span class="flow-node-role">Cashier / Finance</span>
+                  </div>
+                  <div class="flow-node-title">Billing &amp; Accounts</div>
+                  <div class="flow-node-desc">Multi-payment cashier ledger (Cash, BenefitPay, Credimax), collection auto-sync, and shift sign-off report.</div>
+                  <div class="flow-node-tags">
+                    <span class="flow-node-tag">BenefitPay</span>
+                    <span class="flow-node-tag">Credimax</span>
+                    <span class="flow-node-tag">Day Closing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 2: 4-TIER TECHNOLOGY STACK GRAPH (ENTERPRISE SYSTEM GRAPH)
+             ================================================================= -->
+        <div id="tab-tech" class="tab-content-panel">
+          <div class="modal-flow-grid">
+            
+            <!-- TIER 1 -->
+            <div class="flow-zone-card" style="border-left:5px solid var(--accent);">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-display" style="color:var(--accent);"></i>
+                  Tier 1: Presentation &amp; Front-Office Edge
+                </div>
+                <span class="flow-zone-badge" style="background:#fff7ed; color:var(--accent);">Client Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-brands fa-react" style="color:var(--accent);"></i> ReactJS 18 SPA</div>
+                  <div class="flow-node-desc">Front-office cockpit with responsive layouts, real-time counters, fast keyboard navigation, and zero reloads.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-id-card" style="color:var(--emerald);"></i> .NET Smart CPR Service</div>
+                  <div class="flow-node-desc">Local Windows background driver communicating with CPR card readers over USB to extract demographics instantly.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-tablet-screen-button" style="color:var(--blue);"></i> Tablet E-Sign &amp; POS</div>
+                  <div class="flow-node-desc">Touch devices for patient consents, clinical procedure sign-offs, and front-desk POS terminals.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>Encrypted Local Bus &bull; Dual-Write Persistence</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="flow-zone-card" style="border-left:5px solid var(--amber);">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-hard-drive" style="color:var(--amber);"></i>
+                  Tier 2: Edge Persistence &amp; Offline Shield
+                </div>
+                <span class="flow-zone-badge" style="background:#fffbeb; color:var(--amber);">Resilience Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-database" style="color:var(--amber);"></i> SQLite / IndexedDB Storage</div>
+                  <div class="flow-node-desc">High-concurrency WAL local storage caching appointment books and records for uninterrupted offline workflow.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-lock" style="color:#e11d48;"></i> AES-256 Cryptographic Vault</div>
+                  <div class="flow-node-desc">Zero-trust encryption encrypting CPR card numbers, medical history, and clinical diagnosis records at rest.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--purple);"></i> Offline Staging Outbox</div>
+                  <div class="flow-node-desc">Transactional outbox buffering records when internet drops, automatically replaying once connectivity returns.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>AMQP 0-9-1 / TLS 1.3 Asynchronous Pipeline</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- TIER 3 -->
+            <div class="flow-zone-card" style="border-left:5px solid var(--purple);">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-arrows-split-up-and-left" style="color:var(--purple);"></i>
+                  Tier 3: Distributed Middleware &amp; Message Queue
+                </div>
+                <span class="flow-zone-badge" style="background:#f5f3ff; color:var(--purple);">Broker Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-envelope-circle-check" style="color:var(--purple);"></i> RabbitMQ Broker</div>
+                  <div class="flow-node-desc">Dedicated queues decoupling user requests from background recall sweeps, sync retries, and audit logging.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> WhatsApp &amp; SMS Gateway</div>
+                  <div class="flow-node-desc">Automated appointment reminders, calendar confirmations, and post-procedure recall notices via API.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-microchip" style="color:var(--blue);"></i> Sync Daemon &amp; Dead-Letter Queue</div>
+                  <div class="flow-node-desc">Exponential backoff retry daemon ensuring 100% data reconciliation across all 6 clinics without duplicates.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR -->
+            <div class="flow-connector-bar">
+              <i class="fa-solid fa-arrow-down"></i>
+              <span>FastCGI / Prepared Statements (PDO)</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <!-- TIER 4 -->
+            <div class="flow-zone-card" style="border-left:5px solid var(--primary);">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-server" style="color:var(--blue);"></i>
+                  Tier 4: Enterprise Backend &amp; Multi-Branch Persistence
+                </div>
+                <span class="flow-zone-badge" style="background:#e0f2fe; color:var(--blue);">Core Layer</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-brands fa-php" style="color:var(--blue);"></i> PHP 8.3 MVC Microservices</div>
+                  <div class="flow-node-desc">High-performance REST API services for appointment scheduling, treatment plans, lab workflow, and billing.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-database" style="color:var(--emerald);"></i> MySQL 8.0+ Multi-Branch DB</div>
+                  <div class="flow-node-desc">Enterprise relational database with InnoDB foreign keys, strict ACID compliance, and multi-branch replication.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-title"><i class="fa-solid fa-credit-card" style="color:var(--accent);"></i> Bahrain Payment Gateways</div>
+                  <div class="flow-node-desc">Unified checkout supporting BenefitPay QR, Credimax, and EazyPay with automated day-closing reconciliation.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 3: OFFLINE AUTO-SYNC PIPELINE (RESILIENCE GRAPH)
+             ================================================================= -->
+        <div id="tab-offline" class="tab-content-panel">
+          <div class="modal-flow-grid">
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-cloud-arrow-up" style="color:var(--emerald);"></i>
+                  Zero-Data-Loss Offline Synchronization Lifecycle
+                </div>
+                <span class="flow-zone-badge" style="background:#ecfdf5; color:var(--emerald);">Failover State Machine</span>
+              </div>
+              <div class="flow-node-row">
+                <div class="flow-node-box" style="border-top:4px solid var(--emerald);">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num" style="background:var(--emerald);">A</span>
+                    <span class="flow-node-role">Active Network</span>
+                  </div>
+                  <div class="flow-node-title">State 1: Dual-Write Sync</div>
+                  <div class="flow-node-desc">Transactions write simultaneously to local IndexedDB/SQLite cache and stream immediately to central cloud MySQL over secure WebSocket/REST.</div>
+                </div>
+
+                <div class="flow-node-box" style="border-top:4px solid var(--accent);">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num" style="background:var(--accent);">B</span>
+                    <span class="flow-node-role">ISP Disconnection</span>
+                  </div>
+                  <div class="flow-node-title">State 2: Isolated Local Buffer</div>
+                  <div class="flow-node-desc">Front-office operates with zero interruption. CPR reads, bookings, and payments buffer locally in an AES-256 encrypted append-only queue.</div>
+                </div>
+
+                <div class="flow-node-box" style="border-top:4px solid var(--purple);">
+                  <div class="flow-node-header">
+                    <span class="flow-node-num" style="background:var(--purple);">C</span>
+                    <span class="flow-node-role">Network Restored</span>
+                  </div>
+                  <div class="flow-node-title">State 3: RabbitMQ Replay</div>
+                  <div class="flow-node-desc">Sync dispatcher automatically flushes staged records into RabbitMQ message queues. Automatic conflict-free timestamp reconciliation occurs with zero loss.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             TAB 4: 12-MILESTONE DELIVERY ROADMAP (TURNKEY EXECUTION MAP)
+             ================================================================= -->
+        <div id="tab-roadmap" class="tab-content-panel">
+          <div class="modal-flow-grid">
+            <div class="flow-zone-card">
+              <div class="flow-zone-header">
+                <div class="flow-zone-title">
+                  <i class="fa-solid fa-timeline" style="color:var(--accent);"></i>
+                  12-Milestone Turnkey Delivery Sequence (56 Weeks &bull; 14 Calendar Months)
+                </div>
+                <span class="flow-zone-badge" style="background:#fff7ed; color:var(--accent);">Engineering Timeline</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-01</span><span class="flow-node-role">Weeks 1 - 6</span></div>
+                  <div class="flow-node-title">Core Architecture &amp; Dashboard</div>
+                  <div class="flow-node-desc">ReactJS + PHP MVC framework, RabbitMQ setup, SQLite buffer, and Module 1 Dashboard with 6 real-time KPIs.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-02</span><span class="flow-node-role">Weeks 7 - 12</span></div>
+                  <div class="flow-node-title">Calendar &amp; CPR Smart Driver</div>
+                  <div class="flow-node-desc">Doctor scheduler, 20 status counters, custom .NET Bahrain CPR card driver, and bulk WhatsApp/SMS messaging queue.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-03</span><span class="flow-node-role">Weeks 13 - 19</span></div>
+                  <div class="flow-node-title">MSD Leakage &amp; Fail Visit</div>
+                  <div class="flow-node-desc">Automated unbooked engine (7 cohorts), yesterday no-show rollover with 10 call filters, call history modal, and locking.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-04</span><span class="flow-node-role">Weeks 20 - 28</span></div>
+                  <div class="flow-node-title">Ortho Continuity &amp; TP Recall</div>
+                  <div class="flow-node-desc">Doctor patient lists, 5 appliance cards, 7 overdue aging buckets; 3-rule active TP filter, and FDI tooth-level recall.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-05</span><span class="flow-node-role">Weeks 29 - 36</span></div>
+                  <div class="flow-node-title">Feedback Calls &amp; Dental Lab</div>
+                  <div class="flow-node-desc">Procedure completion feedback triggers; 3-zone shade master, 3-stage delivery pipeline, and 3-lane internal/external chat.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-06</span><span class="flow-node-role">Weeks 37 - 42</span></div>
+                  <div class="flow-node-title">Insurance Claims Engine</div>
+                  <div class="flow-node-desc">Globemed &amp; Mednet standard submission formats, deductible calculation engine, and 6 mandatory attachment checkpoints.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-07</span><span class="flow-node-role">Weeks 43 - 50</span></div>
+                  <div class="flow-node-title">Patient Journey &amp; Cashier</div>
+                  <div class="flow-node-desc">24-column clinical compliance matrix, tablet e-consent signatures; cashier multi-payment ledger (BenefitPay, Credimax), and sign-off.</div>
+                </div>
+                <div class="flow-node-box">
+                  <div class="flow-node-header"><span class="flow-node-num">MS-08</span><span class="flow-node-role">Weeks 51 - 56</span></div>
+                  <div class="flow-node-title">Shared Trigger Console &amp; Go-Live</div>
+                  <div class="flow-node-desc">Doctor encounter console, Admin approval suite, multi-branch pilot testing across 6 clinics, VAPT security audit, and clinical training.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODAL FOOTER -->
+    <div class="diagram-modal-footer">
+      <div class="modal-footer-hint">
+        <i class="fa-solid fa-arrows-up-down-left-right"></i> <strong>Navigation Tip:</strong> Click &amp; drag mouse anywhere to pan freely left, right, up, and down. Use the <strong>◀ Pan Left</strong> / <strong>▶ Pan Right</strong> buttons or arrow keys to navigate at any zoom level.
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button type="button" class="footer-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+        <button type="button" class="footer-btn primary" onclick="closeDiagramModal()">Done Viewing</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================================
+     MODAL CONTROLLER SCRIPT (WITH MERMAID.JS INTEGRATION)
+     ========================================================================= -->
+<script>
+  // Initialize Mermaid with high-visibility dark enterprise theme
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      securityLevel: 'loose',
+      themeVariables: {
+        darkMode: true,
+        background: '#081627',
+        mainBkg: '#0d1e33',
+        nodeBorder: '#0284c7',
+        lineColor: '#ea580c',
+        textColor: '#ffffff',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '15px'
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+  }
+
+  const renderedTabs = {};
+
+  async function triggerMermaidRender(tabId) {
+    if (!tabId) {
+      const activePanel = document.querySelector('.tab-content-panel.active');
+      if (activePanel) {
+        tabId = activePanel.id.replace('tab-', '');
+      }
+    }
+    if (!tabId || renderedTabs[tabId]) return;
+
+    const panel = document.getElementById(`tab-${tabId}`);
+    if (!panel) return;
+
+    const mermaidNode = panel.querySelector('.mermaid');
+    if (!mermaidNode) return;
+
+    if (typeof mermaid !== 'undefined') {
+      try {
+        await mermaid.run({
+          nodes: [mermaidNode]
+        });
+        renderedTabs[tabId] = true;
+      } catch (err) {
+        console.warn('Mermaid rendering notice for ' + tabId + ':', err);
+      }
+    }
+  }
+
+  let currentZoom = 1.0;
+  const zoomDisplay = document.getElementById('zoomLevelDisplay');
+  const canvasWrapper = document.getElementById('diagramCanvas');
+  const modalBackdrop = document.getElementById('diagramModal');
+  const modalBody = document.getElementById('modalCanvasContainer');
+
+  function panContainer(dx, dy) {
+    if (modalBody) {
+      modalBody.scrollBy({ left: dx, top: dy, behavior: 'smooth' });
+    }
+  }
+
+  function centerDiagram() {
+    if (modalBody) {
+      const maxScrollLeft = modalBody.scrollWidth - modalBody.clientWidth;
+      modalBody.scrollTo({ left: Math.max(0, maxScrollLeft / 2), top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // Interactive Click & Drag Mouse Panning
+  let isPanning = false;
+  let startX = 0;
+  let startY = 0;
+  let startScrollLeft = 0;
+  let startScrollTop = 0;
+
+  if (modalBody) {
+    modalBody.addEventListener('mousedown', function(e) {
+      if (e.target.closest('button, a, input, select')) return;
+      isPanning = true;
+      modalBody.classList.add('grabbing');
+      startX = e.pageX - modalBody.offsetLeft;
+      startY = e.pageY - modalBody.offsetTop;
+      startScrollLeft = modalBody.scrollLeft;
+      startScrollTop = modalBody.scrollTop;
+    });
+
+    window.addEventListener('mouseup', function() {
+      if (isPanning) {
+        isPanning = false;
+        modalBody.classList.remove('grabbing');
+      }
+    });
+
+    modalBody.addEventListener('mousemove', function(e) {
+      if (!isPanning) return;
+      e.preventDefault();
+      const x = e.pageX - modalBody.offsetLeft;
+      const y = e.pageY - modalBody.offsetTop;
+      const walkX = x - startX;
+      const walkY = y - startY;
+      modalBody.scrollLeft = startScrollLeft - walkX;
+      modalBody.scrollTop = startScrollTop - walkY;
+    });
+  }
+
+  function openDiagramModal(tabId) {
+    if (!tabId) tabId = 'mermaid-tech';
+    modalBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    const targetBtn = document.querySelector(`.modal-tab-btn[onclick*="'${tabId}'"]`);
+    switchModalTab(tabId, targetBtn);
+  }
+
+  function closeDiagramModal() {
+    modalBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleBackdropClick(e) {
+    if (e.target === modalBackdrop) {
+      closeDiagramModal();
+    }
+  }
+
+  function switchModalTab(tabId, btnElem) {
+    // Hide all tab panels
+    document.querySelectorAll('.tab-content-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    // Remove active state from tab buttons
+    document.querySelectorAll('.modal-tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    const activePanel = document.getElementById(`tab-${tabId}`);
+    if (activePanel) {
+      activePanel.classList.add('active');
+    }
+    if (btnElem) {
+      btnElem.classList.add('active');
+    }
+
+    // Reset zoom when switching tabs
+    resetZoom();
+    // Render Mermaid for this visible tab
+    setTimeout(function() {
+      triggerMermaidRender(tabId);
+    }, 80);
+  }
+
+  function zoomDiagram(delta) {
+    currentZoom = Math.min(Math.max(currentZoom + delta, 0.5), 2.5);
+    applyZoom();
+  }
+
+  function resetZoom() {
+    currentZoom = 1.0;
+    applyZoom();
+  }
+
+  function applyZoom() {
+    if (canvasWrapper) {
+      canvasWrapper.style.transform = `scale(${currentZoom})`;
+    }
+    if (zoomDisplay) {
+      zoomDisplay.textContent = Math.round(currentZoom * 100) + '%';
+    }
+  }
+
+  // Keyboard controls: Escape to close, + / - to zoom, arrow keys to pan
+  document.addEventListener('keydown', function(e) {
+    if (modalBackdrop && modalBackdrop.classList.contains('open')) {
+      if (e.key === 'Escape') {
+        closeDiagramModal();
+      } else if (e.key === '+' || e.key === '=') {
+        zoomDiagram(0.15);
+      } else if (e.key === '-' || e.key === '_') {
+        zoomDiagram(-0.15);
+      } else if (e.key === '0') {
+        resetZoom();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        panContainer(-200, 0);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        panContainer(200, 0);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        panContainer(0, -200);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        panContainer(0, 200);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

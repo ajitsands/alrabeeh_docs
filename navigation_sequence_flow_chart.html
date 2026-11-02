@@ -1,0 +1,766 @@
+<?php
+// Enforce Authentication Check if accessed directly
+if (!defined('AUTH_PORTAL_ACTIVE')) {
+    require_once __DIR__ . '/index.php';
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11-Module Unified Navigation Sequence | Al Rabeeh EMRS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary: #0a2540;
+      --accent: #ea580c;
+      --emerald: #059669;
+      --blue: #0284c7;
+      --purple: #7c3aed;
+      --dark: #0f172a;
+      --gray-800: #1e293b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 40px rgba(10, 37, 64, 0.3);
+      border: 3px solid var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.7;
+      max-width: 900px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fdba74;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Card Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(10, 37, 64, 0.15);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .seq-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent) 0%, #c2410c 100%);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .module-badge {
+      display: inline-block;
+      background: var(--blue-subtle);
+      color: var(--blue);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      color: var(--emerald);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Interactive Canvas */
+    .canvas-container {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .canvas-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .canvas-title i {
+      color: var(--accent);
+    }
+
+    /* Split Timeline */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .timeline-section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .timeline-section h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--emerald);
+    }
+
+    .flow-cycle {
+      position: relative;
+      padding: 20px;
+    }
+
+    .flow-cycle::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--accent), var(--emerald), var(--blue), var(--purple));
+      border-radius: 2px;
+    }
+
+    .flow-step {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 18px;
+    }
+
+    .step-marker {
+      position: absolute;
+      left: 14px;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .flow-step:nth-child(odd) .step-marker {
+      background: white;
+    }
+    .flow-step:nth-child(even) .step-marker {
+      background: white;
+      border-color: var(--blue);
+    }
+    .flow-step:nth-child(3n) .step-marker {
+      border-color: var(--emerald);
+    }
+    .flow-step:nth-child(4n) .step-marker {
+      border-color: var(--purple);
+    }
+
+    .step-content {
+      background: var(--gray-800);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* High-Contrast Timeline Depth & Scope Cards */
+    .timeline-grid .flow-step {
+      padding-left: 68px;
+      margin-bottom: 18px;
+    }
+    .timeline-grid .step-marker {
+      left: 10px;
+      min-width: 36px;
+      width: auto;
+      height: 36px;
+      padding: 0 6px;
+      border-radius: 18px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0f172a !important;
+      border-width: 3px;
+      background: #ffffff !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .timeline-grid .step-content {
+      color: #0f172a !important;
+      padding: 14px 18px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .timeline-grid .step-title {
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+    .timeline-grid .step-desc {
+      color: #334155 !important;
+      font-size: 12.5px;
+      font-weight: 500;
+      opacity: 1 !important;
+      line-height: 1.5;
+    }
+    .timeline-grid .card-orange {
+      background: #fff7ed !important;
+      border: 1.5px solid #ea580c !important;
+    }
+    .timeline-grid .card-orange .step-title {
+      color: #9a3412 !important;
+    }
+    .timeline-grid .card-blue {
+      background: #f0f9ff !important;
+      border: 1.5px solid #0284c7 !important;
+    }
+    .timeline-grid .card-blue .step-title {
+      color: #0369a1 !important;
+    }
+    .timeline-grid .card-emerald {
+      background: #ecfdf5 !important;
+      border: 1.5px solid #059669 !important;
+    }
+    .timeline-grid .card-emerald .step-title {
+      color: #047857 !important;
+    }
+    .timeline-grid .card-purple {
+      background: #faf5ff !important;
+      border: 1.5px solid #7c3aed !important;
+    }
+    .timeline-grid .card-purple .step-title {
+      color: #6d28d9 !important;
+    }
+
+    /* Bottom Summary */
+    .summary-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 24px;
+      border: 2px solid var(--accent);
+    }
+
+    .summary-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .summary-item h4 {
+      color: #fdba74;
+      font-size: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-item p {
+      font-size: 14px;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 12px;
+      opacity: 0.7;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .timeline-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .hero { padding: 24px; }
+      .hero-title { font-size: 24px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+    }
+
+    /* Animation */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-title">
+      <i style="color: var(--accent);">🔀</i>
+      11-Module Unified Navigation Sequence
+    </div>
+    <div class="hero-subtitle">
+      <strong>CORE-02 Precedence Rule:</strong> Mandated navigation flow enforced across <strong>Reception, Doctor & Admin</strong> user roles. Every login flows through this unified sequence before accessing specialized dashboards.
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Core Modules</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">User Roles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1</div>
+        <div class="stat-label">Unified Flow</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">87</div>
+        <div class="stat-label">Functional Rules</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Role Comparison Cards -->
+  <div class="grid-3">
+    <!-- Role 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="seq-number" style="background: linear-gradient(135deg, var(--accent) 0%, #c2410c 100%);">
+          👤
+        </div>
+        <div class="card-title">Receptionist Role</div>
+      </div>
+      <div class="module-badge"><i class="fa-solid fa-users"></i> Front-Office Staff</div>
+      <ul class="feature-list">
+        <li>Primary dashboard for patient intake</li>
+        <li>Full access to all 11 modules</li>
+        <li>Can create bookings, view calendars</li>
+        <li>Track KPIs (Calls, Collections, IG, Reviews)</li>
+        <li>Initiate follow-up calls & collection tracking</li>
+        <li>Access to Billing/Accounts register</li>
+      </ul>
+    </div>
+
+    <!-- Role 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="seq-number" style="background: linear-gradient(135deg, var(--blue) 0%, #0369a1 100%);">
+          👨‍⚕️
+        </div>
+        <div class="card-title">Doctor Role</div>
+      </div>
+      <div class="module-badge"><i class="fa-solid fa-stethoscope"></i> Clinical Staff</div>
+      <ul class="feature-list">
+        <li>Dental specialists (Orthodontics, General)</li>
+        <li>Mark procedures In Progress/Completed</li>
+        <li>Access Professional Video Library</li>
+        <li>Set Treatment Plans by Favorite Patients</li>
+        <li>Trigger Feedback Call Tracker automatically</li>
+        <li>Coordinate with Dental Lab via chat</li>
+        <li>Track insurance claims & approvals</li>
+      </ul>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="seq-number" style="background: linear-gradient(135deg, var(--purple) 0%, #6d28d9 100%);">
+          👨‍💼
+        </div>
+        <div class="card-title">Admin Role</div>
+      </div>
+      <div class="module-badge"><i class="fa-solid fa-crown"></i> Management & Housekeeping</div>
+      <ul class="feature-list">
+        <li>Review & approve all KPI tracker entries</li>
+        <li>Assign tasks (Daily/Weekly/Monthly)</li>
+        <li>Monitor daily operations & scheduling</li>
+        <li>Manage branch schedules & doctor rosters</li>
+        <li>Approve or reject Hold = marks pending review</li>
+        <li>View Patient Journey compliance status</li>
+        <li>Override 24h editing lock with proper justification</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Visual Flow Diagram -->
+  <div class="canvas-container">
+    <div class="canvas-title">
+      <i class="fa-solid fa-sitemap"></i>
+      Full Navigation Sequence with Module Features
+
+    </div>
+
+    <div class="flow-cycle">
+      <!-- Step 1 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--accent);">1</div>
+        <div class="step-content">
+          <div class="step-title">🏠 Dashboard (Default)</div>
+          <div class="step-desc">6 KPI Card Hub with target tracking & daily tasks</div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--blue);">2</div>
+        <div class="step-content">
+          <div class="step-title">📅 Calendar</div>
+          <div class="step-desc">Multi-doctor scheduler with 20 live counters & WhatsApp send</div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--emerald);">3</div>
+        <div class="step-content">
+          <div class="step-title">🔍 MSD Leakage Tracker</div>
+          <div class="step-desc">7 specialized unbooked patient cohort cards</div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--purple);">4</div>
+        <div class="step-content">
+          <div class="step-title">⚠️ Fail Visit Tracker</div>
+          <div class="step-desc">Yesterday rollover & 10 outcome filters for no-show recovery</div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--accent);">5</div>
+        <div class="step-content">
+          <div class="step-title">🦷 Ortho Continuity Tracker</div>
+          <div class="step-desc">Running braces management & 7-month aging buckets</div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--blue);">6</div>
+        <div class="step-content">
+          <div class="step-title">📋 Treatment Plan Tracker</div>
+          <div class="step-desc">3-rule active filter, favorite patients, tooth-level recall</div>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--emerald);">7</div>
+        <div class="step-content">
+          <div class="step-title">📞 Feedback Call Tracker</div>
+          <div class="step-desc">Auto-trigger post-procedures, dual-lane comments</div>
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--purple);">8</div>
+        <div class="step-content">
+          <div class="step-title">🔬 Dental Lab Workflow</div>
+          <div class="step-desc">3-zone shade master, 3-lane chat, external lab link</div>
+        </div>
+      </div>
+
+      <!-- Step 9 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--accent);">9</div>
+        <div class="step-content">
+          <div class="step-title">🛡️ Insurance Tracker</div>
+          <div class="step-desc">Globemed/Mednet formats, deductible engine, 6 claim attachments</div>
+        </div>
+      </div>
+
+      <!-- Step 10 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--blue);">10</div>
+        <div class="step-content">
+          <div class="step-title">🏥 Patient Journey</div>
+          <div class="step-desc">24-column compliance matrix with tablet e-consent</div>
+        </div>
+      </div>
+
+      <!-- Step 11 -->
+      <div class="flow-step">
+        <div class="step-marker" style="border-color: var(--emerald);">11</div>
+        <div class="step-content">
+          <div class="step-title">💳 Billing & Accounts</div>
+          <div class="step-desc">Reception Cashier Register, Collection Auto-Sync, Shift Printout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Breakdown -->
+  <div class="timeline-grid">
+    <!-- Timeline 1: Feature Depth -->
+    <div class="timeline-section">
+      <h3><i class="fa-solid fa-list-check"></i> Feature-Packed Modules</h3>
+      <div class="flow-cycle">
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--accent);">2</div>
+          <div class="step-content card-orange">
+            <div class="step-title">Calendar (20 Counters)</div>
+            <div class="step-desc">Scheduled, Pre-Confirmed, Confirmed, Coming, Arrived, In Room, No Ans 1/2, Fail Visit, etc. + 4 patient counters</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--blue);">3</div>
+          <div class="step-content card-blue">
+            <div class="step-title">MSD (7 Cohorts)</div>
+            <div class="step-desc">In Progress Dental, In Progress Ortho, Decided Plan Dental, Decided Plan Ortho, Balance Payment Dental, Balance Payment Ortho, Completed With TP Ortho</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--emerald);">4</div>
+          <div class="step-content card-emerald">
+            <div class="step-title">Fail Visit (10 Filters)</div>
+            <div class="step-desc">Schedule, No Ans 1/2/3, Remind Later, Cancelled, SMS/WhatsApp, Outside, Not Aware TP, plus deduplication &amp; booking lock</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--purple);">5</div>
+          <div class="step-content card-purple">
+            <div class="step-title">Ortho (5 Categories)</div>
+            <div class="step-desc">Total Running PT breakdown (Special, Normal, Invisalign, Illusion, Outside) + Today/Until Review counters</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--accent);">6</div>
+          <div class="step-content card-orange">
+            <div class="step-title">TP (7 Recall Cohorts)</div>
+            <div class="step-desc">6-month Scaling, 2-month GBT, 6-month Whitening, Extraction w/o Implant, RCT w/o Crown, Ortho, Implant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline 2: Role-Specific Access -->
+    <div class="timeline-section">
+      <h3><i class="fa-solid fa-user-shield"></i> Role-Specific Access Scope</h3>
+      <div class="flow-cycle">
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--accent);">1, 2, 6, 11</div>
+          <div class="step-content card-orange">
+            <div class="step-title">Unified Admin Access</div>
+            <div class="step-desc">Dashboard (KPI approval), Calendar (doctor roster merging), TP (favorite patients), Billing (shift verification)</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--purple);">3, 4, 5</div>
+          <div class="step-content card-purple">
+            <div class="step-title">Clinical Data Entry</div>
+            <div class="step-desc">MSD (mark dental/ortho as In Progress), Fail Visit (mark no-show outcomes), Ortho (assign running PT to doctor)</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--blue);">7, 8, 9</div>
+          <div class="step-content card-blue">
+            <div class="step-title">Patient Engagement</div>
+            <div class="step-desc">Feedback (add comments after completion), Lab (coordinate distinct Technician lane), Insurance (submit finalize claim)</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-marker" style="border-color: var(--emerald);">10</div>
+          <div class="step-content card-emerald">
+            <div class="step-title">Quality Endpoint</div>
+            <div class="step-desc">Patient Journey acts as governance board for all 17 compliance checkpoints, flagging missing consents/photos/agreements</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Configuration -->
+  <div class="summary-card">
+    <div class="summary-content">
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-ruler"></i> Navigation Length</h4>
+        <p>Maximum 11 pages to cycle through before specialized module views open. After Dashboard, all other modules are accessed via sub-navigation or quick-filter panels within each module.</p>
+      </div>
+
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-lock"></i> Mandatory Precedence</h4>
+        <p>CORE-02 supersedes all navigation rules. Users cannot bypass steps or skip modules. The blueprint explicitly validates each flow point before deliverable acceptance.</p>
+      </div>
+
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-route"></i> Parallel Workflow</h4>
+        <p>While all three roles navigate the same sequence, each stage supports unique context: Reception books → Doctor marks progress → Admin approves → Billing closes → Feedback triggers</p>
+      </div>
+
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-clock"></i> Session Management</h4>
+        <p>24-hour audit lock on Hold-marked records (DASH-12). Admin oversight overrides allowed only with justification. Daily sign-off handles dual logins at shift change.</p>
+      </div>
+
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-bell"></i> Quick Surface Hooks</h4>
+        <p>Horizontal quick-filter tabs at top of each module: <em>All Patients / Calendar Today / Patients Need Contact / Dentist's Favorite TP</em> keep specialist views one-click away.</p>
+      </div>
+
+      <div class="summary-item">
+        <h4><i class="fa-solid fa-database"></i> Offline Capability</h4>
+        <p>Navigation sequence supports fully offline operation. SQLite caches all module views; RabbitMQ syncs updates when connection restored. No lost context across internet drops.</p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <strong>CORE-02 Reference:</strong> "Unified Navigation Sequence Across All 3 Logins" | Al Rabeeh Dental Center EMRS Blueprint (Revised 19 October 2026) | Pages 3–35
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

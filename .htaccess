@@ -1,0 +1,22 @@
+# SaNDS Lab & Al Rabeeh Dental Center EMRS Portal Configuration
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Allow direct access to assets (images, css, js, fonts)
+    RewriteCond %{REQUEST_URI} \.(png|jpe?g|gif|svg|ico|css|js|woff2?|ttf|eot)$ [NC]
+    RewriteRule ^ - [L]
+
+    # Intercept and route all PDF downloads through index.php for mandatory authentication & download tracking
+    RewriteRule ^(.*\.pdf)$ index.php?download=$1 [QSA,L,NC]
+
+    # Intercept and route all HTML document views through index.php for mandatory authentication & read tracking
+    RewriteRule ^(.*\.html)$ index.php?doc=$1 [QSA,L,NC]
+
+    # Route clean document IDs / routes to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?doc=$1 [QSA,L]
+</IfModule>
+
