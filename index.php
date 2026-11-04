@@ -49,15 +49,28 @@ $routes = array(
         'desc'     => 'Comprehensive 11-module clinical reception ecosystem proposal for Al Rabeeh Dental Center (6 Bahrain Clinics). Features ReactJS + PHP MVC Microservices, RabbitMQ message queuing, .NET Smart CPR card reader driver, offline SQLite/IndexedDB auto-sync, 6-month accelerated sprint with 1-month pilot buffer, commercial terms (BD 8,400.000 total offer), and 100% client source code ownership.'
     ),
     'SL-ARDC-EMRS-INFRA-2026-V1' => array(
-        'title'    => '★ TECHNICAL ADDENDUM: Cloud Hosting, In-House Infrastructure & Scope Demarcation',
+        'title'    => '★ TECHNICAL SPECIFICATION: Cloud Hosting & In-House Server Architecture',
         'html'     => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.html',
         'pdf'      => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.pdf',
         'status'   => 'Active Addendum & Clarification',
-        'timeline' => 'Hosting Options & Technical Specifications',
-        'scope'    => 'Vendor Cloud (BD 630/Yr) vs. In-House Rack Server & 6-Branch Access + Scope Boundaries',
+        'timeline' => 'Option 1 (Cloud BD 630/Yr) vs. Option 2 (In-House Server ~BD 3,700-4,300)',
+        'scope'    => 'Vendor-Managed Cloud Hosting vs. On-Premise Rack Server & 6-Branch Access Prerequisites',
         'ba_ref'   => 'SL-ARDC-EMRS-INFRA-2026-V1',
         'date'     => '04/11/2026',
-        'desc'     => 'Formal technical addendum responding to Al Rabeeh Dental Center inquiry. Details Option 1: Vendor-Managed Cloud Hosting (3 vCPU / 12GB RAM @ BD 630/Yr), Option 2: Client In-House Physical Server (Dell PowerEdge/HPE ProLiant @ ~BD 3,700-4,300), 6-branch networking prerequisites (HQ Fiber, Static IP, FortiGate NGFW, IPsec VPN), strategic comparison matrix, and definitive scope boundary confirmation (100% of standard masters included in BD 8,400 proposal).'
+        'anchor'   => '#sec-overview',
+        'desc'     => 'Formal technical specifications responding to Al Rabeeh Dental Center inquiry. Details Option 1: Vendor-Managed Cloud Hosting (3 vCPU / 12GB RAM @ BD 630/Yr), Option 2: Client In-House Physical Server (Dell PowerEdge/HPE ProLiant 16-Core Xeon, 64GB ECC @ ~BD 3,700-4,300), 6-branch networking prerequisites (HQ Dedicated Fiber, Static IP, FortiGate NGFW, IPsec VPN), and Strategic Comparison Matrix.'
+    ),
+    'SL-ARDC-EMRS-SCOPE-2026' => array(
+        'title'    => '★ SCOPE DEMARCATION: Standard Clinic Masters & Operational Workflows Confirmation',
+        'html'     => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.html',
+        'pdf'      => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.pdf',
+        'status'   => '100% Included in BD 8,400 Proposal',
+        'timeline' => 'Standard Master & Workflow Inclusion Confirmation',
+        'scope'    => '100% Inclusion of Masters, User/Doctor Roles, Validations, Audit Trails & Enterprise Boundaries',
+        'ba_ref'   => 'SL-ARDC-EMRS-SCOPE-2026',
+        'date'     => '04/11/2026',
+        'anchor'   => '#sec-scope',
+        'desc'     => 'Definitive scope demarcation confirming that 100% of standard clinic management features—Master creation/management, User/Branch/Doctor/Services management, granular RBAC, standard workflows/validations, patient audit trails, and 1-Year Support—are fully included within the BD 8,400.000 proposal. Clearly outlines out-of-scope enterprise modules requiring separate consultation.'
     ),
     'ARDC-RESOURCE-PRICING-2026' => array(
         'title'    => 'EMRS Resource Cost & 12-Milestone Pricing Matrix',
@@ -123,6 +136,10 @@ $aliases = array(
     'al_rabeeh_emrs_cloud_infrastructure_and_scope_addendum' => 'SL-ARDC-EMRS-INFRA-2026-V1',
     'ardc-infra-addendum-2026' => 'SL-ARDC-EMRS-INFRA-2026-V1',
     'sl-ardc-emrs-infra-2026-v1' => 'SL-ARDC-EMRS-INFRA-2026-V1',
+    'sl-ardc-emrs-scope-2026' => 'SL-ARDC-EMRS-SCOPE-2026',
+    'ardc-scope-demarcation-2026' => 'SL-ARDC-EMRS-SCOPE-2026',
+    'ardc-scope-clarify-2026' => 'SL-ARDC-EMRS-SCOPE-2026',
+    'scope_demarcation' => 'SL-ARDC-EMRS-SCOPE-2026',
     'al_rabeeh_internal_resource_pricing' => 'ARDC-RESOURCE-PRICING-2026',
     'emrs_flow_chart' => 'ARDC-EMRS-FLOWCHART-2026',
     'navigation_sequence_flow_chart' => 'ARDC-NAV-SEQUENCE-2026',
@@ -1899,6 +1916,92 @@ if ($pdo) {
       gap: 6px;
     }
     
+    .featured-banner {
+      background: linear-gradient(135deg, #091e3a 0%, #173256 100%);
+      border: 1.5px solid #ea580c;
+      border-radius: 14px;
+      padding: 22px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.18);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-banner-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ea580c;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .featured-banner-title {
+      margin: 0 0 6px 0;
+      font-size: 19px;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .featured-banner-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .featured-banner-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-featured {
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+    .btn-featured-orange {
+      background: #ea580c;
+      color: #ffffff;
+    }
+    .btn-featured-orange:hover {
+      background: #c2410c;
+      transform: translateY(-1px);
+    }
+    .btn-featured-blue {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-featured-blue:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+    .btn-featured-ghost {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .btn-featured-ghost:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+
     .portal-container {
       max-width: 1280px;
       margin: 35px auto;
@@ -2060,10 +2163,33 @@ if ($pdo) {
       <div class="hero-pill"><i class="fa-solid fa-id-card"></i> Smart CPR Integration</div>
       <div class="hero-pill"><i class="fa-solid fa-bolt"></i> Offline Auto-Sync</div>
       <div class="hero-pill"><i class="fa-solid fa-code"></i> 100% Client Source Code Ownership</div>
+      <div class="hero-pill" style="background: rgba(234, 88, 12, 0.22); border-color: #ea580c; color: #ffedd5;"><i class="fa-solid fa-server"></i> Cloud &amp; In-House Hosting Ready</div>
     </div>
   </div>
 
   <div class="portal-container">
+    <!-- Featured Notification Block for New Addendum Documentation -->
+    <div class="featured-banner">
+      <div style="flex: 1 1 540px; position: relative; z-index: 2;">
+        <span class="featured-banner-tag"><i class="fa-solid fa-bullhorn"></i> New Technical Addendum &amp; Clarification</span>
+        <h3 class="featured-banner-title">Cloud Hosting, In-House Infrastructure &amp; Scope Demarcation</h3>
+        <p class="featured-banner-desc">
+          Official engineering response to Al Rabeeh Dental Center: Option 1 Vendor-Managed Cloud (<strong>BD 630.000 / Yr</strong>), Option 2 In-House Rack Server (<strong>~BD 3,700–4,300 CapEx</strong>), 6-Branch FortiGate/VPN Architecture, and <strong>100% Inclusion of all Standard Clinic Masters &amp; Workflows</strong> in the BD 8,400 proposal.
+        </p>
+      </div>
+      <div class="featured-banner-actions" style="position: relative; z-index: 2;">
+        <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-orange">
+          <i class="fa-solid fa-server"></i> Read Hosting Specs
+        </a>
+        <a href="index.php?doc=SL-ARDC-EMRS-SCOPE-2026#sec-scope" class="btn-featured btn-featured-blue">
+          <i class="fa-solid fa-list-check"></i> Scope Demarcation
+        </a>
+        <a href="index.php?download=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-ghost">
+          <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </a>
+      </div>
+    </div>
+
     <div class="doc-grid">
       <?php foreach ($routes as $id => $doc): 
           // Strictly hide restricted documents from non-authorized users
@@ -2099,7 +2225,7 @@ if ($pdo) {
             </div>
           </div>
           <div class="doc-card-actions">
-            <a href="index.php?doc=<?php echo urlencode($id); ?>" class="btn-doc btn-read">
+            <a href="index.php?doc=<?php echo urlencode($id); ?><?php echo isset($doc['anchor']) ? $doc['anchor'] : ''; ?>" class="btn-doc btn-read">
               <i class="fa-solid fa-book-open"></i> Read HTML
             </a>
             <a href="index.php?download=<?php echo urlencode($id); ?>" class="btn-doc btn-download">
