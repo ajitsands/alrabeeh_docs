@@ -48,6 +48,17 @@ $routes = array(
         'date'     => '31/10/2026',
         'desc'     => 'Comprehensive 11-module clinical reception ecosystem proposal for Al Rabeeh Dental Center (6 Bahrain Clinics). Features ReactJS + PHP MVC Microservices, RabbitMQ message queuing, .NET Smart CPR card reader driver, offline SQLite/IndexedDB auto-sync, 6-month accelerated sprint with 1-month pilot buffer, commercial terms (BD 8,400.000 total offer), and 100% client source code ownership.'
     ),
+    'SL-ARDC-EMRS-INFRA-2026-V1' => array(
+        'title'    => '★ TECHNICAL ADDENDUM: Cloud Hosting, In-House Infrastructure & Scope Demarcation',
+        'html'     => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.html',
+        'pdf'      => 'Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.pdf',
+        'status'   => 'Active Addendum & Clarification',
+        'timeline' => 'Hosting Options & Technical Specifications',
+        'scope'    => 'Vendor Cloud (BD 630/Yr) vs. In-House Rack Server & 6-Branch Access + Scope Boundaries',
+        'ba_ref'   => 'SL-ARDC-EMRS-INFRA-2026-V1',
+        'date'     => '04/11/2026',
+        'desc'     => 'Formal technical addendum responding to Al Rabeeh Dental Center inquiry. Details Option 1: Vendor-Managed Cloud Hosting (3 vCPU / 12GB RAM @ BD 630/Yr), Option 2: Client In-House Physical Server (Dell PowerEdge/HPE ProLiant @ ~BD 3,700-4,300), 6-branch networking prerequisites (HQ Fiber, Static IP, FortiGate NGFW, IPsec VPN), strategic comparison matrix, and definitive scope boundary confirmation (100% of standard masters included in BD 8,400 proposal).'
+    ),
     'ARDC-RESOURCE-PRICING-2026' => array(
         'title'    => 'EMRS Resource Cost & 12-Milestone Pricing Matrix',
         'html'     => 'Al_Rabeeh_Internal_Resource_Pricing.html',
@@ -109,6 +120,9 @@ $routes = array(
 // Secondary Aliases for direct file access matching
 $aliases = array(
     'al_rabeeh_emrs_detailed_proposal' => 'SL-ARDC-EMRS-2026-V1',
+    'al_rabeeh_emrs_cloud_infrastructure_and_scope_addendum' => 'SL-ARDC-EMRS-INFRA-2026-V1',
+    'ardc-infra-addendum-2026' => 'SL-ARDC-EMRS-INFRA-2026-V1',
+    'sl-ardc-emrs-infra-2026-v1' => 'SL-ARDC-EMRS-INFRA-2026-V1',
     'al_rabeeh_internal_resource_pricing' => 'ARDC-RESOURCE-PRICING-2026',
     'emrs_flow_chart' => 'ARDC-EMRS-FLOWCHART-2026',
     'navigation_sequence_flow_chart' => 'ARDC-NAV-SEQUENCE-2026',

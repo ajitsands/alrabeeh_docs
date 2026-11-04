@@ -2,6 +2,8 @@
 .claude/
 *.sqlite
 *.sqlite3
+*.db
+.auth_portal.db
 *.log
 .DS_Store
 Thumbs.db

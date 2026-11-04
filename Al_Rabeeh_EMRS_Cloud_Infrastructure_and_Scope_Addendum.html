@@ -1,0 +1,1555 @@
+<?php
+// Enforce Authentication Check if accessed directly
+if (!defined('AUTH_PORTAL_ACTIVE')) {
+    require_once __DIR__ . '/index.php';
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Addendum: Cloud Hosting, In-House Infrastructure & Scope Demarcation | Al Rabeeh Dental Center & SaNDS Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0a2540;
+      --primary-dark: #061729;
+      --primary-light: #163a5f;
+      --accent: #ea580c;
+      --accent-amber: #d97706;
+      --accent-light: #fff7ed;
+      --dark: #0f172a;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-500: #64748b;
+      --gray-200: #e2e8f0;
+      --gray-100: #f1f5f9;
+      --gray-50: #f8fafc;
+      --white: #ffffff;
+      --emerald: #059669;
+      --emerald-subtle: #ecfdf5;
+      --emerald-dark: #065f46;
+      --blue: #0284c7;
+      --blue-subtle: #f0f9ff;
+      --purple: #7c3aed;
+      --purple-subtle: #f5f3ff;
+      --rose: #e11d48;
+      --rose-subtle: #fff1f2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      color: var(--gray-700);
+      font-size: 13.5px;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .doc-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(10, 37, 64, 0.10);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+    }
+
+    /* Top Action Bar */
+    .top-utility-bar {
+      background: var(--primary-dark);
+      color: #cbd5e1;
+      padding: 10px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      border-bottom: 2px solid var(--accent);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .utility-meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .utility-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .utility-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, var(--accent) 0%, #c2410c 100%);
+      color: #fff;
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+    }
+    .btn-action:hover {
+      background: #c2410c;
+    }
+    .btn-secondary {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+
+    /* Executive Header */
+    .doc-header {
+      background: linear-gradient(135deg, #0a2540 0%, #103154 55%, #07192c 100%);
+      color: var(--white);
+      padding: 34px 40px;
+      position: relative;
+    }
+    .header-logos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .logo-box {
+      background: #ffffff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      min-height: 68px;
+    }
+    .logo-box img {
+      max-height: 52px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .doc-title-area h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+    .doc-title-area .sub-title {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      font-weight: 400;
+      max-width: 950px;
+      line-height: 1.5;
+    }
+
+    /* Executive Transmittal Pill Grid */
+    .transmittal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .trans-box {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .trans-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trans-label i { color: #fb923c; }
+    .trans-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .trans-sub {
+      font-size: 11px;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    /* Quick Navigation Bar */
+    .doc-nav {
+      background: #07192c;
+      padding: 10px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .doc-nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .doc-nav a:hover {
+      background: rgba(234, 88, 12, 0.2);
+      color: #fdba74;
+    }
+
+    /* Content Layout */
+    .content-body {
+      padding: 34px 40px;
+    }
+
+    .section-block {
+      margin-bottom: 38px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--gray-200);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-num {
+      background: var(--primary);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .section-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+    .section-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-orange { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+    .badge-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .badge-blue { background: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+    .badge-purple { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+
+    /* Cards & Grids */
+    .callout-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border-top: 1px solid var(--gray-200);
+      border-right: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .callout-box.highlight-orange {
+      border-left-color: var(--accent);
+      background: #fffaf5;
+    }
+    .callout-box.highlight-emerald {
+      border-left-color: var(--emerald);
+      background: #f0fdf4;
+    }
+    .callout-box.highlight-blue {
+      border-left-color: var(--blue);
+      background: #f0f9ff;
+    }
+    .callout-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Option Detail Containers */
+    .option-hero-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .option-hero-card.cloud-card {
+      border-top: 5px solid var(--emerald);
+    }
+    .option-hero-card.inhouse-card {
+      border-top: 5px solid var(--blue);
+    }
+
+    .option-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .option-title-block h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .option-title-block p {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-top: 3px;
+    }
+
+    .price-pill-banner {
+      background: #ecfdf5;
+      border: 2px solid var(--emerald);
+      border-radius: 10px;
+      padding: 8px 18px;
+      text-align: right;
+    }
+    .price-pill-banner .price-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #047857;
+      letter-spacing: 0.5px;
+    }
+    .price-pill-banner .price-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      color: #065f46;
+      line-height: 1.1;
+    }
+    .price-pill-banner .price-terms {
+      font-size: 10.5px;
+      color: #059669;
+    }
+
+    /* Specification Grid */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .spec-box {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 12px 14px;
+      transition: all 0.15s;
+    }
+    .spec-box:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .spec-icon-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-500);
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .spec-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .spec-detail {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      background: var(--white);
+    }
+    th {
+      background: var(--primary);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gray-200);
+      vertical-align: middle;
+    }
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    tr:hover td {
+      background: #f1f5f9;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .subtotal-row td {
+      background: #f8fafc !important;
+      font-weight: 700;
+      border-top: 2px solid #cbd5e1;
+      color: var(--primary);
+    }
+    .total-row td {
+      background: #0f172a !important;
+      color: var(--white) !important;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .total-row td .mono {
+      color: #fed7aa !important;
+    }
+
+    /* Multi-Branch Connectivity Checklist */
+    .branch-arch-box {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .branch-arch-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .branch-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .branch-pill {
+      background: #e2e8f0;
+      color: var(--gray-800);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .branch-req-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .branch-req-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .branch-req-item h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .branch-req-item p {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* Comparison Table Styling */
+    .table-compare th {
+      text-align: left;
+    }
+    .table-compare td {
+      text-align: left;
+    }
+    .table-compare td:nth-child(2),
+    .table-compare td:nth-child(3) {
+      text-align: left;
+    }
+    .chk-yes {
+      color: var(--emerald);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .chk-warn {
+      color: var(--accent-amber);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .chk-no {
+      color: var(--rose);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Scope Clarification Cards */
+    .scope-clarify-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .scope-box {
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: var(--white);
+    }
+    .scope-box.included {
+      border-top: 4px solid var(--emerald);
+      background: #fbfdfc;
+    }
+    .scope-box.separate {
+      border-top: 4px solid var(--accent);
+      background: #fffdfa;
+    }
+    .scope-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .scope-box-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scope-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .scope-box ul li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+      color: var(--gray-700);
+      line-height: 1.45;
+    }
+    .scope-box.included ul li::before {
+      content: "\f058";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--emerald);
+      font-size: 13px;
+    }
+    .scope-box.separate ul li::before {
+      content: "\f059";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    /* Signature Block */
+    .sign-section {
+      background: #f8fafc;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 32px;
+      break-inside: avoid;
+    }
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .sign-col {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .sign-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .sign-line {
+      margin-top: 45px;
+      border-top: 1px dashed #94a3b8;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--gray-600);
+    }
+
+    /* PRINT LAYOUT (Zero Overlap Guaranteed Table Architecture) */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 9.5pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .top-utility-bar,
+      .doc-nav {
+        display: none !important;
+      }
+      .doc-wrapper {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .content-body {
+        padding: 12px 16px !important;
+      }
+      .doc-header {
+        padding: 16px 18px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .doc-table {
+        display: table !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: none !important;
+      }
+      .doc-table > thead {
+        display: table-header-group !important;
+      }
+      .doc-table > tfoot {
+        display: table-footer-group !important;
+      }
+      .doc-table > tbody {
+        display: table-row-group !important;
+      }
+      .doc-table > thead > tr > td,
+      .doc-table > tfoot > tr > td,
+      .doc-table > tbody > tr > td {
+        padding: 0 !important;
+        border: none !important;
+      }
+
+      .print-running-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border-bottom: 1.5px solid #0a2540 !important;
+        padding: 0 0 5px 0 !important;
+        margin: 0 0 12px 0 !important;
+        font-size: 7.5pt !important;
+        color: #334155 !important;
+        width: 100% !important;
+      }
+      .prh-right {
+        color: #ea580c !important;
+        font-weight: 700 !important;
+      }
+      .print-running-footer {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border-top: 1px solid #cbd5e1 !important;
+        padding: 5px 0 0 0 !important;
+        margin: 12px 0 0 0 !important;
+        font-size: 7pt !important;
+        color: #64748b !important;
+        width: 100% !important;
+      }
+
+      .section-header, h1, h2, h3, h4 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      #sec-option1,
+      #sec-option2,
+      .branch-arch-box,
+      #sec-branch-reqs,
+      #sec-comparison,
+      #sec-scope,
+      #sec-signoff {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      /* Compact Print Sizing to Prevent Orphan Spills */
+      .option-hero-card {
+        padding: 12px 16px !important;
+        margin-bottom: 12px !important;
+      }
+      .price-pill-banner {
+        padding: 6px 12px !important;
+      }
+      .price-pill-banner .price-amount {
+        font-size: 15pt !important;
+      }
+      .spec-box {
+        padding: 6px 8px !important;
+      }
+      .spec-icon-label {
+        font-size: 6.5pt !important;
+      }
+      .spec-val {
+        font-size: 9.5pt !important;
+      }
+      .spec-detail {
+        font-size: 6.5pt !important;
+      }
+      .callout-box {
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+      }
+      .callout-box ul li {
+        font-size: 7.5pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .scope-box {
+        padding: 8px 12px !important;
+      }
+      .scope-box-title {
+        font-size: 9pt !important;
+      }
+      .scope-box ul li {
+        font-size: 7.5pt !important;
+        margin-bottom: 3px !important;
+        line-height: 1.35 !important;
+      }
+
+      .branch-arch-box {
+        padding: 16px 20px !important;
+        margin: 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .branch-req-item {
+        padding: 8px 10px !important;
+      }
+      .branch-req-item h4 {
+        font-size: 8.5pt !important;
+      }
+      .branch-req-item p {
+        font-size: 7pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .table-responsive {
+        margin: 8px 0 14px !important;
+      }
+      table {
+        font-size: 7.5pt !important;
+      }
+      th {
+        padding: 6px 8px !important;
+        font-size: 7.5pt !important;
+      }
+      td {
+        padding: 5px 8px !important;
+      }
+
+      .sign-section {
+        padding: 14px 18px !important;
+        margin-top: 14px !important;
+      }
+      .sign-col {
+        padding: 12px 14px !important;
+      }
+      .sign-line {
+        margin-top: 25px !important;
+      }
+      .transmittal-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .scope-clarify-grid,
+      .branch-req-grid,
+      .sign-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .option-header-row,
+      .callout-box,
+      .branch-req-item,
+      .scope-box,
+      .sign-section,
+      table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .section-block {
+        margin-bottom: 24px !important;
+      }
+    }
+
+    @media screen {
+      .print-running-header,
+      .print-running-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="doc-wrapper">
+
+    <!-- Top Action Utility Bar -->
+    <div class="top-utility-bar">
+      <div class="utility-meta">
+        <span><i class="fa-solid fa-file-shield" style="color: #ea580c;"></i> <strong>Ref:</strong> SL-ARDC-EMRS-INFRA-2026-V1</span>
+        <span><i class="fa-solid fa-calendar-day"></i> 04 November 2026</span>
+        <span><i class="fa-solid fa-network-wired"></i> Technical Addendum &amp; Scope Boundary Definition</span>
+      </div>
+      <div class="utility-actions">
+        <a href="index.php" class="btn-action btn-secondary"><i class="fa-solid fa-house"></i> Master Portal</a>
+        <a href="Al_Rabeeh_EMRS_Detailed_Proposal.html" class="btn-action btn-secondary"><i class="fa-solid fa-arrow-left"></i> View Master Proposal</a>
+        <button class="btn-action" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Addendum</button>
+        <a href="Al_Rabeeh_EMRS_Cloud_Infrastructure_and_Scope_Addendum.pdf" class="btn-action" download><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+      </div>
+    </div>
+
+    <!-- Paged Document Table for Print Engine -->
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <td>
+            <div class="print-running-header">
+              <div class="prh-left"><strong>AL RABEEH DENTAL CENTER &times; SaNDS LAB MIDDLE EAST W.L.L.</strong> &bull; Technical Addendum: Cloud Hosting, In-House Server &amp; Scope Demarcation</div>
+              <div class="prh-right">Ref: SL-ARDC-EMRS-INFRA-2026-V1</div>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td>
+            <div class="print-running-footer">
+              <div class="prf-left">CONFIDENTIAL &bull; Prepared Exclusively for Al Rabeeh Dental Center (Kingdom of Bahrain &bull; 6 Branches)</div>
+              <div class="prf-right">Vendor Cloud vs. In-House Server Analysis &bull; Scope Clarification &bull; Page Document</div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>
+
+            <!-- Executive Header Banner -->
+            <header class="doc-header">
+              <div class="header-logos">
+                <div class="logo-box">
+                  <img src="Logo/AlRabeeh-Logo.png" alt="Al Rabeeh Dental Center Logo">
+                </div>
+                <div style="text-align: center;">
+                  <span style="background: rgba(234, 88, 12, 0.25); border: 1px solid #ea580c; color: #fdba74; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.6px; display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-shield-halved"></i> Official Technical Response &amp; Addendum
+                  </span>
+                </div>
+                <div class="logo-box">
+                  <img src="Logo/SaNDSLab-LogoNewUpdated copy.png" alt="SaNDS Lab Middle East W.L.L. Logo">
+                </div>
+              </div>
+
+              <div class="doc-title-area">
+                <h1>Technical Addendum: Infrastructure Hosting Options &amp; Scope Demarcation</h1>
+                <p class="sub-title">
+                  Formal engineering response to Al Rabeeh Dental Center's technical inquiry regarding <strong>Vendor-Managed Cloud Hosting</strong>, <strong>Client-Managed In-House Server Specifications (Dell PowerEdge / HPE ProLiant)</strong>, <strong>6-Branch Networking Prerequisites</strong>, and <strong>EMRS Functional Scope Demarcation</strong>.
+                </p>
+              </div>
+
+              <!-- Transmittal Information Grid -->
+              <div class="transmittal-grid">
+                <div class="trans-box">
+                  <div class="trans-label"><i class="fa-solid fa-building"></i> Client Organization</div>
+                  <div class="trans-val">Al Rabeeh Dental Center</div>
+                  <div class="trans-sub">Hamad Town, Muharraq, Isa Town, Budaiya, Galali, Sitra</div>
+                </div>
+                <div class="trans-box">
+                  <div class="trans-label"><i class="fa-solid fa-microchip"></i> Engineering Partner</div>
+                  <div class="trans-val">SaNDS Lab Middle East W.L.L.</div>
+                  <div class="trans-sub">ISO 9001:2015 Healthcare IT Division</div>
+                </div>
+                <div class="trans-box">
+                  <div class="trans-label"><i class="fa-solid fa-cloud-arrow-up"></i> Cloud Option 1 Quote</div>
+                  <div class="trans-val" style="color: #6ee7b7;">BD 630.000 / Year</div>
+                  <div class="trans-sub">Turnkey 3 vCPU / 12GB RAM Managed Cloud</div>
+                </div>
+                <div class="trans-box">
+                  <div class="trans-label"><i class="fa-solid fa-check-double"></i> Scope Status</div>
+                  <div class="trans-val" style="color: #fed7aa;">100% Core Masters Included</div>
+                  <div class="trans-sub">Confirmed under BD 8,400.000 baseline</div>
+                </div>
+              </div>
+            </header>
+
+            <!-- Navigation Links -->
+            <nav class="doc-nav">
+              <a href="#sec-overview"><i class="fa-solid fa-file-invoice"></i> 1. Executive Transmittal</a>
+              <a href="#sec-option1"><i class="fa-solid fa-cloud"></i> 2. Vendor Cloud (BD 630/Yr)</a>
+              <a href="#sec-option2"><i class="fa-solid fa-server"></i> 3. In-House Server &amp; Branches</a>
+              <a href="#sec-comparison"><i class="fa-solid fa-scale-balanced"></i> 4. Cloud vs. In-House Matrix</a>
+              <a href="#sec-scope"><i class="fa-solid fa-list-check"></i> 5. Scope Demarcation</a>
+              <a href="#sec-signoff"><i class="fa-solid fa-signature"></i> 6. Sign-off &amp; Next Steps</a>
+            </nav>
+
+            <div class="content-body">
+
+              <!-- SECTION 1: EXECUTIVE TRANSMITTAL -->
+              <section class="section-block" id="sec-overview">
+                <div class="section-header">
+                  <div class="section-title">
+                    <span class="section-num">01</span>
+                    <h2>Executive Transmittal &amp; Context of this Addendum</h2>
+                  </div>
+                  <span class="section-badge badge-blue"><i class="fa-solid fa-envelope-open-text"></i> Formal Response to Client Inquiry</span>
+                </div>
+
+                <div class="callout-box highlight-blue">
+                  <div class="callout-title"><i class="fa-solid fa-circle-info"></i> Purpose of this Document</div>
+                  <p>
+                    Following the submission of our Master Commercial &amp; Technical Proposal (Ref: <code>SL-ARDC-EMRS-2026-V1</code>), Al Rabeeh Dental Center requested detailed technical specifications, pricing, and architectural requirements for two distinct hosting models: <strong>Vendor-Managed Cloud Hosting</strong> versus <strong>Client-Managed In-House On-Premise Infrastructure</strong> across your 6 Bahrain branches. Additionally, your management requested formal confirmation regarding standard clinic software master modules, workflow governance, and scope boundaries. This addendum provides an exhaustive, fully transparent breakdown to assist your executive steering committee in evaluating both deployment paths.
+                  </p>
+                </div>
+              </section>
+
+              <!-- SECTION 2: INFRASTRUCTURE OPTION 1 - VENDOR MANAGED CLOUD -->
+              <section class="section-block" id="sec-option1">
+                <div class="section-header">
+                  <div class="section-title">
+                    <span class="section-num">02</span>
+                    <h2>Option 1: Vendor-Managed Cloud Infrastructure (Turnkey Managed Cloud)</h2>
+                  </div>
+                  <span class="section-badge badge-emerald"><i class="fa-solid fa-bolt"></i> Recommended &bull; Zero CapEx &bull; Rapid Multi-Branch Deployment</span>
+                </div>
+
+                <div class="option-hero-card cloud-card">
+                  <div class="option-header-row">
+                    <div class="option-title-block">
+                      <h3><i class="fa-solid fa-cloud-arrow-up" style="color: var(--emerald);"></i> SaNDS Lab Fully Managed Healthcare Cloud Node</h3>
+                      <p>Dedicated high-performance virtual cloud environment pre-configured, hardened, and maintained 24/7 by SaNDS Lab DevOps.</p>
+                    </div>
+                    <div class="price-pill-banner">
+                      <div class="price-label">Annual Cloud Investment</div>
+                      <div class="price-amount">BD 630.000</div>
+                      <div class="price-terms">Billed Annually &bull; All Inclusive</div>
+                    </div>
+                  </div>
+
+                  <!-- Technical Specification Grid -->
+                  <div class="spec-grid">
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-microchip"></i> Compute Engine</div>
+                      <div class="spec-val">3 vCPU Cores</div>
+                      <div class="spec-detail">High-Frequency Intel/AMD Enterprise Cores</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-memory"></i> Dedicated RAM</div>
+                      <div class="spec-val">12 GB RAM</div>
+                      <div class="spec-detail">DDR4/DDR5 ECC Cloud Memory</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-hard-drive"></i> Fast NVMe Storage</div>
+                      <div class="spec-val">200 GB NVMe</div>
+                      <div class="spec-detail">Ultra-Low Latency Database Tier</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-network-wired"></i> Monthly Bandwidth</div>
+                      <div class="spec-val">4 TB Bandwidth</div>
+                      <div class="spec-detail">1 Gbps Unmetered Port Speed</div>
+                    </div>
+
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-location-dot"></i> Public IP Address</div>
+                      <div class="spec-val">1 Dedicated Static IP</div>
+                      <div class="spec-detail">Clean Reputation &bull; SSL Ready</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-key"></i> Access Level</div>
+                      <div class="spec-val">Full Root Access</div>
+                      <div class="spec-detail">Administered by SaNDS Lab L3 Engineers</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-sliders"></i> Control Panel</div>
+                      <div class="spec-val">cPanel Included</div>
+                      <div class="spec-detail">Commercial License Included</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-brands fa-linux"></i> Operating System</div>
+                      <div class="spec-val">CloudLinux OS</div>
+                      <div class="spec-detail">LVE Isolation &amp; CageFS Security</div>
+                    </div>
+
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-shield-virus"></i> Security Suite</div>
+                      <div class="spec-val">Imunify360 Included</div>
+                      <div class="spec-detail">AI WAF, Malware Scanner &amp; Proactive Shield</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-box-archive"></i> Off-site Backup</div>
+                      <div class="spec-val">JetBackup + 500GB</div>
+                      <div class="spec-detail">Daily Automated Encrypted Off-site Sync</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-heart-pulse"></i> Service Health</div>
+                      <div class="spec-val">24/7 Monitoring</div>
+                      <div class="spec-detail">Uptime, MySQL, RabbitMQ &amp; SSL Watch</div>
+                    </div>
+                    <div class="spec-box">
+                      <div class="spec-icon-label"><i class="fa-solid fa-headset"></i> SysAdmin Support</div>
+                      <div class="spec-val">Fully Managed</div>
+                      <div class="spec-detail">Zero Internal IT Burden for Al Rabeeh</div>
+                    </div>
+                  </div>
+
+                  <!-- Key Operational Benefits for Al Rabeeh 6-Branch Network -->
+                  <div class="callout-box highlight-emerald" style="margin-top: 16px; margin-bottom: 0;">
+                    <div class="callout-title"><i class="fa-solid fa-thumbs-up"></i> Why Vendor-Managed Cloud is the Strategic Recommendation</div>
+                    <ul style="padding-left: 20px; font-size: 12.5px; line-height: 1.6;">
+                      <li><strong>Instant Multi-Branch Connectivity:</strong> All 6 branches (Hamad Town, Muharraq, Isa Town, Budaiya, Galali, Sitra) connect securely via standard browser HTTPS (<code>https://emrs.alrabeeh.com</code>) without requiring static IP leased lines or costly hardware VPN routers at every clinic.</li>
+                      <li><strong>Automated Disaster Recovery:</strong> JetBackup creates daily automated snapshots stored in an independent secondary data center (500 GB storage pool). In case of disaster, point-in-time recovery takes less than 30 minutes.</li>
+                      <li><strong>Commercial Simplicity:</strong> The annual fee of <strong>BD 630.000</strong> covers the server, cPanel license, CloudLinux license, Imunify360 enterprise security license, JetBackup license, storage, bandwidth, and SaNDS Lab 24/7 Level-3 system administration.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <!-- SECTION 3: INFRASTRUCTURE OPTION 2 - IN-HOUSE ON-PREMISE SERVER -->
+              <section class="section-block" id="sec-option2">
+                <div class="section-header">
+                  <div class="section-title">
+                    <span class="section-num">03</span>
+                    <h2>Option 2: Client-Managed On-Premise Infrastructure (In-House Server)</h2>
+                  </div>
+                  <span class="section-badge badge-blue"><i class="fa-solid fa-server"></i> Physical Hardware &bull; Multi-Branch Private Network Prerequisites</span>
+                </div>
+
+                <div class="option-hero-card inhouse-card">
+                  <div class="option-header-row">
+                    <div class="option-title-block">
+                      <h3><i class="fa-solid fa-hard-drive" style="color: var(--blue);"></i> Enterprise Physical Rack Server (Dell PowerEdge / HPE ProLiant)</h3>
+                      <p>Industrial-grade on-premise hardware deployed at Al Rabeeh Head Office / Central Data Room to host the EMRS backend, database, and queuing engines.</p>
+                    </div>
+                    <div class="price-pill-banner" style="background: #f0f9ff; border-color: var(--blue);">
+                      <div class="price-label" style="color: #0369a1;">Estimated Hardware CapEx</div>
+                      <div class="price-amount" style="color: #075985;">~BD 3,700 – BD 4,300</div>
+                      <div class="price-terms" style="color: #0284c7;">One-Time Procurement &bull; Bahrain Market</div>
+                    </div>
+                  </div>
+
+                  <!-- In-House Server Technical Specifications Table -->
+                  <h4 style="font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--primary); margin: 16px 0 8px;">
+                    3.1 Production Server Hardware &amp; Software Dependency Architecture
+                  </h4>
+                  <div class="table-responsive">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Component</th>
+                          <th>Recommended Enterprise Specification</th>
+                          <th>Technical Rationale &amp; Sizing Justification</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Server Hardware Platform</strong></td>
+                          <td><strong>Dell PowerEdge R450 / R650</strong> or <strong>HPE ProLiant DL360 Gen11</strong> (1U/2U Rackmount)</td>
+                          <td>Enterprise chassis with hot-swap drive bays, redundant fans, and hardware diagnostic backplane.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Central Processor (CPU)</strong></td>
+                          <td><strong>Intel Xeon Silver 4410Y / 4416+ (16 Cores / 32 Threads, 2.0–3.9 GHz)</strong> or equivalent <strong>AMD EPYC 9124</strong></td>
+                          <td>Provides high concurrent thread capacity for 6 clinic branches, PHP-FPM worker pools, RabbitMQ message brokers, and background CRON rollover jobs.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>System Memory (RAM)</strong></td>
+                          <td><strong>64 GB ECC Registered DDR5-4800 MHz (2 &times; 32GB Dual-Rank)</strong></td>
+                          <td>Error-Correcting Code (ECC) prevents silent data corruption. 40 GB allocated to MySQL InnoDB Buffer Pool, 16 GB for PHP/RabbitMQ/OS, 8 GB buffer.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Operating System (OS)</strong></td>
+                          <td><strong>Ubuntu Server 24.04 LTS (64-Bit)</strong> (or Red Hat Enterprise Linux 9 / Rocky Linux 9)</td>
+                          <td>Long-Term Support (LTS) kernel with 5-year guaranteed security patches, optimized systemd daemon management, and native cgroups support.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Web Engine &amp; Middleware</strong></td>
+                          <td><strong>Apache 2.4 (event MPM) + PHP 8.2 / 8.3 PHP-FPM</strong> + OPcache enabled</td>
+                          <td>High-throughput non-blocking request handling with dedicated fastcgi socket IPC for sub-millisecond response latency.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Database Management System</strong></td>
+                          <td><strong>MySQL 8.0 Enterprise / MariaDB 10.11 LTS</strong> (InnoDB Engine)</td>
+                          <td>Configured with strict ACID transaction isolation, foreign key constraints, binary logging for point-in-time recovery, and UTF8MB4 collation.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Message Broker Engine</strong></td>
+                          <td><strong>RabbitMQ Server 3.12+ (Erlang OTP 26)</strong></td>
+                          <td>Decouples appointment status changes, fail-visit rollovers, and bulk WhatsApp queue processing from frontend HTTP request cycles.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Primary Storage (OS &amp; App)</strong></td>
+                          <td><strong>2 &times; 960 GB Enterprise Mixed-Use SATA/NVMe SSD (RAID 1 Mirror)</strong></td>
+                          <td>Hardware RAID controller (e.g. Dell PERC H755 / HPE MegaRAID with 2GB NV cache) ensures zero downtime in case of a drive failure.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Database Storage (MySQL)</strong></td>
+                          <td><strong>2 &times; 1.92 TB Enterprise Read-Intensive/Mixed-Use NVMe SSD (RAID 1)</strong></td>
+                          <td>Dedicated hardware RAID 1 volume separated from OS disk. High sustained random write IOPS (>80,000 IOPS) prevents database lock contention.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Network Interface (NIC)</strong></td>
+                          <td><strong>Dual-Port 1 Gbps / 10 Gbps RJ45 Ethernet (LACP Teaming / Failover)</strong></td>
+                          <td>Bonded network interfaces provide link redundancy and aggregated bandwidth for concurrent multi-branch queries.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Power Supply (PSU)</strong></td>
+                          <td><strong>Dual Redundant Hot-Plug Power Supplies (1+1 Platinum, 800W+)</strong></td>
+                          <td>Connected to separate electrical circuits / UPS lines for true electrical fault tolerance.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Out-of-Band Remote Mgmt</strong></td>
+                          <td><strong>Dell iDRAC9 Enterprise</strong> or <strong>HPE iLO 6 Advanced</strong></td>
+                          <td>Dedicated isolated network port allowing remote BIOS setup, virtual KVM console, OS re-installation, and remote power cycling.</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Dedicated Local Backup</strong></td>
+                          <td><strong>Synology DiskStation DS923+ / RS822+ 4-Bay NAS (4 &times; 4TB IronWolf Pro in RAID 5 = 12TB usable)</strong></td>
+                          <td>Automated nightly snapshot repository separated physically from the main server; stores daily MySQL dumps and patient attachment archives.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Market Cost Estimation in Bahrain -->
+                  <h4 style="font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--primary); margin: 20px 0 8px;">
+                    3.2 Estimated Hardware Procurement Costs in Bahrain / GCC (One-Time CapEx)
+                  </h4>
+                  <div class="table-responsive">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Procurement Item Reference</th>
+                          <th>Estimated Cost (USD)</th>
+                          <th>Estimated Cost (BHD)</th>
+                          <th>Commercial Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Dell PowerEdge R450/R650 Server:</strong> Intel Xeon Silver 16-Core, 64GB ECC, 2&times;960GB SSD, 2&times;1.92TB SSD, PERC H755 RAID, Dual 800W PSU, iDRAC Enterprise, 3-Yr ProSupport NBD</td>
+                          <td class="mono">$6,500 – $7,300</td>
+                          <td class="mono"><strong>BD 2,450.000 – BD 2,750.000</strong></td>
+                          <td>Purchased by Client directly from Dell Authorized Partner in Bahrain</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Dedicated Network Backup NAS:</strong> Synology RS822+ / DS923+ 4-Bay NAS with 4 &times; 4TB Enterprise NAS SATA HDDs (RAID 5)</td>
+                          <td class="mono">$1,450 – $1,720</td>
+                          <td class="mono"><strong>BD 550.000 – BD 650.000</strong></td>
+                          <td>Purchased by Client from Bahrain IT Distributor</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Enterprise Rackmount Smart-UPS:</strong> APC Smart-UPS 2200VA / 1980W LCD 230V with Network Management Card (AP9640)</td>
+                          <td class="mono">$1,200 – $1,460</td>
+                          <td class="mono"><strong>BD 450.000 – BD 550.000</strong></td>
+                          <td>Essential to protect database SSDs from sudden power outage write-corruption</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Rack Cabinet &amp; Infrastructure:</strong> 18U–24U enclosed sound-dampened server cabinet with PDU, patch panels, cable trays, and rack shelving</td>
+                          <td class="mono">$660 – $930</td>
+                          <td class="mono"><strong>BD 250.000 – BD 350.000</strong></td>
+                          <td>Physical security and structured cabling at HQ data closet</td>
+                        </tr>
+                        <tr class="total-row">
+                          <td><strong>TOTAL ESTIMATED INITIAL HARDWARE CAPEX (PROCURED BY CLIENT)</strong></td>
+                          <td class="mono"><strong>$9,810 – $11,410</strong></td>
+                          <td class="mono"><strong>BD 3,700.000 – BD 4,300.000</strong></td>
+                          <td>One-Time Capital Investment (3 to 5 Year Asset Life)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Critical Multi-Branch Access Prerequisites -->
+                  <div class="branch-arch-box" id="sec-branch-reqs">
+                    <div class="branch-arch-title">
+                      <i class="fa-solid fa-network-wired" style="color: var(--blue);"></i>
+                      3.3 Critical Infrastructure Prerequisites for Connecting Your 6 Branches
+                    </div>
+                    <p style="font-size: 12.5px; color: var(--gray-700); margin-bottom: 12px;">
+                      If the central server is hosted in-house at your Head Office or Main Clinic, the remaining 5 branches must be able to securely query and update patient files in real time. The following physical and networking components are <strong>mandatory</strong> to ensure continuous uptime and NHRA data protection:
+                    </p>
+
+                    <div class="branch-pill-list">
+                      <span class="branch-pill"><i class="fa-solid fa-hospital"></i> Central Server (HQ)</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Hamad Town Branch</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Muharraq Branch</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Isa Town Branch</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Budaiya Branch</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Galali Branch</span>
+                      <span class="branch-pill"><i class="fa-solid fa-location-dot"></i> Sitra Branch</span>
+                    </div>
+
+                    <div class="branch-req-grid">
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-globe" style="color: var(--blue);"></i> 1. HQ Dedicated Business Fiber + Static IP</h4>
+                        <p>
+                          A high-reliability Business Fiber connection (minimum 50–100 Mbps symmetrical) with a permanent <strong>Public Static IPv4 Address</strong> from Batelco, Zain, or stc Bahrain is required at the central server location (~BD 80 – BD 150 / month). Residential or dynamic broadband lines cannot be used.
+                        </p>
+                      </div>
+
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-shield-halved" style="color: var(--rose);"></i> 2. Central Next-Gen Enterprise Firewall</h4>
+                        <p>
+                          A hardware Next-Generation Firewall (e.g. <strong>Fortinet FortiGate 60F/70F</strong> or <strong>Sophos XGS 116</strong>) deployed at HQ (~BD 450 – BD 650) to manage intrusion prevention (IPS), DoS attack mitigation, SSL inspection, and IPsec VPN tunnel termination from the branches.
+                        </p>
+                      </div>
+
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-route" style="color: var(--accent);"></i> 3. Secure Site-to-Site IPsec VPN Tunnels</h4>
+                        <p>
+                          <strong>Recommended Architecture:</strong> Deploying managed VPN routers (e.g. FortiGate 40F or MikroTik hEX) at each of the 6 branches creating encrypted Site-to-Site IPsec VPN tunnels. Reception workstations access the server over a private internal subnet (e.g. <code>https://192.168.10.50</code>), completely hidden from the public internet.
+                        </p>
+                      </div>
+
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-temperature-arrow-down" style="color: var(--emerald);"></i> 4. 24/7 Climate Control &amp; Physical Security</h4>
+                        <p>
+                          The physical server must be housed in an enclosed, lockable server rack cabinet within an air-conditioned room running continuously at 18&deg;C–22&deg;C (24/7/365). Power cuts or A/C failures in Bahrain summers can cause catastrophic thermal throttling or hardware shutdowns.
+                        </p>
+                      </div>
+
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-id-card" style="color: var(--purple);"></i> 5. Smart CPR Hardware LAN/WAN Integration</h4>
+                        <p>
+                          The custom SaNDS Lab .NET CPR Card Windows Service installed on each reception workstation communicates with the central server API over the VPN/LAN. Stable network latency (&lt;25ms) is required between all branches and HQ for instantaneous patient retrieval.
+                        </p>
+                      </div>
+
+                      <div class="branch-req-item">
+                        <h4><i class="fa-solid fa-wrench" style="color: var(--gray-700);"></i> 6. Ongoing SysAdmin &amp; Disaster Recovery</h4>
+                        <p>
+                          Client must designate an internal IT administrator (or retain a managed IT support vendor) responsible for monitoring daily NAS backups, applying Ubuntu OS security patches, testing UPS battery degradation, and swapping failed SSD drives.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- SECTION 4: COMPARATIVE ANALYSIS (CLOUD VS IN-HOUSE) -->
+              <section class="section-block" id="sec-comparison">
+                <div class="section-header">
+                  <div class="section-title">
+                    <span class="section-num">04</span>
+                    <h2>Strategic Comparison Matrix: Cloud vs. In-House Hosting</h2>
+                  </div>
+                  <span class="section-badge badge-orange"><i class="fa-solid fa-scale-balanced"></i> Architectural Decision Guide</span>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table-compare">
+                    <thead>
+                      <tr>
+                        <th style="width: 28%;">Evaluation Dimension</th>
+                        <th style="width: 36%;">Option 1: Vendor-Managed Cloud (SaNDS Lab)</th>
+                        <th style="width: 36%;">Option 2: In-House On-Premise Server (Al Rabeeh)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Upfront Capital Expenditure (CapEx)</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> BD 0.000 (Zero Upfront CapEx)</span></td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> BD 3,700 – BD 4,300</span> (Server, NAS, UPS, Rack)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Annual Recurring Operating Cost (OpEx)</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> BD 630.000 / Year</span> (All-Inclusive)</td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> ~BD 1,200 – BD 1,800 / Year</span> (Static Fiber, UTM License, Hardware AMC)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>3-Year Total Cost of Ownership (TCO)</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-award"></i> BD 1,890.000 Total</span> (3 Years &times; BD 630)</td>
+                        <td><span class="chk-no"><i class="fa-solid fa-coins"></i> ~BD 7,300 – BD 9,500 Total</span> (CapEx + 3 Years OpEx)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Deployment Time to Go-Live</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-bolt"></i> 24 to 48 Hours</span> (Instant Cloud Provisioning)</td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-clock"></i> 4 to 6 Weeks</span> (Hardware procurement, import, rack installation &amp; cabling)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Connecting 6 Remote Branches</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> Seamless via Secure HTTPS</span> (Any internet connection works)</td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> Requires Site-to-Site VPNs</span>, static IP at HQ, and hardware firewall</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Disaster Recovery &amp; Off-site Backup</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> Automated Daily Off-site</span> (500GB JetBackup repository)</td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> Local NAS backup</span>; off-site cloud sync requires extra storage subscription</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Security, WAF &amp; Anti-DDoS</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> Enterprise Imunify360 + AI WAF</span> + CageFS Included</td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> Requires FortiGate / Sophos</span> UTM annual security licensing</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Power Cut &amp; Internet Failure Risk</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> Tier-3 Data Center (99.9% Uptime)</span> with dual generators</td>
+                        <td><span class="chk-no"><i class="fa-solid fa-triangle-exclamation"></i> High Risk if HQ Power/Fiber Fails</span> (All 6 branches lose access simultaneously)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Maintenance &amp; SysAdmin Burden</strong></td>
+                        <td><span class="chk-yes"><i class="fa-solid fa-circle-check"></i> 100% Handled by SaNDS Lab L3 DevOps</span></td>
+                        <td><span class="chk-warn"><i class="fa-solid fa-user-gear"></i> Requires Dedicated In-House IT</span> or separate IT support contract</td>
+                      </tr>
+                      <tr class="subtotal-row">
+                        <td><strong>Strategic Recommendation</strong></td>
+                        <td><strong style="color: var(--emerald);"><i class="fa-solid fa-star"></i> STRONGLY RECOMMENDED FOR AL RABEEH</strong></td>
+                        <td><strong style="color: var(--blue);">FEASIBLE IF CLIENT HAS EXISTING DATA CENTER</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- SECTION 5: SCOPE CLARIFICATIONS -->
+              <section class="section-block" id="sec-scope">
+                <div class="section-header">
+                  <div class="section-title">
+                    <span class="section-num">05</span>
+                    <h2>Scope Demarcation &amp; Responses to Client Clarifications</h2>
+                  </div>
+                  <span class="section-badge badge-purple"><i class="fa-solid fa-handshake"></i> Complete Alignment with Client Expectations</span>
+                </div>
+
+                <p style="margin-bottom: 14px;">
+                  We appreciate Al Rabeeh Dental Center's clear articulation regarding standard clinic management functionality. Below is our definitive, legally binding scope demarcation:
+                </p>
+
+                <div class="scope-clarify-grid">
+                  <!-- Included Scope -->
+                  <div class="scope-box included">
+                    <div class="scope-box-header">
+                      <div class="scope-box-title" style="color: var(--emerald-dark);">
+                        <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
+                        100% INCLUDED in the Existing Proposal (BD 8,400.000)
+                      </div>
+                      <span class="section-badge badge-emerald">Covered Scope</span>
+                    </div>
+                    <ul>
+                      <li><strong>Master Creation &amp; Management:</strong> Complete administrative masters for Clinics, Branches (all 6 branches), Treatment Rooms, Dental Chairs, Services, Procedures, ICD-10 Diagnostic Codes, ADA/FDI Dental Codes, and Price Lists.</li>
+                      <li><strong>User &amp; Doctor Management:</strong> Comprehensive profiles for Receptionists, Nurses, General Dentists, Orthodontists, Specialists, Branch Managers, Cashiers, and Admins.</li>
+                      <li><strong>Role-Based Access Control (RBAC):</strong> Granular permissions matrix ensuring doctors view clinical workflows, receptionists manage queues and bookings, and admins control approvals.</li>
+                      <li><strong>Standard Validations &amp; Clinical Logic:</strong> Overlapping appointment locks, doctor duty schedule enforcement, Bahrain CPR 9-digit format check, 8-digit mobile phone validation, and mandatory field guards.</li>
+                      <li><strong>Confidentiality, Security &amp; Audit Trail:</strong> AES-256 database encryption at rest, HTTPS SSL in transit, immutable audit logs tracking user, timestamp, IP, and before/after values for all records.</li>
+                      <li><strong>All 11 Blueprint Modules:</strong> Dashboard &amp; 6 KPIs, Multi-Doctor Calendar, MSD Leakage Tracker, Fail Visit Rollover, Ortho Continuity, TP Value Recall, Feedback Calls, Lab Tracker with Shade Master, Insurance Claims, Patient Journey Compliance, Billing Cashier Register.</li>
+                      <li><strong>Continuous Stage-by-Stage Guidance:</strong> SaNDS Lab technical delivery leads will actively walk through each milestone demo and UAT session, guiding Al Rabeeh on configuration, master data population, and workflow optimization.</li>
+                    </ul>
+                  </div>
+
+                  <!-- Out of Scope / Separate Items -->
+                  <div class="scope-box separate">
+                    <div class="scope-box-header">
+                      <div class="scope-box-title" style="color: var(--accent);">
+                        <i class="fa-solid fa-circle-exclamation" style="color: var(--accent);"></i>
+                        Items Requiring Separate Discussion &amp; Quotation
+                      </div>
+                      <span class="section-badge badge-orange">Out of Scope</span>
+                    </div>
+                    <ul>
+                      <li><strong>Pharmacy ERP &amp; Full Inventory Purchasing:</strong> Full enterprise pharmaceutical stock replenishment, supplier purchase orders, and expiry batch dispensing (basic clinic procedure consumable linking is included, but full pharmacy purchasing ERP is separate).</li>
+                      <li><strong>Automated Laboratory Machine Hardware Interfacing:</strong> Bidirectional HL7/ASTM robotic interfaces to external automated blood or diagnostic analyzers (the EMRS includes manual lab slip entry and 3-lane chat).</li>
+                      <li><strong>In-House Radiology / PACS DICOM Archive:</strong> The EMRS links to digital X-ray image files and external URLs; a dedicated hospital-grade PACS DICOM archive server is not included.</li>
+                      <li><strong>Third-Party Messaging Gateway Fees:</strong> Official WhatsApp Business API per-template utility charges or bulk SMS SMS-gateway credits (billed directly by Meta / Batelco / Zain at actual consumption).</li>
+                      <li><strong>Third-Party TPA API Licensing Fees:</strong> Any proprietary API connector charges levied directly by insurance portals (Globemed, Mednet, Gulf Union) for automated EDI transmission.</li>
+                      <li><strong>Revisions Exceeding the 3-Revision Cap:</strong> Iterations on the same feature exceeding three rounds will be handled via standard 10% Milestone Change Requests (CR) as agreed in governance rules.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Support and Maintenance Clarification -->
+                <div class="callout-box highlight-orange" style="margin-top: 14px;">
+                  <div class="callout-title"><i class="fa-solid fa-screwdriver-wrench"></i> Clarification on Post-Deployment Support &amp; Warranty</div>
+                  <p>
+                    Regarding the client's reference to <em>"one year of support"</em>:
+                  </p>
+                  <ul style="padding-left: 20px; font-size: 12.5px; margin-top: 6px; line-height: 1.6;">
+                    <li><strong>Included in BD 8,400 Contract:</strong> Milestone <code>MS-BUF</code> provides <strong>1 Full Month (4 Working Weeks) of Multi-Branch Pilot &amp; Hypercare Support</strong>, followed by our standard <strong>60-Day Post-Go-Live Comprehensive Warranty</strong> covering bug fixes, defect rectification, and performance tuning at zero additional cost.</li>
+                    <li><strong>Extended 1-Year Comprehensive SLA:</strong> Following the warranty period, ongoing annual Level-2 and Level-3 application support (Annual Maintenance Contract / AMC) can be seamlessly bundled with the <strong>Vendor-Managed Cloud Hosting</strong> or engaged as an annual SLA agreement at standard industry rates (15% of software value / year).</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- SECTION 6: FORMAL EXECUTION & NEXT STEPS -->
+              <section class="section-block sign-section" id="sec-signoff">
+                <div class="section-header" style="border-bottom: none; margin-bottom: 0;">
+                  <div class="section-title">
+                    <span class="section-num">06</span>
+                    <h2>Formal Acknowledgment &amp; Next Steps</h2>
+                  </div>
+                  <span class="section-badge badge-emerald"><i class="fa-solid fa-check"></i> Ready for Executive Approval</span>
+                </div>
+
+                <p style="font-size: 12.5px; color: var(--gray-700); margin-top: 8px;">
+                  Please confirm your selected hosting model (<strong>Option 1: Vendor-Managed Cloud at BD 630/Year</strong> or <strong>Option 2: Client In-House Infrastructure</strong>) by signing below or returning confirmation via email. Upon selection, SaNDS Lab will initiate the environment provisioning and schedule the project kickoff sprint.
+                </p>
+
+                <div class="sign-grid">
+                  <div class="sign-col">
+                    <div class="sign-title"><i class="fa-solid fa-building-user"></i> For Al Rabeeh Dental Center (Client)</div>
+                    <div style="font-size: 12px; color: var(--gray-600); line-height: 1.6;">
+                      <p><strong>Authorized Signatory:</strong> ____________________________________</p>
+                      <p style="margin-top: 6px;"><strong>Designation / Title:</strong> ____________________________________</p>
+                      <p style="margin-top: 6px;"><strong>Selected Hosting Option:</strong> [&nbsp; ] Option 1 (Cloud) &nbsp;&nbsp; [&nbsp; ] Option 2 (In-House)</p>
+                    </div>
+                    <div class="sign-line">
+                      <span>Signature &amp; Official Seal</span>
+                      <span>Date: ____ / ____ / 2026</span>
+                    </div>
+                  </div>
+
+                  <div class="sign-col">
+                    <div class="sign-title"><i class="fa-solid fa-microchip"></i> For SaNDS Lab Middle East W.L.L. (Partner)</div>
+                    <div style="font-size: 12px; color: var(--gray-600); line-height: 1.6;">
+                      <p><strong>Authorized Signatory:</strong> Technical Delivery &amp; Solutions Directorate</p>
+                      <p style="margin-top: 6px;"><strong>Engineering Division:</strong> Healthcare Information Systems</p>
+                      <p style="margin-top: 6px;"><strong>Proposal Ref:</strong> SL-ARDC-EMRS-INFRA-2026-V1</p>
+                    </div>
+                    <div class="sign-line">
+                      <span>Authorized Signature</span>
+                      <span>Date: 04 November 2026</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>

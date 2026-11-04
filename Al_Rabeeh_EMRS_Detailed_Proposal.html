@@ -1196,6 +1196,12 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
         <span><i class="fa-solid fa-globe" style="color: #fb923c;"></i> <strong>Jurisdiction:</strong> Kingdom of Bahrain (BHD / 3-Decimal Standard)</span>
       </div>
       <div class="utility-actions">
+        <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-utility" style="background: #0284c7; border-color: #0284c7; text-decoration: none;">
+          <i class="fa-solid fa-cloud"></i> Hosting &amp; Scope Addendum
+        </a>
+        <a href="index.php" class="btn-utility" style="background: #1e293b; border-color: #334155; text-decoration: none;">
+          <i class="fa-solid fa-house"></i> Master Portal
+        </a>
         <button class="btn-utility btn-download" onclick="triggerDownloadPDF()">
           <i class="fa-solid fa-file-pdf"></i> Download Official PDF
         </button>
@@ -2239,9 +2245,16 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
             <tbody>
               <tr>
                 <td><strong>SL-ARDC-SRV-001:</strong> Production Cloud / Dedicated Server Infrastructure</td>
-                <td>Live Server hosting environment for PHP MVC Microservices, MySQL Database &amp; RabbitMQ Broker (with SSL, Daily Backups &amp; Firewall per CORE-08)</td>
-                <td><strong>Provided by Client</strong> (Extra charges billed at actuals per year)</td>
-                <td class="mono"><strong style="color: var(--emerald);">At Actuals / Year (By Client / Server Provider)</strong></td>
+                <td>
+                  Live Server hosting environment for PHP MVC Microservices, MySQL Database &amp; RabbitMQ Broker (with SSL, Daily Backups &amp; Firewall per CORE-08).
+                  <div style="margin-top: 5px;">
+                    <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" style="color: var(--blue); font-weight: 600; text-decoration: none; font-size: 11.5px;">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i> See Addendum: Option 1 Cloud (BD 630/Yr) vs. Option 2 In-House Server Specs
+                    </a>
+                  </div>
+                </td>
+                <td><strong>Provided by Client</strong> (or SaNDS Lab Managed Cloud)</td>
+                <td class="mono"><strong style="color: var(--emerald);">BD 630.000 / Yr (Cloud) or At Actuals</strong></td>
               </tr>
               <tr>
                 <td><strong>SL-ARDC-CPR-001:</strong> Custom .NET Smart Card Driver &amp; Windows Service</td>
