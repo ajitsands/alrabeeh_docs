@@ -43,10 +43,10 @@ $routes = array(
         'pdf'      => 'Al_Rabeeh_EMRS_and_Additional_Modules_SLA.pdf',
         'status'   => 'Active Master Contract & SLA',
         'timeline' => '28 Dedicated Engineering Weeks (7.0 Mo)',
-        'scope'    => '14 Modules + Derma (Booking/Follow-ups) + Inventory Option (BD 600-1,000) • Unlimited Users & Branches',
+        'scope'    => '14 Modules + Derma (Booking/Follow-ups) + Inventory Option (BD 600-1,000) • Unlimited Users & Branches (Bahrain)',
         'ba_ref'   => 'SL-ARDC-SLA-2026-V1',
         'date'     => '19/11/2026',
-        'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, Derma workflow up to booking & follow-ups, optional Clinical Inventory Module (BD 600 to Max BD 1,000), total project ceiling of BD 9,400.000 Max, 100% full source code transfer, and unlimited users with unlimited branches across Bahrain & GCC.'
+        'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, Derma workflow up to booking & follow-ups, optional Clinical Inventory Module (BD 600 to Max BD 1,000), total project ceiling of BD 9,400.000 Max, 100% full source code transfer, and unlimited users with unlimited branches across the Kingdom of Bahrain.'
     ),
     'SL-ARDC-EMRS-2026-V1' => array(
         'title'    => '★ MASTER PROPOSAL: Al Rabeeh Dental Center EMRS Custom Ecosystem Development',
