@@ -43,10 +43,10 @@ $routes = array(
         'pdf'      => 'Al_Rabeeh_EMRS_and_Additional_Modules_SLA.pdf',
         'status'   => 'Active Master Contract & SLA',
         'timeline' => '28 Dedicated Engineering Weeks (7.0 Mo)',
-        'scope'    => '14 Modules (11 Clinical EMRS + 3 Enterprise Management: HR/Payroll, QR Assets, Quote & Purchase) @ BD 8,400.000',
+        'scope'    => '14 Modules + Derma (Booking/Follow-ups) + Inventory Option (BD 600-1,000) • Unlimited Users & Branches',
         'ba_ref'   => 'SL-ARDC-SLA-2026-V1',
         'date'     => '19/11/2026',
-        'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, 12-milestone payment schedule, 60-day hypercare, 1-year warranty, defect severity SLAs, and 100% full source code ownership.'
+        'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, Derma workflow up to booking & follow-ups, optional Clinical Inventory Module (BD 600 to Max BD 1,000), total project ceiling of BD 9,400.000 Max, 100% full source code transfer, and unlimited users with unlimited branches across Bahrain & GCC.'
     ),
     'SL-ARDC-EMRS-2026-V1' => array(
         'title'    => '★ MASTER PROPOSAL: Al Rabeeh Dental Center EMRS Custom Ecosystem Development',
@@ -2188,9 +2188,9 @@ if ($pdo) {
     <div class="featured-banner">
       <div style="flex: 1 1 540px; position: relative; z-index: 2;">
         <span class="featured-banner-tag"><i class="fa-solid fa-certificate"></i> Master Contract &amp; Service Level Agreement (SLA)</span>
-        <h3 class="featured-banner-title">14-Module Master SLA: EMRS Core &amp; Additional Enterprise Suite</h3>
+        <h3 class="featured-banner-title">14-Module Master SLA: Dental, Derma &amp; Enterprise Suite</h3>
         <p class="featured-banner-desc">
-          Formal 15-section Master Agreement: 11 Clinical EMRS Reception Modules + 3 Additional Modules (HR Documents &amp; Basic Payroll, QR Asset Management, and Quote &amp; Purchase Procurement Workflow) under the fixed quoted price of <strong>BD 8,400.000</strong>. Includes 12-milestone payment gates, 60-day hypercare, 1-year warranty, defect severity resolution SLAs, and <strong>100% full source code transfer</strong>.
+          Formal 15-section Master Agreement: 11 Clinical EMRS Modules + 3 Additional Modules (HR Documents &amp; Basic Payroll, QR Asset Management, Quote &amp; Purchase Workflow) + Derma (Booking &amp; Follow-ups) at fixed quoted price of <strong>BD 8,400.000</strong>, with optional Clinical Inventory (<strong>BD 600 to Max BD 1,000</strong>; Max Total Project: <strong>BD 9,400.000</strong>), <strong>100% Full Source Code Transfer</strong>, and <strong>Unlimited Users &amp; Unlimited Branches</strong>.
         </p>
       </div>
       <div class="featured-banner-actions" style="position: relative; z-index: 2;">
