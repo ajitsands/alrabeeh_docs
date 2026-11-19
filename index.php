@@ -37,6 +37,17 @@ require_once __DIR__ . '/db.php';
 // 2. DOCUMENT ROUTING & METADATA REGISTRY
 // =========================================================================
 $routes = array(
+    'SL-ARDC-SLA-2026-V1' => array(
+        'title'    => '★ MASTER SERVICE LEVEL AGREEMENT (SLA): EMRS & Additional Enterprise Modules',
+        'html'     => 'Al_Rabeeh_EMRS_and_Additional_Modules_SLA.html',
+        'pdf'      => 'Al_Rabeeh_EMRS_and_Additional_Modules_SLA.pdf',
+        'status'   => 'Active Master Contract & SLA',
+        'timeline' => '28 Dedicated Engineering Weeks (7.0 Mo)',
+        'scope'    => '14 Modules (11 Clinical EMRS + 3 Enterprise Management: HR/Payroll, QR Assets, Quote & Purchase) @ BD 8,400.000',
+        'ba_ref'   => 'SL-ARDC-SLA-2026-V1',
+        'date'     => '19/11/2026',
+        'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, 12-milestone payment schedule, 60-day hypercare, 1-year warranty, defect severity SLAs, and 100% full source code ownership.'
+    ),
     'SL-ARDC-EMRS-2026-V1' => array(
         'title'    => '★ MASTER PROPOSAL: Al Rabeeh Dental Center EMRS Custom Ecosystem Development',
         'html'     => 'Al_Rabeeh_EMRS_Detailed_Proposal.html',
@@ -132,6 +143,11 @@ $routes = array(
 
 // Secondary Aliases for direct file access matching
 $aliases = array(
+    'sl-ardc-sla-2026-v1' => 'SL-ARDC-SLA-2026-V1',
+    'ardc-sla-2026' => 'SL-ARDC-SLA-2026-V1',
+    'sla' => 'SL-ARDC-SLA-2026-V1',
+    'service_level_agreement' => 'SL-ARDC-SLA-2026-V1',
+    'al_rabeeh_emrs_and_additional_modules_sla' => 'SL-ARDC-SLA-2026-V1',
     'al_rabeeh_emrs_detailed_proposal' => 'SL-ARDC-EMRS-2026-V1',
     'al_rabeeh_emrs_cloud_infrastructure_and_scope_addendum' => 'SL-ARDC-EMRS-INFRA-2026-V1',
     'ardc-infra-addendum-2026' => 'SL-ARDC-EMRS-INFRA-2026-V1',
@@ -2159,33 +2175,33 @@ if ($pdo) {
     </p>
     <div class="hero-meta-badges">
       <div class="hero-pill"><i class="fa-solid fa-hospital-user"></i> 6 Bahrain Clinics</div>
-      <div class="hero-pill"><i class="fa-solid fa-layer-group"></i> 11 Reception Modules</div>
+      <div class="hero-pill"><i class="fa-solid fa-layer-group"></i> 14 Integrated Modules</div>
       <div class="hero-pill"><i class="fa-solid fa-id-card"></i> Smart CPR Integration</div>
       <div class="hero-pill"><i class="fa-solid fa-bolt"></i> Offline Auto-Sync</div>
       <div class="hero-pill"><i class="fa-solid fa-code"></i> 100% Client Source Code Ownership</div>
-      <div class="hero-pill" style="background: rgba(234, 88, 12, 0.22); border-color: #ea580c; color: #ffedd5;"><i class="fa-solid fa-server"></i> Cloud &amp; In-House Hosting Ready</div>
+      <div class="hero-pill" style="background: rgba(234, 88, 12, 0.22); border-color: #ea580c; color: #ffedd5;"><i class="fa-solid fa-file-contract"></i> Master SLA (14 Modules @ BD 8,400)</div>
     </div>
   </div>
 
   <div class="portal-container">
-    <!-- Featured Notification Block for New Addendum Documentation -->
+    <!-- Featured Notification Block for Master Service Level Agreement (SLA) -->
     <div class="featured-banner">
       <div style="flex: 1 1 540px; position: relative; z-index: 2;">
-        <span class="featured-banner-tag"><i class="fa-solid fa-bullhorn"></i> New Technical Addendum &amp; Clarification</span>
-        <h3 class="featured-banner-title">Cloud Hosting, In-House Infrastructure &amp; Scope Demarcation</h3>
+        <span class="featured-banner-tag"><i class="fa-solid fa-certificate"></i> Master Contract &amp; Service Level Agreement (SLA)</span>
+        <h3 class="featured-banner-title">14-Module Master SLA: EMRS Core &amp; Additional Enterprise Suite</h3>
         <p class="featured-banner-desc">
-          Official engineering response to Al Rabeeh Dental Center: Option 1 Vendor-Managed Cloud (<strong>BD 630.000 / Yr</strong>), Option 2 In-House Rack Server (<strong>~BD 3,700–4,300 CapEx</strong>), 6-Branch FortiGate/VPN Architecture, and <strong>100% Inclusion of all Standard Clinic Masters &amp; Workflows</strong> in the BD 8,400 proposal.
+          Formal 15-section Master Agreement: 11 Clinical EMRS Reception Modules + 3 Additional Modules (HR Documents &amp; Basic Payroll, QR Asset Management, and Quote &amp; Purchase Procurement Workflow) under the fixed quoted price of <strong>BD 8,400.000</strong>. Includes 12-milestone payment gates, 60-day hypercare, 1-year warranty, defect severity resolution SLAs, and <strong>100% full source code transfer</strong>.
         </p>
       </div>
       <div class="featured-banner-actions" style="position: relative; z-index: 2;">
-        <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-orange">
-          <i class="fa-solid fa-server"></i> Read Hosting Specs
+        <a href="index.php?doc=SL-ARDC-SLA-2026-V1" class="btn-featured btn-featured-orange">
+          <i class="fa-solid fa-file-contract"></i> Read Master SLA
         </a>
-        <a href="index.php?doc=SL-ARDC-EMRS-SCOPE-2026#sec-scope" class="btn-featured btn-featured-blue">
-          <i class="fa-solid fa-list-check"></i> Scope Demarcation
-        </a>
-        <a href="index.php?download=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-ghost">
+        <a href="index.php?download=SL-ARDC-SLA-2026-V1" class="btn-featured btn-featured-ghost">
           <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </a>
+        <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-blue">
+          <i class="fa-solid fa-server"></i> Hosting Specs
         </a>
       </div>
     </div>

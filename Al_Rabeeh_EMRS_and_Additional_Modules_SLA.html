@@ -1,0 +1,1672 @@
+<?php
+// Enforce Authentication Check if accessed directly
+if (!defined('AUTH_PORTAL_ACTIVE')) {
+    require_once __DIR__ . '/index.php';
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Level Agreement (SLA) &amp; Master Software Development Contract | Al Rabeeh Dental Center &amp; SaNDS Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0a2540;
+      --primary-dark: #07192c;
+      --primary-light: #163a5f;
+      --accent: #ea580c;
+      --accent-hover: #c2410c;
+      --accent-amber: #d97706;
+      --accent-subtle: #fff7ed;
+      --navy: #0f172a;
+      --gray-900: #0f172a;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-500: #64748b;
+      --gray-300: #cbd5e1;
+      --gray-200: #e2e8f0;
+      --gray-100: #f1f5f9;
+      --gray-50: #f8fafc;
+      --white: #ffffff;
+      --emerald: #059669;
+      --emerald-subtle: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --blue: #0284c7;
+      --blue-subtle: #f0f9ff;
+      --blue-border: #bae6fd;
+      --purple: #7c3aed;
+      --purple-subtle: #f5f3ff;
+      --amber: #d97706;
+      --amber-subtle: #fffbeb;
+      --amber-border: #fde68a;
+      --rose: #e11d48;
+      --rose-subtle: #fff1f2;
+      --rose-border: #fecdd3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      color: var(--gray-700);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .doc-wrapper {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(10, 37, 64, 0.10);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+    }
+
+    /* Top Utility Bar */
+    .top-utility-bar {
+      background: var(--primary-dark);
+      color: #cbd5e1;
+      padding: 10px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      border-bottom: 2px solid var(--accent);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .utility-meta {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .utility-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .utility-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, var(--accent) 0%, #c2410c 100%);
+      color: #fff;
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+    }
+    .btn-action:hover {
+      background: #c2410c;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+
+    /* Table Document Wrapper for Multi-Page Print Layout */
+    table.doc-print-wrapper {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      border: none;
+    }
+    table.doc-print-wrapper > thead > tr > td,
+    table.doc-print-wrapper > tfoot > tr > td,
+    table.doc-print-wrapper > tbody > tr > td {
+      padding: 0;
+      border: none;
+      background: transparent !important;
+    }
+
+    /* Print Running Header & Footer */
+    .print-running-header {
+      display: none;
+      width: 100%;
+      padding: 0 4px 6px 4px;
+      margin-bottom: 8px;
+      border-bottom: 1.5px solid #cbd5e1;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8.5pt;
+      color: #64748b;
+      font-family: 'Inter', sans-serif;
+    }
+    .print-running-header .brand {
+      font-weight: 700;
+      color: #0a2540;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .print-running-header .ref-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #c2410c;
+      background: #fff7ed;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid #fed7aa;
+    }
+    .print-running-footer {
+      display: none;
+      width: 100%;
+      padding: 6px 4px 0 4px;
+      margin-top: 8px;
+      border-top: 1px solid #cbd5e1;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      color: #64748b;
+      font-family: 'Inter', sans-serif;
+    }
+    .print-running-footer .confidential {
+      font-weight: 600;
+      color: #0a2540;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Executive Letterhead Banner */
+    .letterhead-banner {
+      background: linear-gradient(135deg, #07192c 0%, #0a2540 55%, #163a5f 100%);
+      color: #ffffff;
+      padding: 34px 42px;
+      border-bottom: 4px solid var(--accent);
+      position: relative;
+    }
+    .letterhead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logos-cluster {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-box {
+      background: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.20);
+    }
+    .logo-box img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+    .letter-ref-badge {
+      background: rgba(234, 88, 12, 0.18);
+      border: 1.5px solid #ea580c;
+      color: #ffedd5;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .letterhead-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+      line-height: 1.25;
+    }
+    .letterhead-subtitle {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      max-width: 900px;
+      line-height: 1.55;
+    }
+
+    /* Metadata Grid */
+    .sla-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 20px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #94a3b8;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .meta-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .meta-val.highlight {
+      color: #fdba74;
+    }
+
+    /* Navigation Quick-Jump Menu */
+    .doc-nav-sticky {
+      background: #f8fafc;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 10px 42px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .nav-pill {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gray-600);
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-pill:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Document Body */
+    .sla-body {
+      padding: 38px 42px;
+      color: var(--gray-700);
+    }
+
+    /* Section Headings */
+    .section-h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--gray-200);
+      page-break-after: avoid;
+    }
+    .section-h2:first-of-type {
+      margin-top: 0;
+    }
+    .section-tag {
+      background: var(--primary);
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .section-tag.accent {
+      background: var(--accent);
+    }
+
+    .section-h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-top: 18px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 11px;
+      text-align: justify;
+    }
+
+    /* Callouts & Alert Boxes */
+    .callout-box {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      border-left: 4px solid;
+      page-break-inside: avoid;
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+    .callout-emerald {
+      background: var(--emerald-subtle);
+      border-color: var(--emerald);
+      color: #064e3b;
+    }
+    .callout-blue {
+      background: var(--blue-subtle);
+      border-color: var(--blue);
+      color: #0c4a6e;
+    }
+    .callout-amber {
+      background: var(--amber-subtle);
+      border-color: var(--amber);
+      color: #78350f;
+    }
+    .callout-rose {
+      background: var(--rose-subtle);
+      border-color: var(--rose);
+      color: #881337;
+    }
+    .callout-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 12px;
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      overflow: hidden;
+      page-break-inside: avoid;
+    }
+    .data-table thead th {
+      background: var(--primary);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid var(--accent);
+    }
+    .data-table tbody td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--gray-200);
+      vertical-align: middle;
+      color: var(--gray-700);
+    }
+    .data-table tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    .data-table tbody tr:hover {
+      background: #f1f5f9;
+    }
+    .data-table td.mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+    .data-table td.center,
+    .data-table th.center {
+      text-align: center;
+    }
+    .data-table td.right,
+    .data-table th.right {
+      text-align: right;
+    }
+
+    /* Badges & Pills */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .badge-critical { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .badge-major { background: #ffedd5; color: #9a3412; border: 1px solid #fdba74; }
+    .badge-medium { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    .badge-minor { background: #e0f2fe; color: #075985; border: 1px solid #7dd3fc; }
+    .badge-success { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .badge-navy { background: #0f172a; color: #ffffff; border: 1px solid #334155; }
+
+    /* Module Feature Cards Grid */
+    .module-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin: 14px 0 18px 0;
+    }
+    .mod-card {
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      page-break-inside: avoid;
+    }
+    .mod-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    .mod-card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mod-card-num {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #fed7aa;
+    }
+    .mod-card-features {
+      list-style: none;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+    .mod-card-features li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .mod-card-features li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--emerald);
+      font-size: 11px;
+    }
+
+    /* Execution & Signature Section */
+    .execution-box {
+      background: #ffffff;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 24px;
+      margin-top: 24px;
+      page-break-inside: avoid;
+    }
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .sig-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 18px;
+      background: #f8fafc;
+    }
+    .sig-party-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sig-line-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .sig-line-item .label {
+      color: var(--gray-500);
+      font-weight: 600;
+    }
+    .sig-line-item .dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--gray-300);
+      margin: 0 8px 3px 8px;
+    }
+    .sig-line-item .val {
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+    .sig-space {
+      height: 60px;
+      border-bottom: 1.5px solid var(--gray-400);
+      margin: 20px 0 8px 0;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4px;
+      font-size: 11px;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* Document Footer */
+    .doc-footer {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      padding: 20px 42px;
+      font-size: 11.5px;
+      border-top: 1px solid var(--gray-800);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 8mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 9pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .top-utility-bar,
+      .doc-nav-sticky {
+        display: none !important;
+      }
+      .doc-wrapper {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .sla-body {
+        padding: 8px 12px !important;
+      }
+      .letterhead-banner {
+        padding: 20px 24px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .letterhead-title {
+        font-size: 19pt !important;
+      }
+      .letterhead-subtitle {
+        font-size: 9.5pt !important;
+      }
+      .sla-meta-grid {
+        margin-top: 12px !important;
+        padding: 8px 12px !important;
+      }
+      .meta-lbl {
+        font-size: 7.5pt !important;
+      }
+      .meta-val {
+        font-size: 9.5pt !important;
+      }
+
+      table.doc-print-wrapper {
+        display: table !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: none !important;
+      }
+      table.doc-print-wrapper > thead {
+        display: table-header-group !important;
+      }
+      table.doc-print-wrapper > tfoot {
+        display: table-footer-group !important;
+      }
+      table.doc-print-wrapper > tbody {
+        display: table-row-group !important;
+      }
+
+      .print-running-header {
+        display: flex !important;
+      }
+      .print-running-footer {
+        display: flex !important;
+      }
+
+      .section-h2 {
+        font-size: 12pt !important;
+        margin-top: 18px !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 4px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .section-h3 {
+        font-size: 10pt !important;
+        margin-top: 12px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .data-table {
+        font-size: 8.5pt !important;
+        margin: 8px 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .data-table thead th {
+        padding: 6px 8px !important;
+        font-size: 8pt !important;
+      }
+      .data-table tbody td {
+        padding: 5px 8px !important;
+      }
+      .callout-box {
+        padding: 8px 12px !important;
+        margin: 8px 0 !important;
+        font-size: 8.5pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .module-cards-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+      .mod-card {
+        padding: 8px !important;
+        font-size: 8pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .mod-card-title {
+        font-size: 9.5pt !important;
+      }
+      .execution-box {
+        padding: 14px !important;
+        margin-top: 14px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .sig-grid {
+        gap: 16px !important;
+        margin-top: 12px !important;
+      }
+      .sig-space {
+        height: 40px !important;
+        margin: 10px 0 4px 0 !important;
+      }
+      .doc-footer {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="doc-wrapper">
+
+    <!-- Top Floating Utility Bar (Hidden in Print) -->
+    <div class="top-utility-bar">
+      <div class="utility-meta">
+        <span><i class="fa-solid fa-file-contract" style="color:var(--accent);"></i> <strong>SL-ARDC-SLA-2026-V1</strong></span>
+        <span><i class="fa-solid fa-calendar-check"></i> Effective Date: November 2026</span>
+        <span><i class="fa-solid fa-shield-halved" style="color:#22c55e;"></i> Fully Enforceable Master Development SLA</span>
+      </div>
+      <div class="utility-actions">
+        <button class="btn-action" onclick="window.print();"><i class="fa-solid fa-print"></i> Print / Save as PDF</button>
+        <a href="Al_Rabeeh_EMRS_and_Additional_Modules_SLA.pdf" class="btn-action" download><i class="fa-solid fa-file-arrow-down"></i> Official PDF</a>
+        <a href="index.php" class="btn-action btn-secondary"><i class="fa-solid fa-arrow-left"></i> Document Portal</a>
+      </div>
+    </div>
+
+    <!-- Sticky Navigation Quick-Jump (Hidden in Print) -->
+    <div class="doc-nav-sticky">
+      <a href="#sec-purpose" class="nav-pill"><i class="fa-solid fa-bullseye"></i> 01. Purpose</a>
+      <a href="#sec-scope" class="nav-pill"><i class="fa-solid fa-cubes"></i> 02. 14-Module Scope</a>
+      <a href="#sec-milestones" class="nav-pill"><i class="fa-solid fa-timeline"></i> 03. Milestones</a>
+      <a href="#sec-verification" class="nav-pill"><i class="fa-solid fa-clipboard-check"></i> 04. Acceptance</a>
+      <a href="#sec-defects" class="nav-pill"><i class="fa-solid fa-bug"></i> 05. Defect SLAs</a>
+      <a href="#sec-warranty" class="nav-pill"><i class="fa-solid fa-certificate"></i> 06. Warranty &amp; Hypercare</a>
+      <a href="#sec-uptime" class="nav-pill"><i class="fa-solid fa-server"></i> 07. Uptime &amp; Hosting</a>
+      <a href="#sec-governance" class="nav-pill"><i class="fa-solid fa-users-gear"></i> 08. Governance</a>
+      <a href="#sec-dependencies" class="nav-pill"><i class="fa-solid fa-handshake"></i> 09. Dependencies</a>
+      <a href="#sec-pricing" class="nav-pill"><i class="fa-solid fa-coins"></i> 10. Pricing &amp; Terms</a>
+      <a href="#sec-ip" class="nav-pill"><i class="fa-solid fa-code"></i> 11. Source Code</a>
+      <a href="#sec-exclusions" class="nav-pill"><i class="fa-solid fa-ban"></i> 12. Exclusions</a>
+      <a href="#sec-confidentiality" class="nav-pill"><i class="fa-solid fa-lock"></i> 13. Data &amp; NHRA</a>
+      <a href="#sec-law" class="nav-pill"><i class="fa-solid fa-scale-balanced"></i> 14. Law &amp; Dispute</a>
+      <a href="#sec-execution" class="nav-pill"><i class="fa-solid fa-signature"></i> 15. Signatures</a>
+    </div>
+
+    <!-- Table Wrapper for Precise Multi-Page PDF Printing -->
+    <table class="doc-print-wrapper">
+      <thead>
+        <tr>
+          <td>
+            <div class="print-running-header">
+              <span class="brand">
+                <i class="fa-solid fa-tooth" style="color:#ea580c;"></i> Al Rabeeh Dental Center &bull; SaNDS Lab Middle East
+              </span>
+              <span class="ref-tag">SLA &bull; SL-ARDC-SLA-2026-V1</span>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td>
+            <div class="print-running-footer">
+              <span class="confidential"><i class="fa-solid fa-lock"></i> Commercial &amp; Legal Confidential &bull; Al Rabeeh Group of Medicals &amp; SaNDS Lab</span>
+              <span>Kingdom of Bahrain &bull; Master Development SLA</span>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>
+
+            <!-- Executive Letterhead Banner -->
+            <div class="letterhead-banner">
+              <div class="letterhead-top">
+                <div class="logos-cluster">
+                  <div class="logo-box">
+                    <img src="Logo/AlRabeeh-Logo.png" alt="Al Rabeeh Dental Center">
+                  </div>
+                  <div class="logo-box">
+                    <img src="Logo/SaNDSLab-LogoNewUpdated copy.png" alt="SaNDS Lab Middle East">
+                  </div>
+                </div>
+                <div class="letter-ref-badge">
+                  <i class="fa-solid fa-certificate"></i> REF: SL-ARDC-SLA-2026-V1
+                </div>
+              </div>
+              <h1 class="letterhead-title">SERVICE LEVEL AGREEMENT (SLA)<br>&amp; MASTER SOFTWARE DEVELOPMENT CONTRACT</h1>
+              <p class="letterhead-subtitle">
+                Binding contractual framework governing software engineering deliverables, milestone acceptance protocols, technical defect resolution turnaround times, 1-Year comprehensive warranty, 60-Day hypercare, and hosting infrastructure service availability for the <strong>Al Rabeeh Dental Center Enterprise Medical Records System (EMRS Core 11 Modules)</strong> and <strong>Additional Enterprise Management Suite (HR Documents &amp; Basic Payroll, QR Asset Tracking, and Quote &amp; Purchase Management)</strong> across the Kingdom of Bahrain, Oman, and Kuwait.
+              </p>
+
+              <!-- Contract Metadata Grid -->
+              <div class="sla-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-lbl">Client Entity</span>
+                  <span class="meta-val">Al Rabeeh Dental Center W.L.L.</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Service Provider</span>
+                  <span class="meta-val">SaNDS Lab Middle East W.L.L.</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Governing Jurisdiction</span>
+                  <span class="meta-val">Kingdom of Bahrain (NHRA/PDPL)</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Fixed Software Contract</span>
+                  <span class="meta-val highlight">BD 8,400.000 (Net Fixed)</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Total Modules Scoped</span>
+                  <span class="meta-val">14 Integrated Modules</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Delivery Horizon</span>
+                  <span class="meta-val">28 Dedicated Weeks (7.0 Mo)</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Post-Go-Live Support</span>
+                  <span class="meta-val">60-Day Hypercare + 1-Yr Warranty</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-lbl">Source Code Ownership</span>
+                  <span class="meta-val highlight">100% Client Ownership (Full IP)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Document Body -->
+            <div class="sla-body">
+
+              <!-- SECTION 01: PURPOSE & FRAMEWORK -->
+              <div class="section-h2" id="sec-purpose">
+                <span class="section-tag">01</span>
+                <span>Purpose of the Agreement, Precedence &amp; Contractual Framework</span>
+              </div>
+              <p>
+                This Service Level Agreement (&ldquo;<strong>SLA</strong>&rdquo; or &ldquo;<strong>Agreement</strong>&rdquo;) defines the contractual terms, software engineering standards, delivery milestones, acceptance criteria, technical defect priority classifications, turnaround response times, and warranty support levels under which <strong>SaNDS Lab Middle East W.L.L.</strong> (CR No. 165842-1, Kingdom of Bahrain, hereinafter referred to as the &ldquo;<strong>Service Provider</strong>&rdquo;) shall design, engineer, test, integrate, deploy, handover, and support the enterprise software solutions for <strong>Al Rabeeh Dental Center W.L.L. / Al Rabeeh Group of Medicals</strong> (CR registered in the Kingdom of Bahrain, hereinafter referred to as the &ldquo;<strong>Client</strong>&rdquo;).
+              </p>
+              <p>
+                This Agreement establishes a legally binding operational framework that consolidates and governs all components previously scoped across official engineering documentation, specifically:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Master Technical Proposal (Ref: <code>SL-ARDC-EMRS-2026-V1</code>):</strong> Scoping the 11-module clinical reception EMRS, Bahrain Smart CPR reader driver integration, and local-to-cloud offline sync pipeline across 6 Bahrain clinics.</li>
+                <li><strong>Technical Addendum &amp; Clarification (Ref: <code>SL-ARDC-EMRS-INFRA-2026-V1 / SL-ARDC-EMRS-SCOPE-2026</code>):</strong> Detailing Option 1 Vendor-Managed Cloud Hosting (BD 630.000/yr), Option 2 In-House Server Architecture (~BD 3,700–4,300 CapEx), 6-branch network specifications, and formal confirmation that 100% of standard clinic management masters, user/doctor roles, standard validations, and audit trails are included.</li>
+                <li><strong>Additional Modules Functional Scope Proposal (Dated November 18, 2026):</strong> Incorporating the 3 enterprise management modules: (1) HR Documents Management &amp; Basic Payroll, (2) Asset Management with QR Code Tracking, and (3) Quote &amp; Purchase Management Procurement Workflow.</li>
+              </ul>
+
+              <div class="callout-box callout-emerald">
+                <div class="callout-title"><i class="fa-solid fa-circle-check"></i> Consolidated Software Investment Binding Commitment</div>
+                In strict compliance with the commercial agreement reached between the parties, all <strong>14 Integrated Software Modules</strong> (the 11 Core Clinical EMRS Modules plus the 3 Additional Enterprise Management Modules), together with custom .NET hardware drivers, offline synchronization mechanisms, 60-day hypercare, and one full year of warranty support, are delivered under the <strong>same fixed contract price previously quoted of BD 8,400.000 (Eight Thousand Four Hundred Bahraini Dinars Net)</strong>, with zero hidden software engineering charges.
+              </div>
+
+              <!-- SECTION 02: SCOPE OF DEVELOPMENT SERVICES -->
+              <div class="section-h2" id="sec-scope">
+                <span class="section-tag">02</span>
+                <span>Complete Scope of Software Development Services (14 Integrated Modules)</span>
+              </div>
+              <p>
+                The Service Provider shall engineer, configure, thoroughly test, integrate, and deploy an enterprise-grade medical and business management software ecosystem covering the following <strong>14 Modules</strong> divided into two operational suites:
+              </p>
+
+              <div class="section-h3"><i class="fa-solid fa-hospital-user" style="color:var(--accent);"></i> Part A: Core Clinical Reception EMRS Ecosystem (11 Modules &bull; 6 Bahrain Clinics)</div>
+              <p>
+                Engineered with ReactJS single-page front-end architecture, PHP MVC Microservices backend, RabbitMQ asynchronous message queues, and bidirectional local SQLite/IndexedDB synchronization for uninterrupted multi-clinic operations:
+              </p>
+
+              <div class="module-cards-grid">
+                <!-- Mod 1 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-address-card"></i> Patient Registration &amp; MPI</span>
+                    <span class="mod-card-num">MOD 01</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Unique Master Patient Index (MPI) with biometric CPR linking</li>
+                    <li>Automated duplicate detection on mobile, CPR, and passport</li>
+                    <li>Insurance card scanning &amp; demographic profile management</li>
+                    <li>Emergency contact &amp; medical history alert tags (Allergies, Diabetes)</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 2 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-calendar-days"></i> Multi-Doctor Scheduling</span>
+                    <span class="mod-card-num">MOD 02</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Dynamic multi-chair, multi-doctor calendar across 6 clinics</li>
+                    <li>Time-slot allocation, double-booking prevention, walk-in slots</li>
+                    <li>Doctor shift management, emergency off-duty re-routing</li>
+                    <li>Real-time appointment status (Confirmed, Arrived, In-Chair)</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 3 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-users-line"></i> Reception Queue &amp; Check-In</span>
+                    <span class="mod-card-num">MOD 03</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Front-desk triage &amp; automated token issuance</li>
+                    <li>Live waiting lounge display sync &amp; doctor calling trigger</li>
+                    <li>Patient arrival timestamping and wait-time KPI auditing</li>
+                    <li>Direct routing to designated operatory chair</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 4 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-id-card"></i> Smart CPR Integration</span>
+                    <span class="mod-card-num">MOD 04</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Dedicated C# .NET local USB card reader listener microservice</li>
+                    <li>Instant population of CPR, full legal name, DOB, nationality</li>
+                    <li>WebSocket bridge connecting reader to web browser in < 500ms</li>
+                    <li>Eliminates 100% of manual front-desk typographical errors</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 5 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-tooth"></i> Dental Charting &amp; Consultation</span>
+                    <span class="mod-card-num">MOD 05</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Interactive visual 32-tooth adult &amp; pedodontic dental chart</li>
+                    <li>Tooth-surface level clinical annotations (MODBL, Crown, RCT)</li>
+                    <li>Periodontal pocket depth charting &amp; gingival score logging</li>
+                    <li>Digital clinical progress notes, diagnosis coding, X-ray attachment</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 6 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-file-invoice-dollar"></i> Treatment Planning &amp; Costing</span>
+                    <span class="mod-card-num">MOD 06</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Multi-phase treatment planning with clinical milestones</li>
+                    <li>Automated patient financial estimates with co-pay calculations</li>
+                    <li>Patient digital consent capture &amp; installment payment plans</li>
+                    <li>Real-time conversion of completed phases into billing invoices</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 7 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-bell"></i> Patient Recall &amp; Notifications</span>
+                    <span class="mod-card-num">MOD 07</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Automated WhatsApp / SMS reminders for upcoming visits</li>
+                    <li>Periodic hygiene, scaling, and orthodontic recall triggers</li>
+                    <li>Post-extraction follow-up care instructions automation</li>
+                    <li>Patient feedback collection &amp; no-show reduction engine</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 8 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-cash-register"></i> Billing &amp; Day-End Cashier</span>
+                    <span class="mod-card-num">MOD 08</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Multi-tender split billing (Cash, BenefitPay, Debit/Credit Card)</li>
+                    <li>Advance deposit management &amp; patient credit ledger tracking</li>
+                    <li>Cash drawer shift opening/closing &amp; discrepancy reconciliation</li>
+                    <li>Automated Day-End Cashier Closure report for audit compliance</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 9 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-vial-virus"></i> Dental Lab Coordination</span>
+                    <span class="mod-card-num">MOD 09</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Crown, bridge, denture, and aligner lab slip generation</li>
+                    <li>Outgoing impression shipment &amp; external lab tracking</li>
+                    <li>Expected delivery alerts &amp; patient trial appointment syncing</li>
+                    <li>Shade selection, remakes, quality checks &amp; lab invoice ledger</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 10 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-shield-halved"></i> Insurance Pre-Auth &amp; Claims</span>
+                    <span class="mod-card-num">MOD 10</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Insurance company &amp; TPA tariff master configuration</li>
+                    <li>Pre-approval digital package generation with X-ray proof</li>
+                    <li>Deductibles, co-insurance percentage &amp; cap rule enforcement</li>
+                    <li>Batch claims export, rejections logging &amp; resubmission tracker</li>
+                  </ul>
+                </div>
+
+                <!-- Mod 11 -->
+                <div class="mod-card">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-chart-line"></i> Analytics &amp; KPI Dashboard</span>
+                    <span class="mod-card-num">MOD 11</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Doctor revenue production vs. collection split analysis</li>
+                    <li>Branch-wise patient footfall, chair occupancy &amp; utilization</li>
+                    <li>Service-wise profitability &amp; treatment conversion rates</li>
+                    <li>Executive mobile dashboard with automated daily executive reports</li>
+                  </ul>
+                </div>
+
+                <!-- Infrastructure/Sync Features -->
+                <div class="mod-card" style="background:#f8fafc; border:1px solid #cbd5e1;">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-network-wired"></i> 6-Branch Offline Auto-Sync</span>
+                    <span class="mod-card-num">SYNC CORE</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li>Local browser SQLite/IndexedDB persistence during WAN outage</li>
+                    <li>Zero clinic downtime; front desk operates seamlessly offline</li>
+                    <li>RabbitMQ automated bidirectional sync upon connection restore</li>
+                    <li>Strict optimistic conflict resolution with tamper-evident audit logs</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="section-h3"><i class="fa-solid fa-briefcase" style="color:var(--accent);"></i> Part B: Additional Enterprise Management Modules (3 Integrated Modules &bull; Nov 18 Proposal)</div>
+              <p>
+                Providing Al Rabeeh Group of Medicals with a centralized platform to manage employee records, monitor physical assets via QR codes, and streamline end-to-end procurement workflows across Bahrain, Oman, and Kuwait:
+              </p>
+
+              <div class="module-cards-grid">
+                <!-- Additional Mod 1 -->
+                <div class="mod-card" style="border-top: 3px solid var(--accent);">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-user-tie"></i> HR Documents &amp; Basic Payroll</span>
+                    <span class="mod-card-num">ADD-ON 01</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li><strong>Employee Profiles:</strong> Centralized employee registration, auto ID generation, department, designation, joining date, and status.</li>
+                    <li><strong>Document Expiry Engine:</strong> Secure storage of Passports, Visas, CPRs, Employment Contracts, and Medical Licenses.</li>
+                    <li><strong>Proactive Alerts:</strong> Automated dashboard reminders for upcoming expiries at 90, 60, 30, and 7-day thresholds.</li>
+                    <li><strong>Basic Monthly Payroll:</strong> Basic salary configuration, fixed allowances, deductions, monthly calculation, and salary statements.</li>
+                  </ul>
+                </div>
+
+                <!-- Additional Mod 2 -->
+                <div class="mod-card" style="border-top: 3px solid var(--accent);">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-qrcode"></i> Asset Management &amp; QR Tracking</span>
+                    <span class="mod-card-num">ADD-ON 02</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li><strong>Asset Registration:</strong> Unique Asset ID, category, make, model, serial number, supplier info, purchase date, and invoices.</li>
+                    <li><strong>QR Code Generation:</strong> Unique printable QR code labels for physical equipment identification.</li>
+                    <li><strong>Mobile QR Scanning:</strong> Scan via camera/tablet to retrieve asset specs, location, and assigned custodian instantly.</li>
+                    <li><strong>Location &amp; Branch Transfers:</strong> Multi-branch transfer requests, approvals, movement history, and asset lifecycle tracking.</li>
+                  </ul>
+                </div>
+
+                <!-- Additional Mod 3 -->
+                <div class="mod-card" style="border-top: 3px solid var(--accent);">
+                  <div class="mod-card-header">
+                    <span class="mod-card-title"><i class="fa-solid fa-cart-shopping"></i> Quote &amp; Purchase Management</span>
+                    <span class="mod-card-num">ADD-ON 03</span>
+                  </div>
+                  <ul class="mod-card-features">
+                    <li><strong>Purchase Requisitions:</strong> Raising item/equipment requests with technical specs, quantity, and priority.</li>
+                    <li><strong>Vendor Quotations:</strong> Multi-vendor quote collection, comparative price matrix, and discount revision records.</li>
+                    <li><strong>CEO Approval Gate:</strong> Management dashboard to review, negotiate discounts, and approve/reject purchases.</li>
+                    <li><strong>Cheques &amp; Deliveries:</strong> Cheque number/date logging, scanned copy uploads, PO tracking, delivery notes, and invoices.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- SECTION 03: MILESTONES & TIMELINE -->
+              <div class="section-h2" id="sec-milestones">
+                <span class="section-tag">03</span>
+                <span>Development Milestones, Detailed Deliverables &amp; Timeline (28 Weeks)</span>
+              </div>
+              <p>
+                To guarantee momentum, transparency, and risk mitigation, the engineering program is structured across <strong>12 progressive milestones</strong> over a <strong>28-Week (7-Month) delivery horizon</strong>. This includes dedicated parallel sprint tracks for the Additional Modules (30 Working Days / 6 Weeks) and a comprehensive 1-month staging/pilot buffer:
+              </p>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 8%;">Gate</th>
+                    <th style="width: 28%;">Milestone Name &amp; Deliverables</th>
+                    <th style="width: 14%;">Duration</th>
+                    <th style="width: 14%;">Weightage</th>
+                    <th style="width: 16%;">Amount (BHD)</th>
+                    <th style="width: 20%;">Acceptance Trigger</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono"><strong>M-01</strong></td>
+                    <td><strong>Inception, Architecture &amp; Database Schemas</strong><br><small style="color:var(--gray-500);">Multi-branch database schema, tenant isolation, core RBAC, API gateway</small></td>
+                    <td>Weeks 1–3</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Sign-off of architecture blueprints &amp; DB schemas</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-02</strong></td>
+                    <td><strong>Patient Registration &amp; Smart CPR Driver</strong><br><small style="color:var(--gray-500);">MPI index, duplicate check, C# .NET Smart CPR reader microservice</small></td>
+                    <td>Weeks 4–6</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Live demo of card read populating form in < 500ms</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-03</strong></td>
+                    <td><strong>Multi-Doctor Scheduling &amp; Dynamic Calendar</strong><br><small style="color:var(--gray-500);">Multi-chair scheduling, conflict validation, emergency slot re-routing</small></td>
+                    <td>Weeks 7–9</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Multi-clinic booking, rescheduling &amp; doctor shift matrix</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-04</strong></td>
+                    <td><strong>Reception Queue &amp; Dental Charting Interface</strong><br><small style="color:var(--gray-500);">Lounge check-in queue, interactive 32-tooth dental chart, clinical notes</small></td>
+                    <td>Weeks 10–12</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Visual tooth charting, clinical diagnosis &amp; queue calling</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-05</strong></td>
+                    <td><strong>Treatment Planning &amp; Cost Estimation</strong><br><small style="color:var(--gray-500);">Multi-stage treatment costing, patient consent, insurance co-pay calculation</small></td>
+                    <td>Weeks 13–15</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Phased treatment generation &amp; financial estimate PDF</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-06</strong></td>
+                    <td><strong>Billing Engine &amp; Day-End Cashier Settlement</strong><br><small style="color:var(--gray-500);">Multi-tender split billing, BenefitPay receipts, cash drawer reconciliation</small></td>
+                    <td>Weeks 16–18</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Day-end cashier closure audit &amp; automated reconciliation</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-07</strong></td>
+                    <td><strong>Lab Coordination, Insurance Claims &amp; Recall</strong><br><small style="color:var(--gray-500);">External dental lab tracking, TPA batch claim export, WhatsApp notifications</small></td>
+                    <td>Weeks 19–20</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Lab shipment tracking, claim batches &amp; WhatsApp reminders</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-08</strong></td>
+                    <td><strong>Additional Module 1: HR Documents &amp; Payroll</strong><br><small style="color:var(--gray-500);">Employee records, CPR/Visa/Passport expiry alerts, basic payroll statements</small></td>
+                    <td>Weeks 21–22</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Document expiry alerts &amp; monthly payroll calculation run</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-09</strong></td>
+                    <td><strong>Additional Module 2: QR Asset Management</strong><br><small style="color:var(--gray-500);">Asset registration, dynamic QR sticker printing, mobile scan, branch transfers</small></td>
+                    <td>Weeks 23–24</td>
+                    <td class="center">5%</td>
+                    <td class="mono right"><strong>BD 420.000</strong></td>
+                    <td>QR code sticker printing &amp; mobile camera scan retrieval</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-10</strong></td>
+                    <td><strong>Additional Module 3: Quote &amp; Purchase System</strong><br><small style="color:var(--gray-500);">Requisitions, vendor quotes, CEO approval workflow, cheques &amp; deliveries</small></td>
+                    <td>Weeks 24–25</td>
+                    <td class="center">5%</td>
+                    <td class="mono right"><strong>BD 420.000</strong></td>
+                    <td>End-to-end procurement test from requisition to cheque log</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-11</strong></td>
+                    <td><strong>6-Branch Replication &amp; Consolidated UAT</strong><br><small style="color:var(--gray-500);">Cross-branch sync validation, offline mode disconnection tests, full UAT sign-off</small></td>
+                    <td>Weeks 26–27</td>
+                    <td class="center">5%</td>
+                    <td class="mono right"><strong>BD 420.000</strong></td>
+                    <td>Successful multi-branch UAT sign-off across all modules</td>
+                  </tr>
+                  <tr>
+                    <td class="mono"><strong>M-12</strong></td>
+                    <td><strong>Production Deployment, Training &amp; Source Code</strong><br><small style="color:var(--gray-500);">Cutover to production, staff training, complete source code &amp; IP transfer</small></td>
+                    <td>Week 28</td>
+                    <td class="center">10%</td>
+                    <td class="mono right"><strong>BD 840.000</strong></td>
+                    <td>Production Go-Live, Git repository transfer &amp; handover</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr style="background:var(--primary); color:#ffffff; font-weight:700;">
+                    <td colspan="3" style="text-align:right; text-transform:uppercase; font-size:11.5px; padding:10px 12px;">Consolidated Contract Total</td>
+                    <td class="center" style="font-size:12px;">100%</td>
+                    <td class="mono right" style="color:#fdba74; font-size:13px; padding:10px 12px;">BD 8,400.000</td>
+                    <td style="font-size:11px;">Fixed Software Investment</td>
+                  </tr>
+                </tfoot>
+              </table>
+
+              <!-- SECTION 04: VERIFICATION & ACCEPTANCE PROTOCOL -->
+              <div class="section-h2" id="sec-verification">
+                <span class="section-tag">04</span>
+                <span>Milestone Review, Verification &amp; Acceptance Protocol</span>
+              </div>
+              <p>
+                To maintain momentum, prevent project bottlenecks, and enforce rigorous quality governance, both parties agree to the following acceptance protocol:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Formal Milestone Delivery:</strong> Upon completion of a milestone, the Service Provider shall formally submit the deliverable package to the Client&rsquo;s designated Project Steering Lead, accompanied by: (a) Release Notes detailing delivered features, (b) Staging environment access URL with credentials, (c) Test walkthrough scripts, and (d) A formal Milestone Sign-off Sheet.</li>
+                <li><strong>Client Review Turnaround SLA (5 Business Days):</strong> The Client shall review, test, and evaluate the submitted deliverables within <strong>five (5) business days</strong> of receipt. The Client shall either issue a signed acceptance or provide a consolidated, itemized defect list referencing the agreed specifications.</li>
+                <li><strong>Defect Rectification Cycle (5 Business Days):</strong> If valid defects are logged during the review window, the Service Provider shall remediate all logged items within <strong>five (5) business days</strong> at zero cost, whereupon the 5-day review period resets strictly for the remediated items.</li>
+                <li><strong>Deemed Acceptance Clause:</strong> If the Client does not provide written feedback or an itemized defect list within <strong>ten (10) consecutive business days</strong> following formal submission, the milestone shall be deemed contractually accepted, authorizing billing progression to the next engineering phase.</li>
+              </ul>
+
+              <!-- SECTION 05: DEFECT SEVERITY & RESOLUTION SLAS -->
+              <div class="section-h2" id="sec-defects">
+                <span class="section-tag">05</span>
+                <span>Defect Severity Classifications &amp; Development / UAT Resolution SLAs</span>
+              </div>
+              <p>
+                During development sprints, integration testing, and formal User Acceptance Testing (UAT), all logged issues shall be classified and resolved in strict compliance with the following binding Service Level matrix:
+              </p>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 14%;">Severity Tier</th>
+                    <th style="width: 32%;">Defect Definition &amp; Operational Impact</th>
+                    <th style="width: 18%;">Initial Response SLA</th>
+                    <th style="width: 18%;">Target Resolution SLA</th>
+                    <th style="width: 18%;">Escalation Trigger</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-critical">Severity 1 (Critical)</span></td>
+                    <td><strong>System Blocker / Halt:</strong> Core system crash, data corruption risk, total failure of Smart CPR reader driver, complete inability to check in patients, process bills, or record treatments.</td>
+                    <td class="mono"><strong>&le; 2 Hours</strong></td>
+                    <td class="mono"><strong>&le; 8 Hours</strong><br><small>(Continuous work)</small></td>
+                    <td>Project Manager + Lead Architect immediate paging</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-major">Severity 2 (Major)</span></td>
+                    <td><strong>Major Functional Impairment:</strong> Major clinical or business feature inoperative (e.g. dental chart saving error, payment gateway failure, QR code generation failure, purchase approval stall) where no immediate manual workaround exists.</td>
+                    <td class="mono"><strong>&le; 4 Hours</strong></td>
+                    <td class="mono"><strong>&le; 24 Hours</strong><br><small>(Next business day)</small></td>
+                    <td>Senior Project Manager notification</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-medium">Severity 3 (Medium)</span></td>
+                    <td><strong>Moderate Operational Defect:</strong> System functions with minor operational impact or a viable workaround is available (e.g. report formatting error, non-critical filter failure, delayed SMS trigger, styling discrepancy).</td>
+                    <td class="mono"><strong>&le; 8 Hours</strong></td>
+                    <td class="mono"><strong>&le; 72 Hours</strong><br><small>(3 business days)</small></td>
+                    <td>Assigned to next sprint cycle</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-minor">Severity 4 (Minor)</span></td>
+                    <td><strong>Cosmetic / Minor Enhancement:</strong> Minor UI alignment, typographical errors, tooltip mislabeling, or non-functional aesthetic adjustments that do not impact operational workflows.</td>
+                    <td class="mono"><strong>&le; 24 Hours</strong></td>
+                    <td class="mono"><strong>Next Sprint Release</strong><br><small>(Scheduled release)</small></td>
+                    <td>Handled in standard sprint backlog</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- SECTION 06: WARRANTY & HYPERCARE -->
+              <div class="section-h2" id="sec-warranty">
+                <span class="section-tag">06</span>
+                <span>Post-Go-Live Warranty &amp; Dedicated Hypercare SLA</span>
+              </div>
+              <p>
+                Following formal production deployment and Go-Live sign-off (Milestone 12), the Service Provider provides an extensive support and stabilization package at <strong>zero additional cost</strong>:
+              </p>
+              
+              <div class="callout-box callout-blue">
+                <div class="callout-title"><i class="fa-solid fa-headset"></i> 60-Day Dedicated Hypercare Standby Period</div>
+                For sixty (60) calendar days immediately following production cutover, the Service Provider shall assign dedicated engineering standby across both morning and evening clinic operating shifts. This includes real-time front-desk queue monitoring, Smart CPR reader hardware diagnostics, cashier settlement verification, and immediate on-call troubleshooting across all 6 Bahrain dental branches.
+              </div>
+
+              <div class="callout-box callout-emerald">
+                <div class="callout-title"><i class="fa-solid fa-certificate"></i> One Full Year (12 Months) Comprehensive Software Warranty</div>
+                The Service Provider guarantees the entire software codebase (all 14 modules, backend APIs, and .NET hardware drivers) for <strong>twelve (12) consecutive months</strong> from the Go-Live date. Under this warranty, the Service Provider shall remediate 100% of bugs, code defects, logical errors, security vulnerabilities, database performance degradations, and browser compatibility updates completely free of charge.
+              </div>
+
+              <!-- SECTION 07: INFRASTRUCTURE & UPTIME SLA -->
+              <div class="section-h2" id="sec-uptime">
+                <span class="section-tag">07</span>
+                <span>Service Availability &amp; Infrastructure Uptime SLA (Post-Deployment)</span>
+              </div>
+              <p>
+                Post-deployment service availability is governed strictly in accordance with the hosting infrastructure option selected by the Client, as detailed in Technical Addendum Ref: <code>SL-ARDC-EMRS-INFRA-2026-V1</code>:
+              </p>
+
+              <div class="section-h3"><i class="fa-solid fa-cloud" style="color:var(--accent);"></i> Option 1: Vendor-Managed Cloud Infrastructure (BD 630.000 / Year)</div>
+              <p>
+                If the Client elects Option 1, the Service Provider hosts the application on a dedicated enterprise cloud server (3 vCPU, 12 GB RAM, 200 GB NVMe, 4 TB Bandwidth, CloudLinux OS, Imunify360, JetBackup + 500GB daily off-site backups, and 24/7 proactive monitoring). Under this option, the Service Provider commits to a <strong>99.5% Monthly Service Availability SLA</strong>:
+              </p>
+
+              <table class="data-table" style="font-size:11.5px;">
+                <thead>
+                  <tr>
+                    <th>Service Level Metric</th>
+                    <th>Committed Benchmark</th>
+                    <th>Measurement Window &amp; Exclusions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Monthly Application Uptime</strong></td>
+                    <td class="mono" style="color:var(--emerald); font-weight:700;">&ge; 99.5% Uptime</td>
+                    <td>Calculated monthly; excludes scheduled maintenance (2:00 AM – 4:00 AM AST).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Recovery Point Objective (RPO)</strong></td>
+                    <td class="mono">&le; 1 Hour</td>
+                    <td>Maximum potential data loss window via automated continuous database snapshots.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Recovery Time Objective (RTO)</strong></td>
+                    <td class="mono">&le; 4 Hours</td>
+                    <td>Time to restore full production system from offsite disaster recovery backup.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Service Credit Rebate</strong></td>
+                    <td class="mono">5% – 20% Credit</td>
+                    <td>Applied to hosting renewal: 99.0–99.5% (5%), 98.0–99.0% (10%), &lt;98.0% (20%).</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="section-h3"><i class="fa-solid fa-server" style="color:var(--primary);"></i> Option 2: Client In-House Physical Server (~BD 3,700–4,300 CapEx + Private WAN)</div>
+              <p>
+                If the Client elects Option 2 (housing a physical Dell PowerEdge / HPE ProLiant rack server at HQ with FortiGate Site-to-Site IPsec VPN connecting the 6 branches), physical server hardware health, electrical UPS, server room cooling, dedicated business fiber, static IPs, and internal LAN/WAN routing are maintained exclusively by the Client&rsquo;s internal IT team. The Service Provider&rsquo;s SLA applies strictly to the software application layer, guaranteeing application code integrity and responding to software incidents upon server network accessibility.
+              </p>
+
+              <!-- SECTION 08: GOVERNANCE & ESCALATION -->
+              <div class="section-h2" id="sec-governance">
+                <span class="section-tag">08</span>
+                <span>Communication, Project Governance &amp; Escalation Hierarchy</span>
+              </div>
+              <p>
+                To maintain seamless collaboration and swift issue resolution, official communication shall be channeled through designated project leads using a structured 3-tier escalation framework:
+              </p>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Escalation Level</th>
+                    <th>Role &amp; Responsibilities</th>
+                    <th>Designated Channel</th>
+                    <th>Response Target</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Tier 1: Engineering Support Desk</strong></td>
+                    <td>Lead Full-Stack Engineers &amp; QA Lead handling day-to-day sprint tickets, defect logging, and staging deployments.</td>
+                    <td>SaNDS Lab Project Portal &amp; Dedicated WhatsApp Engineering Group</td>
+                    <td class="mono">&le; 2 Hours</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tier 2: Project Management</strong></td>
+                    <td>Senior Project Manager overseeing schedule adherence, milestone reviews, resource allocation, and workflow approvals.</td>
+                    <td>Official Email (<code>projects@sandslab.com</code>) &amp; Scheduled Bi-Weekly Video Sync</td>
+                    <td class="mono">&le; 4 Hours</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tier 3: Executive Steering</strong></td>
+                    <td>Managing Director (SaNDS Lab) &amp; CEO / Medical Director (Al Rabeeh) resolving contractual matters, scope variances, or strategic priorities.</td>
+                    <td>Direct Executive Line &amp; Formal Written Notice</td>
+                    <td class="mono">&le; 8 Hours</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- SECTION 09: CLIENT DEPENDENCIES -->
+              <div class="section-h2" id="sec-dependencies">
+                <span class="section-tag">09</span>
+                <span>Client Responsibilities, Operational Dependencies &amp; Prerequisites</span>
+              </div>
+              <p>
+                Timely milestone delivery is contingent upon the Client fulfilling the following operational dependencies in a timely manner:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Master Data Provision:</strong> Client shall provide clinic branch details, doctor lists, chair configurations, service price tariffs, and existing patient/employee spreadsheets within ten (10) business days of milestone kickoff.</li>
+                <li><strong>Hardware Access for Testing:</strong> Client shall provide two (2) physical Smart CPR card reader devices connected to a sandbox test workstation to allow the Service Provider to calibrate and stress-test the .NET USB driver.</li>
+                <li><strong>Designated Functional SPOC:</strong> Client shall appoint an authorized Lead Project Coordinator with authority to validate workflows, attend sprint reviews, and sign off milestone acceptance certificates.</li>
+                <li><strong>Network &amp; Branch Readiness:</strong> For the multi-branch offline sync and Cloud/In-House server access, the Client shall ensure stable internet connectivity across all 6 clinic reception desks.</li>
+              </ul>
+
+              <!-- SECTION 10: PRICING & PAYMENT TERMS -->
+              <div class="section-h2" id="sec-pricing">
+                <span class="section-tag">10</span>
+                <span>Commercial Pricing Structure, Milestone Payments &amp; AMC Terms</span>
+              </div>
+              
+              <div class="callout-box callout-amber">
+                <div class="callout-title"><i class="fa-solid fa-coins"></i> Total Fixed Software Contract Investment: BD 8,400.000</div>
+                The total, all-inclusive software engineering fee for the entire 14-module scope (11 Core EMRS Reception Modules + 3 Additional Enterprise Modules [HR Documents &amp; Basic Payroll, QR Asset Management, Quote &amp; Purchase Procurement Workflow] + Smart CPR Driver + Offline Sync + 60-Day Hypercare + 1-Year Warranty) is fixed at <strong>BD 8,400.000 (Eight Thousand Four Hundred Bahraini Dinars Net)</strong>.
+              </div>
+
+              <p>
+                <strong>Payment Terms &amp; Invoicing Protocol:</strong> Payments shall be released strictly against the verified milestone gates set forth in Section 03 of this Agreement:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Milestone Billing Gates:</strong> Each milestone invoice is generated upon formal completion, demonstration, and acceptance of the corresponding deliverable package.</li>
+                <li><strong>Invoice Settlement Window:</strong> Invoices shall be payable within <strong>ten (10) business days</strong> of milestone acceptance.</li>
+                <li><strong>Hosting Fees (Option 1):</strong> If Vendor-Managed Cloud Hosting is chosen, the hosting fee of <strong>BD 630.000 / Year</strong> is billed annually in advance upon provisioning of the production cloud server.</li>
+                <li><strong>Post-Warranty Annual Maintenance Contract (AMC):</strong> Following the expiration of the complimentary 12-Month warranty, the Client may optionally engage the Service Provider for ongoing Year 2+ AMC at <strong>15% of the software value (BD 1,260.000 / Year)</strong>, covering proactive server maintenance, continuous security patching, minor feature enhancements, and dedicated technical helpdesk.</li>
+              </ul>
+
+              <!-- SECTION 11: SOURCE CODE & IP -->
+              <div class="section-h2" id="sec-ip">
+                <span class="section-tag">11</span>
+                <span>Intellectual Property, 100% Full Source Code Handover &amp; Data Sovereignty</span>
+              </div>
+              <p>
+                SaNDS Lab Middle East W.L.L. operates under an open, client-centric intellectual property philosophy that eliminates vendor lock-in:
+              </p>
+              <div class="callout-box callout-emerald">
+                <div class="callout-title"><i class="fa-solid fa-code"></i> 100% Full Source Code Transfer &amp; Exclusive IP Ownership</div>
+                Upon final milestone settlement (Milestone 12), the Service Provider shall transfer complete, unencumbered ownership of all custom software source code, ReactJS front-end repositories, PHP MVC microservices backend, RabbitMQ configurations, C# .NET Smart CPR driver source code, database DDL schemas, and deployment build scripts to the Client. The Client shall hold full, exclusive intellectual property rights to utilize, modify, expand, or self-host the software without paying any recurring software user license fees.
+              </div>
+              <p>
+                <strong>Data Sovereignty:</strong> All patient records, clinical charts, employee profiles, asset inventories, purchase orders, financial transactions, and audit logs belong 100% exclusively to Al Rabeeh Dental Center. The Service Provider asserts zero ownership or lien over Client data.
+              </p>
+
+              <!-- SECTION 12: EXCLUSIONS & CHANGE MANAGEMENT -->
+              <div class="section-h2" id="sec-exclusions">
+                <span class="section-tag">12</span>
+                <span>Scope Exclusions &amp; Formal Change Management Protocol</span>
+              </div>
+              <p>
+                To maintain schedule precision and cost predictability, the following items are explicitly categorized as out-of-scope for the fixed-price software contract:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Direct Automated Bank API WPS Integration:</strong> The system calculates and outputs standard payroll statements and reports. Direct programmatic integration with proprietary commercial bank API gateways or automated central bank settlement channels is excluded unless scoped separately under future phases.</li>
+                <li><strong>Automated Cheque Printing Hardware Robotics:</strong> Procurement workflow records cheque issuance, numbers, beneficiary amounts, and scanned payment vouchers. Physical robotic cheque printing hardware integration is excluded.</li>
+                <li><strong>Physical Hardware &amp; Appliance Procurement:</strong> Servers, NAS units, FortiGate firewalls, Smart CPR reader USB devices, thermal receipt printers, and barcode/QR scanners must be procured separately by the Client (or via the Option 1 Cloud Hosting arrangement).</li>
+                <li><strong>Third-Party Telephony &amp; Messaging Charges:</strong> WhatsApp Business API and SMS gateway per-message credit costs charged by third-party telecom aggregators (e.g. Infobip, Twilio, Batelco, Zain) are paid directly by the Client.</li>
+              </ul>
+              <p>
+                <strong>Change Request Protocol:</strong> Any feature requested outside the 14 defined modules shall follow a formal Change Management Procedure. The Service Provider shall analyze the impact and provide a fixed-rate quotation based on our standard rate card (with small modifications capped at 10% of the associated milestone weightage).
+              </p>
+
+              <!-- SECTION 13: DATA CONFIDENTIALITY & NHRA -->
+              <div class="section-h2" id="sec-confidentiality">
+                <span class="section-tag">13</span>
+                <span>Patient Data Confidentiality, NHRA Regulations &amp; Information Security</span>
+              </div>
+              <p>
+                The Service Provider recognizes that medical records and patient data are highly sensitive. The software architecture and development processes strictly adhere to:
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Bahrain NHRA Standards:</strong> Full compliance with National Health Regulatory Authority clinical record-keeping guidelines, including immutable audit trails for every medical chart entry, diagnosis change, and billing modification.</li>
+                <li><strong>Bahrain PDPL (Law No. 30 of 2018):</strong> Full adherence to the Kingdom of Bahrain Personal Data Protection Law, ensuring secure patient data processing, consent capture, and strict role-based access restrictions.</li>
+                <li><strong>Cryptographic Standards:</strong> 256-bit AES encryption at rest for sensitive demographic and health records; TLS 1.3 encryption in transit for all web and API traffic.</li>
+                <li><strong>Mutual Non-Disclosure:</strong> Both parties agree to maintain strict confidentiality regarding proprietary business logic, patient records, financial statements, and technical architectures for a period of five (5) years following project completion.</li>
+              </ul>
+
+              <!-- SECTION 14: GOVERNING LAW & DISPUTE RESOLUTION -->
+              <div class="section-h2" id="sec-law">
+                <span class="section-tag">14</span>
+                <span>Termination, Dispute Resolution &amp; Governing Law</span>
+              </div>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Termination for Convenience:</strong> Either party may terminate this Agreement by providing <strong>thirty (30) days&rsquo; written notice</strong>. Any validated and accepted milestones completed up to the date of termination shall be settled in full, and corresponding code deliverables shall be handed over.</li>
+                <li><strong>Termination for Cause:</strong> Either party may terminate immediately if the other party commits a material breach and fails to remedy such breach within <strong>fifteen (15) business days</strong> of receiving formal written notification.</li>
+                <li><strong>Governing Law &amp; Jurisdiction:</strong> This Agreement shall be construed, interpreted, and governed in accordance with the substantive laws of the <strong>Kingdom of Bahrain</strong>.</li>
+                <li><strong>Dispute Resolution:</strong> Any dispute, controversy, or claim arising out of or relating to this contract shall first be referred to executive mediation. If unresolved within thirty (30) days, the matter shall be submitted to the exclusive jurisdiction of the <strong>Bahrain Chamber for Dispute Resolution (BCDR)</strong> or the competent <strong>Courts of the Kingdom of Bahrain</strong>.</li>
+              </ul>
+
+              <!-- SECTION 15: CORPORATE EXECUTION & SIGNATURES -->
+              <div class="section-h2" id="sec-execution">
+                <span class="section-tag">15</span>
+                <span>Signatures, Corporate Execution &amp; Binding Acceptance</span>
+              </div>
+              <p>
+                IN WITNESS WHEREOF, the authorized representatives of both parties, having read, fully understood, and mutually agreed to all 15 sections, terms, service levels, milestone gates, and commercial conditions set forth in this Master Software Development Service Level Agreement, have executed this document on the dates stated below:
+              </p>
+
+              <div class="execution-box">
+                <div class="sig-grid">
+                  <!-- Service Provider Signature -->
+                  <div class="sig-card">
+                    <div class="sig-party-title">
+                      <i class="fa-solid fa-building-shield" style="color:var(--accent);"></i> For &amp; on Behalf of Service Provider
+                    </div>
+                    <div style="font-weight:700; color:var(--primary); font-size:13px; margin-bottom:12px;">
+                      SaNDS Lab Middle East W.L.L.
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Commercial Registration:</span>
+                      <span class="dots"></span>
+                      <span class="val">CR No. 165842-1</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Authorized Signatory:</span>
+                      <span class="dots"></span>
+                      <span class="val">Ajit Kumar K.V.</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Designation:</span>
+                      <span class="dots"></span>
+                      <span class="val">Managing Director / CTO</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Official Email:</span>
+                      <span class="dots"></span>
+                      <span class="val">ajit@sandslab.com</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Date of Execution:</span>
+                      <span class="dots"></span>
+                      <span class="val">____ / ____ / 2026</span>
+                    </div>
+                    <div class="sig-space">
+                      Authorized Signature &amp; Official Corporate Stamp
+                    </div>
+                  </div>
+
+                  <!-- Client Signature -->
+                  <div class="sig-card">
+                    <div class="sig-party-title">
+                      <i class="fa-solid fa-hospital" style="color:var(--accent);"></i> For &amp; on Behalf of Client
+                    </div>
+                    <div style="font-weight:700; color:var(--primary); font-size:13px; margin-bottom:12px;">
+                      Al Rabeeh Dental Center W.L.L.
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Corporate Entity:</span>
+                      <span class="dots"></span>
+                      <span class="val">Al Rabeeh Group of Medicals</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Authorized Signatory:</span>
+                      <span class="dots"></span>
+                      <span class="val">Dr. / Management Executive</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Designation:</span>
+                      <span class="dots"></span>
+                      <span class="val">Chief Executive Officer / Director</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Corporate Email:</span>
+                      <span class="dots"></span>
+                      <span class="val">director@alrabeeh.bh</span>
+                    </div>
+                    <div class="sig-line-item">
+                      <span class="label">Date of Execution:</span>
+                      <span class="dots"></span>
+                      <span class="val">____ / ____ / 2026</span>
+                    </div>
+                    <div class="sig-space">
+                      Authorized Signature &amp; Official Corporate Stamp
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- End sla-body -->
+
+            <!-- Document Footer (Screen Only) -->
+            <div class="doc-footer">
+              <div>
+                <strong>SaNDS Lab Middle East W.L.L.</strong> &bull; CR No. 165842-1 &bull; Kingdom of Bahrain
+              </div>
+              <div>
+                Al Rabeeh Dental Center EMRS &amp; Enterprise Management Suite &bull; Master SLA
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>
