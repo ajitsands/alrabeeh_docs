@@ -1343,14 +1343,20 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
                 <span>Milestone Review, Verification &amp; Acceptance Protocol</span>
               </div>
               <p>
-                To maintain momentum, prevent project bottlenecks, and enforce rigorous quality governance, both parties agree to the following acceptance protocol:
+                To maintain momentum, prevent project bottlenecks, and enforce rigorous quality governance, both parties agree to the following structured milestone review and acceptance protocol:
               </p>
               <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
-                <li><strong>Formal Milestone Delivery:</strong> Upon completion of a milestone, the Service Provider shall formally submit the deliverable package to the Client&rsquo;s designated Project Steering Lead, accompanied by: (a) Release Notes detailing delivered features, (b) Staging environment access URL with credentials, (c) Test walkthrough scripts, and (d) A formal Milestone Sign-off Sheet.</li>
-                <li><strong>Client Review Turnaround SLA (5 Business Days):</strong> The Client shall review, test, and evaluate the submitted deliverables within <strong>five (5) business days</strong> of receipt. The Client shall either issue a signed acceptance or provide a consolidated, itemized defect list referencing the agreed specifications.</li>
-                <li><strong>Defect Rectification Cycle (5 Business Days):</strong> If valid defects are logged during the review window, the Service Provider shall remediate all logged items within <strong>five (5) business days</strong> at zero cost, whereupon the 5-day review period resets strictly for the remediated items.</li>
-                <li><strong>Deemed Acceptance Clause:</strong> If the Client does not provide written feedback or an itemized defect list within <strong>ten (10) consecutive business days</strong> following formal submission, the milestone shall be deemed contractually accepted, authorizing billing progression to the next engineering phase.</li>
+                <li><strong>Formal Milestone Delivery &amp; Verification Request:</strong> Upon completion of a development gate, the Service Provider shall formally submit the deliverable package to the Client&rsquo;s designated Project Steering Lead, accompanied by: (a) Detailed Release Notes outlining all delivered features, (b) Staging environment access URL with credentials, (c) Test walkthrough scripts, and (d) A formal Milestone Sign-off Sheet requesting verification and confirmation.</li>
+                <li><strong>Client Review &amp; Verification Window (5 Business Days):</strong> The Client shall review, test, and evaluate the submitted deliverables within <strong>five (5) business days</strong> of receipt. The Client shall either issue a signed milestone acceptance or provide a consolidated, itemized defect list referencing the agreed functional specifications.</li>
+                <li><strong>Defect Rectification Cycle (5 Business Days):</strong> If valid defects are logged during the review window, the Service Provider shall remediate all logged items within <strong>five (5) business days</strong> at zero cost, whereupon the review period resets strictly for the remediated items.</li>
+                <li><strong>Automatic Milestone Confirmation (Passive Approval Clause):</strong> If the Client does not provide written feedback, signed acceptance, or an itemized defect list within <strong>ten (10) consecutive business days</strong> following formal submission of the verification request, the milestone deliverable shall be <strong>deemed automatically confirmed and accepted by default</strong>.</li>
+                <li><strong>Automatic Progression &amp; Default Invoicing:</strong> Upon milestone confirmation—whether by explicit Client sign-off or through the Automatic Confirmation Clause—the project shall <strong>automatically advance to the subsequent engineering gate</strong>, and the corresponding milestone invoice shall be <strong>generated and issued by default</strong> in accordance with Section 10.</li>
               </ul>
+
+              <div class="callout-box callout-blue">
+                <div class="callout-title"><i class="fa-solid fa-clock-rotate-left"></i> Automatic Confirmation &amp; Continuous Sprint Momentum</div>
+                To guarantee that engineering sprints adhere to the 28-week schedule and prevent costly team idle time, modules submitted for verification are automatically confirmed after 10 consecutive business days of non-objection. This triggers default invoice generation and immediate commencement of the next development gate.
+              </div>
 
               <!-- SECTION 05: DEFECT SEVERITY & RESOLUTION SLAS -->
               <div class="section-h2" id="sec-defects">
@@ -1583,15 +1589,23 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
               </table>
 
               <p>
-                <strong>Payment Terms &amp; Invoicing Protocol:</strong> Base software payments shall be released strictly against the verified milestone gates set forth in Section 03 of this Agreement:
+                <strong>Payment Terms, Automated Invoicing &amp; Milestone Settlement Protocol:</strong> Base software payments shall be released strictly against the verified milestone gates set forth in Section 03 of this Agreement:
               </p>
               <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
-                <li><strong>Milestone Billing Gates:</strong> Each milestone invoice is generated upon formal completion, demonstration, and acceptance of the corresponding deliverable package.</li>
-                <li><strong>Inventory Billing Gate:</strong> If the Inventory Module is confirmed, billing is tied to its dedicated delivery and training sprint (50% mobilization, 50% UAT sign-off).</li>
-                <li><strong>Invoice Settlement Window:</strong> Invoices shall be payable within <strong>ten (10) business days</strong> of milestone acceptance.</li>
+                <li><strong>Default Invoice Generation per Milestone Gate:</strong> Upon milestone verification—whether through formal Client sign-off or through the Section 04 Automatic Confirmation Clause—an official commercial milestone invoice shall be <strong>automatically generated and issued by default</strong> for the corresponding gate amount.</li>
+                <li><strong>Invoice Settlement Window:</strong> Each milestone invoice shall be due and payable within <strong>ten (10) business days</strong> of issuance.</li>
+                <li><strong>Inventory Billing Gate:</strong> If the Clinical &amp; Material Inventory Module is confirmed (BD 600 to Max BD 1,000), billing is tied to its dedicated delivery and training sprint (50% mobilization advance upon scope sign-off, 50% upon final inventory UAT acceptance).</li>
+                <li><strong>Two-Gate Non-Payment Suspension of Work:</strong> If the Client fails to settle the invoices for <strong>two (2) consecutive milestone gates</strong>, the Service Provider holds the <strong>immediate contractual right to halt and suspend all active engineering development, sprint execution, feature deployments, and staging server environments</strong>.</li>
+                <li><strong>Payment Prerequisite for Resumption:</strong> All suspended development activities shall remain halted until the Client executes <strong>100% full payment</strong> of all overdue invoices across the outstanding milestone gates.</li>
+                <li><strong>15-Working-Day Resumption Ramp-Up Window:</strong> Following confirmed receipt and bank clearance of the full overdue amount, the Service Provider shall resume active development <strong>within fifteen (15) working days</strong>. This 15-working-day ramp-up period is contractually required to reallocate senior engineering personnel, re-activate development environments, and re-schedule project sprint cycles. All subsequent milestone delivery dates and the overall project completion timeline shall be automatically extended by the total duration of the suspension plus the 15-working-day ramp-up window without penalty or liability to the Service Provider.</li>
                 <li><strong>Hosting Fees (Option 1):</strong> If Vendor-Managed Cloud Hosting is chosen, the hosting fee of <strong>BD 630.000 / Year</strong> is billed annually in advance upon provisioning of the production cloud server.</li>
                 <li><strong>Post-Warranty Annual Maintenance Contract (AMC):</strong> Following the expiration of the complimentary 12-Month warranty, the Client may optionally engage the Service Provider for ongoing Year 2+ AMC at <strong>15% of the software value (BD 1,260.000 / Year)</strong>, covering proactive server maintenance, continuous security patching, minor feature enhancements, and dedicated technical helpdesk.</li>
               </ul>
+
+              <div class="callout-box callout-orange">
+                <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> Non-Payment Suspension &amp; 15-Working-Day Resumption Rule</div>
+                To protect engineering resource allocation, development automatically halts if two consecutive milestone gate invoices remain unpaid. Work resumes strictly within 15 working days following 100% settlement of all overdue amounts, with all delivery deadlines adjusted accordingly.
+              </div>
 
               <!-- SECTION 11: SOURCE CODE & IP -->
               <div class="section-h2" id="sec-ip">
@@ -1645,14 +1659,39 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
               <!-- SECTION 14: GOVERNING LAW & DISPUTE RESOLUTION -->
               <div class="section-h2" id="sec-law">
                 <span class="section-tag">14</span>
-                <span>Termination, Dispute Resolution &amp; Governing Law</span>
+                <span>Termination, Default Remedies, Inability to Deliver &amp; Governing Law</span>
               </div>
+              <p>
+                To provide absolute commercial clarity, risk mitigation, and fair legal protection for both parties, the following terms govern contract termination, vendor delivery defaults, client payment defaults, and dispute resolution:
+              </p>
+
               <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
-                <li><strong>Termination for Convenience:</strong> Either party may terminate this Agreement by providing <strong>thirty (30) days&rsquo; written notice</strong>. Any validated and accepted milestones completed up to the date of termination shall be settled in full, and corresponding code deliverables shall be handed over.</li>
-                <li><strong>Termination for Cause:</strong> Either party may terminate immediately if the other party commits a material breach and fails to remedy such breach within <strong>fifteen (15) business days</strong> of receiving formal written notification.</li>
+                <li><strong>Termination for Convenience:</strong> Either party may terminate this Agreement by providing <strong>thirty (30) calendar days&rsquo; prior written notice</strong>. In such an event, any validated and accepted milestone gates completed up to the effective termination date shall be settled in full by the Client, whereupon the Service Provider shall immediately release and transfer the corresponding source code deliverables.</li>
+
+                <li><strong>Vendor Inability to Deliver &amp; Right to Cure (15 Business Days):</strong> If the Service Provider fails or is unable to deliver a scheduled milestone deliverable in accordance with the specifications in Section 03, or commits any material breach of this Agreement, the Client shall issue a formal written <strong>Notice of Default</strong> specifying the exact deficiency. The Service Provider shall be granted a <strong>fifteen (15) business-day Cure Period</strong> from the date of receipt to assign senior engineering staff, rectify the defect or blocker, and deliver the milestone at zero additional cost.</li>
+
+                <li><strong>Client Remedy upon Vendor Failure to Cure (Immediate Source Code Release &amp; Financial Settlement):</strong> If the Service Provider is genuinely unable to deliver the milestone or remedy the default upon the expiration of the 15-business-day Cure Period, the Client holds the absolute legal right to <strong>terminate this Agreement immediately for cause</strong>. In such event:
+                  <ul style="margin-left: 20px; margin-top: 6px; margin-bottom: 6px; list-style-type: circle;">
+                    <li><strong>100% Immediate Source Code Transfer (Within 5 Business Days):</strong> The Service Provider shall, within <strong>five (5) business days</strong> of termination, transfer complete, unencumbered custody of all source code, Git repositories, ReactJS frontend code, PHP microservices, .NET Smart CPR reader driver, SQLite offline sync engines, database DDL schemas, and technical API documentation engineered up to that date. The Client shall hold full, unrestricted rights to utilize, modify, self-host, or engage a third-party developer to continue the project without vendor lock-in.</li>
+                    <li><strong>Protection of Earned Payments:</strong> All payments made for previously completed, tested, and accepted milestone gates shall remain with the Service Provider as earned consideration for delivered and accepted value.</li>
+                    <li><strong>Refund of Unearned Advance on Incomplete Gate:</strong> Any advance deposit or partial payment made specifically toward the uncompleted or failed milestone gate shall be <strong>refunded in full to the Client within ten (10) business days</strong>.</li>
+                    <li><strong>Discharge of Future Liabilities:</strong> The Client shall be <strong>completely released and discharged</strong> from any obligation to pay for any future unperformed milestone gates or remaining contract amounts.</li>
+                  </ul>
+                </li>
+
+                <li><strong>Service Provider Termination for Client Non-Payment Default:</strong> If the development has been suspended in accordance with Section 10 due to the Client&rsquo;s non-payment of two (2) consecutive milestone gates, and such non-payment remains uncured for more than <strong>thirty (30) calendar days</strong> following written suspension notice, the Service Provider holds the right to terminate this Agreement for cause. In such case, the Service Provider shall retain all payments received for completed milestones and shall deliver source code strictly corresponding to fully settled milestone gates.</li>
+
+                <li><strong>Technical Transition Handover Assistance (14 Calendar Days):</strong> In the event of contract termination involving source code transfer, the Service Provider shall provide up to <strong>fourteen (14) calendar days of remote transition support</strong> and a comprehensive Technical Handover Dossier (architecture summary, build commands, environment variables, database seeders) to ensure the Client&rsquo;s designated technical personnel or incoming agency can compile, build, and deploy the existing codebase smoothly.</li>
+
                 <li><strong>Governing Law &amp; Jurisdiction:</strong> This Agreement shall be construed, interpreted, and governed in accordance with the substantive laws of the <strong>Kingdom of Bahrain</strong>.</li>
-                <li><strong>Dispute Resolution:</strong> Any dispute, controversy, or claim arising out of or relating to this contract shall first be referred to executive mediation. If unresolved within thirty (30) days, the matter shall be submitted to the exclusive jurisdiction of the <strong>Bahrain Chamber for Dispute Resolution (BCDR)</strong> or the competent <strong>Courts of the Kingdom of Bahrain</strong>.</li>
+
+                <li><strong>Dispute Resolution:</strong> Any dispute, controversy, or claim arising out of or relating to this contract shall first be referred to executive mediation between the CEO / Managing Director of both parties. If unresolved within thirty (30) calendar days, the matter shall be submitted to the exclusive jurisdiction of the <strong>Bahrain Chamber for Dispute Resolution (BCDR)</strong> or the competent <strong>Courts of the Kingdom of Bahrain</strong>.</li>
               </ul>
+
+              <div class="callout-box callout-emerald">
+                <div class="callout-title"><i class="fa-solid fa-shield-halved"></i> Client Delivery Protection &amp; Source Code Release Guarantee</div>
+                Al Rabeeh Dental Center carries zero delivery risk: if the development team is unable to deliver a milestone after the 15-day cure window, 100% of all software source code, database architectures, and microservices developed up to that day are immediately transferred to the Client within 5 business days, any unearned milestone advance is refunded, and all remaining contract payments are permanently waived.
+              </div>
 
               <!-- SECTION 15: CORPORATE EXECUTION & SIGNATURES -->
               <div class="section-h2" id="sec-execution">
