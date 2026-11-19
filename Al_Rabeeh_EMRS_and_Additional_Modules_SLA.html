@@ -1218,6 +1218,11 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
                 To guarantee momentum, transparency, and risk mitigation, the engineering program is structured across <strong>12 progressive milestones</strong> over a <strong>28-Week (7-Month) delivery horizon</strong>. This includes dedicated parallel sprint tracks for the Additional Modules (30 Working Days / 6 Weeks) and a comprehensive 1-month staging/pilot buffer:
               </p>
 
+              <div class="callout-box callout-blue" style="margin-bottom: 16px;">
+                <div class="callout-title"><i class="fa-solid fa-flag-checkered"></i> Advance Mobilization Payment Structure &amp; Contract Start Date Trigger</div>
+                All milestone gates operate contractually as sequential <strong>advance mobilization payments</strong>. Upon formal signing of this Agreement, the Client shall pay the advance amount for <strong>Gate 1 (M-01: BD 840.000)</strong>. The official <strong>Contract &amp; Engineering Start Date</strong> (Day 01 of the 28-week delivery roadmap) is legally established as the date on which this initial Gate 1 advance payment is received and credited to the Service Provider&rsquo;s bank account. Work on each subsequent gate commences strictly upon receipt of that gate&rsquo;s advance payment.
+              </div>
+
               <table class="data-table">
                 <thead>
                   <tr>
@@ -1589,22 +1594,33 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
               </table>
 
               <p>
-                <strong>Payment Terms, Automated Invoicing &amp; Milestone Settlement Protocol:</strong> Base software payments shall be released strictly against the verified milestone gates set forth in Section 03 of this Agreement:
+                <strong>Payment Terms, Rolling Advance Gate Structure &amp; Milestone Settlement Protocol:</strong> Base software payments are structured strictly as sequential <strong>advance mobilization payments</strong> tied to the verified milestone roadmap set forth in Section 03 of this Agreement:
               </p>
               <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
-                <li><strong>Default Invoice Generation per Milestone Gate:</strong> Upon milestone verification—whether through formal Client sign-off or through the Section 04 Automatic Confirmation Clause—an official commercial milestone invoice shall be <strong>automatically generated and issued by default</strong> for the corresponding gate amount.</li>
-                <li><strong>Invoice Settlement Window:</strong> Each milestone invoice shall be due and payable within <strong>ten (10) business days</strong> of issuance.</li>
+                <li><strong>Initial Gate 1 Advance &amp; Official Contract Start Date:</strong> Upon formal signing of this Contract, the Client shall pay the advance mobilization amount for <strong>Gate 1 (M-01: 10% / BD 840.000)</strong>. The official <strong>Start Date of the Contract and 28-Week Engineering Horizon</strong> is legally defined as the exact date on which this initial Gate 1 advance payment is received and cleared in the Service Provider&rsquo;s bank account.</li>
+
+                <li><strong>Rolling Advance Cycle per Milestone Gate:</strong> All subsequent gate payments operate as rolling advance mobilization fees. Upon completion, demonstration, and confirmation of Gate N (whether by formal Client sign-off or through the Section 04 Automatic Confirmation Clause), an official commercial invoice for <strong>Gate N+1 Advance</strong> shall be <strong>automatically generated and issued by default</strong>. Development work on Gate N+1 shall officially commence upon receipt of the Gate N+1 advance payment.</li>
+
+                <li><strong>Strict Limitation of Refund to the Last Advance Payment Only:</strong> Because each milestone gate must be fully developed, verified, demonstrated, and confirmed before the next gate invoice is raised and mobilized, all payments made for previously completed and accepted gates (Gates 1 through N-1) represent fully delivered, accepted, and earned value and are strictly non-refundable. If this Agreement is terminated at any subsequent gate (for example, after reaching <strong>Gate 08</strong> or <strong>Gate 11</strong>), the <strong>ONLY amount eligible for refund under any circumstance is the single advance payment made for that specific active, uncompleted gate (the last advance payment received)</strong>. Zero refunds shall apply to previously accepted gates.</li>
+
+                <li><strong>Invoice Settlement Window:</strong> Each milestone advance invoice shall be due and payable within <strong>ten (10) business days</strong> of issuance.</li>
+
                 <li><strong>Inventory Billing Gate:</strong> If the Clinical &amp; Material Inventory Module is confirmed (BD 600 to Max BD 1,000), billing is tied to its dedicated delivery and training sprint (50% mobilization advance upon scope sign-off, 50% upon final inventory UAT acceptance).</li>
+
                 <li><strong>Two-Gate Non-Payment Suspension of Work:</strong> If the Client fails to settle the invoices for <strong>two (2) consecutive milestone gates</strong>, the Service Provider holds the <strong>immediate contractual right to halt and suspend all active engineering development, sprint execution, feature deployments, and staging server environments</strong>.</li>
+
                 <li><strong>Payment Prerequisite for Resumption:</strong> All suspended development activities shall remain halted until the Client executes <strong>100% full payment</strong> of all overdue invoices across the outstanding milestone gates.</li>
+
                 <li><strong>15-Working-Day Resumption Ramp-Up Window:</strong> Following confirmed receipt and bank clearance of the full overdue amount, the Service Provider shall resume active development <strong>within fifteen (15) working days</strong>. This 15-working-day ramp-up period is contractually required to reallocate senior engineering personnel, re-activate development environments, and re-schedule project sprint cycles. All subsequent milestone delivery dates and the overall project completion timeline shall be automatically extended by the total duration of the suspension plus the 15-working-day ramp-up window without penalty or liability to the Service Provider.</li>
+
                 <li><strong>Hosting Fees (Option 1):</strong> If Vendor-Managed Cloud Hosting is chosen, the hosting fee of <strong>BD 630.000 / Year</strong> is billed annually in advance upon provisioning of the production cloud server.</li>
+
                 <li><strong>Post-Warranty Annual Maintenance Contract (AMC):</strong> Following the expiration of the complimentary 12-Month warranty, the Client may optionally engage the Service Provider for ongoing Year 2+ AMC at <strong>15% of the software value (BD 1,260.000 / Year)</strong>, covering proactive server maintenance, continuous security patching, minor feature enhancements, and dedicated technical helpdesk.</li>
               </ul>
 
               <div class="callout-box callout-orange">
-                <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> Non-Payment Suspension &amp; 15-Working-Day Resumption Rule</div>
-                To protect engineering resource allocation, development automatically halts if two consecutive milestone gate invoices remain unpaid. Work resumes strictly within 15 working days following 100% settlement of all overdue amounts, with all delivery deadlines adjusted accordingly.
+                <div class="callout-title"><i class="fa-solid fa-coins"></i> Rolling Advance Gate Model &amp; Last Advance Refund Principle</div>
+                All gate payments are advance mobilization payments. Gate 1 payment defines the official Contract Start Date. Each confirmed gate triggers the invoice for the next gate. In any termination scenario (e.g. at Gate 08 or Gate 11), all prior accepted gates remain non-refundable earned fees; only the single advance amount paid for the active, uncompleted gate is refundable.
               </div>
 
               <!-- SECTION 11: SOURCE CODE & IP -->
@@ -1673,8 +1689,8 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
                 <li><strong>Client Remedy upon Vendor Failure to Cure (Immediate Source Code Release &amp; Financial Settlement):</strong> If the Service Provider is genuinely unable to deliver the milestone or remedy the default upon the expiration of the 15-business-day Cure Period, the Client holds the absolute legal right to <strong>terminate this Agreement immediately for cause</strong>. In such event:
                   <ul style="margin-left: 20px; margin-top: 6px; margin-bottom: 6px; list-style-type: circle;">
                     <li><strong>100% Immediate Source Code Transfer (Within 5 Business Days):</strong> The Service Provider shall, within <strong>five (5) business days</strong> of termination, transfer complete, unencumbered custody of all source code, Git repositories, ReactJS frontend code, PHP microservices, .NET Smart CPR reader driver, SQLite offline sync engines, database DDL schemas, and technical API documentation engineered up to that date. The Client shall hold full, unrestricted rights to utilize, modify, self-host, or engage a third-party developer to continue the project without vendor lock-in.</li>
-                    <li><strong>Protection of Earned Payments:</strong> All payments made for previously completed, tested, and accepted milestone gates shall remain with the Service Provider as earned consideration for delivered and accepted value.</li>
-                    <li><strong>Refund of Unearned Advance on Incomplete Gate:</strong> Any advance deposit or partial payment made specifically toward the uncompleted or failed milestone gate shall be <strong>refunded in full to the Client within ten (10) business days</strong>.</li>
+                    <li><strong>Earned Retention of Prior Completed Gates:</strong> Because all gate payments operate as sequential rolling advance payments where each prior gate is fully demonstrated, verified, and accepted before proceeding, all payments made for previously completed milestone gates (Gates 1 through N-1) represent fully delivered, accepted, and earned consideration and are strictly non-refundable.</li>
+                    <li><strong>Refund Strictly Limited to the Last Advance Amount (Active Gate Only):</strong> If the Agreement is terminated at any subsequent gate (for example, after reaching <strong>Gate 08</strong>, <strong>Gate 11</strong>, or any other gate), the <strong>ONLY amount eligible for refund shall be the single advance payment made for that specific active, uncompleted gate (the last advance amount paid)</strong>. This last advance payment shall be <strong>refunded in full to the Client within ten (10) business days</strong> of termination. Zero refunds shall apply to previously accepted gates.</li>
                     <li><strong>Discharge of Future Liabilities:</strong> The Client shall be <strong>completely released and discharged</strong> from any obligation to pay for any future unperformed milestone gates or remaining contract amounts.</li>
                   </ul>
                 </li>
@@ -1690,7 +1706,7 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
 
               <div class="callout-box callout-emerald">
                 <div class="callout-title"><i class="fa-solid fa-shield-halved"></i> Client Delivery Protection &amp; Source Code Release Guarantee</div>
-                Al Rabeeh Dental Center carries zero delivery risk: if the development team is unable to deliver a milestone after the 15-day cure window, 100% of all software source code, database architectures, and microservices developed up to that day are immediately transferred to the Client within 5 business days, any unearned milestone advance is refunded, and all remaining contract payments are permanently waived.
+                Al Rabeeh Dental Center carries zero delivery risk: if the development team is unable to deliver an active milestone after the 15-day cure window, 100% of all software source code, database architectures, and microservices developed up to that day are immediately transferred to the Client within 5 business days. The single advance payment paid for that active incomplete gate (the last advance amount paid, e.g. at Gate 08 or Gate 11) is refunded 100% to the Client, all past accepted gates remain non-refundable earned fees, and all remaining contract payments are permanently waived.
               </div>
 
               <!-- SECTION 15: CORPORATE EXECUTION & SIGNATURES -->
