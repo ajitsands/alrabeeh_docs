@@ -48,6 +48,18 @@ $routes = array(
         'date'     => '19/11/2026',
         'desc'     => 'Comprehensive 15-section Master Service Level Agreement (SLA) & Software Development Contract between SaNDS Lab and Al Rabeeh Dental Center / Group of Medicals. Covers 14 integrated modules (11 Clinical Reception EMRS + 3 Additional Modules: HR Documents & Basic Payroll, QR Asset Management, and Quote & Purchase Procurement Workflow) under the fixed quoted price of BD 8,400.000, Derma workflow up to booking & follow-ups, optional Clinical Inventory Module (BD 600 to Max BD 1,000), total project ceiling of BD 9,400.000 Max, 100% full source code transfer, and unlimited users with unlimited branches across the Kingdom of Bahrain.'
     ),
+    'SL-ARDC-ADDON-MODULES-2026' => array(
+        'title'    => '★ ADDITIONAL ENTERPRISE MODULES PROPOSAL: HR Documents, Asset & Quote/Purchase',
+        'html'     => 'Al_Rabeeh_EMRS_and_Additional_Modules_SLA.html',
+        'pdf'      => 'Al Rabeeh Additional Modules Proposal.pdf',
+        'status'   => 'Included in Contract Scope',
+        'timeline' => '30 Working Days (6 Weeks)',
+        'scope'    => 'HR Documents & Basic Payroll, QR Asset Management, Quote & Purchase Procurement Workflow',
+        'ba_ref'   => 'SL-ARDC-ADDON-MODULES-2026',
+        'date'     => '18/11/2026',
+        'anchor'   => '#sec-scope',
+        'desc'     => 'Official 5-page functional scope and development proposal for 3 additional integrated enterprise modules requested by Al Rabeeh Group of Medicals: (1) HR Documents Management & Basic Payroll, (2) Asset Management with unique QR Code Generation & Scanning, and (3) Quote & Purchase Management procurement workflow from requisition to CEO approval, cheques, delivery, and audit trail.'
+    ),
     'SL-ARDC-EMRS-2026-V1' => array(
         'title'    => '★ MASTER PROPOSAL: Al Rabeeh Dental Center EMRS Custom Ecosystem Development',
         'html'     => 'Al_Rabeeh_EMRS_Detailed_Proposal.html',
@@ -143,6 +155,10 @@ $routes = array(
 
 // Secondary Aliases for direct file access matching
 $aliases = array(
+    'sl-ardc-addon-modules-2026' => 'SL-ARDC-ADDON-MODULES-2026',
+    'ardc-addon-modules-2026' => 'SL-ARDC-ADDON-MODULES-2026',
+    'additional_modules' => 'SL-ARDC-ADDON-MODULES-2026',
+    'al_rabeeh_additional_modules_proposal' => 'SL-ARDC-ADDON-MODULES-2026',
     'sl-ardc-sla-2026-v1' => 'SL-ARDC-SLA-2026-V1',
     'ardc-sla-2026' => 'SL-ARDC-SLA-2026-V1',
     'sla' => 'SL-ARDC-SLA-2026-V1',
@@ -2197,11 +2213,11 @@ if ($pdo) {
         <a href="index.php?doc=SL-ARDC-SLA-2026-V1" class="btn-featured btn-featured-orange">
           <i class="fa-solid fa-file-contract"></i> Read Master SLA
         </a>
-        <a href="index.php?download=SL-ARDC-SLA-2026-V1" class="btn-featured btn-featured-ghost">
-          <i class="fa-solid fa-file-pdf"></i> Download PDF
+        <a href="index.php?doc=SL-ARDC-ADDON-MODULES-2026" class="btn-featured btn-featured-blue">
+          <i class="fa-solid fa-briefcase"></i> Additional Modules
         </a>
-        <a href="index.php?doc=SL-ARDC-EMRS-INFRA-2026-V1" class="btn-featured btn-featured-blue">
-          <i class="fa-solid fa-server"></i> Hosting Specs
+        <a href="index.php?download=SL-ARDC-SLA-2026-V1" class="btn-featured btn-featured-ghost">
+          <i class="fa-solid fa-file-pdf"></i> Download SLA PDF
         </a>
       </div>
     </div>
