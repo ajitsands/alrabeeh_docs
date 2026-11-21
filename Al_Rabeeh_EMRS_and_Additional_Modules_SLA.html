@@ -1356,11 +1356,12 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
                 <li><strong>Defect Rectification Cycle (5 Business Days):</strong> If valid defects are logged during the review window, the Service Provider shall remediate all logged items within <strong>five (5) business days</strong> at zero cost, whereupon the review period resets strictly for the remediated items.</li>
                 <li><strong>Automatic Milestone Confirmation (Passive Approval Clause):</strong> If the Client does not provide written feedback, signed acceptance, or an itemized defect list within <strong>ten (10) consecutive business days</strong> following formal submission of the verification request, the milestone deliverable shall be <strong>deemed automatically confirmed and accepted by default</strong>.</li>
                 <li><strong>Automatic Progression &amp; Default Invoicing:</strong> Upon milestone confirmation—whether by explicit Client sign-off or through the Automatic Confirmation Clause—the project shall <strong>automatically advance to the subsequent engineering gate</strong>, and the corresponding milestone invoice shall be <strong>generated and issued by default</strong> in accordance with Section 10.</li>
+                <li><strong>Scope Freeze on Confirmed Gates &amp; Mandatory Change Request (CR) Policy:</strong> Once a development gate is confirmed by the Client (or deemed automatically confirmed) and engineering progresses to another gate, the scope and deliverables of that confirmed gate are officially <strong>locked and frozen</strong>. If the Client requires any changes, alterations, additions, or workflow modifications to any previously confirmed gate, such changes <strong>shall strictly be considered and processed as a formal Change Request (CR)</strong> in accordance with Section 12. Requests for modifications to an already-confirmed gate shall not hold back, stall, or delay the development, invoicing, or deployment of active or future milestone gates.</li>
               </ul>
 
               <div class="callout-box callout-blue">
-                <div class="callout-title"><i class="fa-solid fa-clock-rotate-left"></i> Automatic Confirmation &amp; Continuous Sprint Momentum</div>
-                To guarantee that engineering sprints adhere to the 28-week schedule and prevent costly team idle time, modules submitted for verification are automatically confirmed after 10 consecutive business days of non-objection. This triggers default invoice generation and immediate commencement of the next development gate.
+                <div class="callout-title"><i class="fa-solid fa-clock-rotate-left"></i> Automatic Confirmation, Sprint Momentum &amp; Gate Scope Freeze</div>
+                To guarantee that engineering sprints adhere to the 28-week schedule and prevent costly project bottlenecks, modules submitted for verification are automatically confirmed after 10 consecutive business days of non-objection. Once a gate is confirmed and the project advances to another gate, the confirmed gate scope is permanently frozen; any subsequent modifications to that gate are strictly treated as a formal Change Request (CR).
               </div>
 
               <!-- SECTION 05: DEFECT SEVERITY & RESOLUTION SLAS -->
@@ -1666,8 +1667,13 @@ if (!defined('AUTH_PORTAL_ACTIVE')) {
                 <li><strong>Third-Party Telephony &amp; Messaging Charges:</strong> WhatsApp Business API and SMS gateway per-message credit costs charged by third-party telecom aggregators (e.g. Infobip, Twilio, Batelco, Zain) are paid directly by the Client.</li>
               </ul>
               <p>
-                <strong>Change Request Protocol:</strong> Any feature requested outside the 14 defined modules shall follow a formal Change Management Procedure. The Service Provider shall analyze the impact and provide a fixed-rate quotation based on our standard rate card (with small modifications capped at 10% of the associated milestone weightage).
+                <strong>Change Request (CR) Protocol &amp; Confirmed Gate Scope Lock:</strong>
               </p>
+              <ul style="margin-left: 20px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6;">
+                <li><strong>Modifications to Confirmed Milestone Gates:</strong> Once a development gate is confirmed and accepted by the Client (and the project moves to subsequent gates), its scope is officially locked and frozen. If the Client requests any functional modifications, new fields, revised workflows, or structural adjustments to any previously confirmed gate, such requests <strong>shall strictly be categorized and executed as a formal Change Request (CR)</strong>.</li>
+                <li><strong>Out-of-Scope Features:</strong> Any feature, third-party integration, or module requested outside the 14 defined modules shall likewise follow the formal Change Request Procedure.</li>
+                <li><strong>CR Evaluation &amp; Execution:</strong> Upon receiving a change request, the Service Provider shall analyze the architectural and timeline impact, issue a formal Change Request Impact Document with an itemized quotation (based on standard engineering man-day rate card), and schedule the work either in parallel or within the dedicated staging buffer upon mutual written sign-off, without impacting active milestone progress.</li>
+              </ul>
 
               <!-- SECTION 13: DATA CONFIDENTIALITY & NHRA -->
               <div class="section-h2" id="sec-confidentiality">
